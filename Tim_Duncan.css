@@ -246,6 +246,7 @@ ul li {
 }
 
 .album > ul > li > img {
+    vertical-align:top;
     width: 100%;
     height: 181px;
     border-radius: 10px;
