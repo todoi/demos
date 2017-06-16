@@ -1,0 +1,10 @@
+#briefh2{
+margin:0;}
+#link li{list-style:square;}
+#last li{
+list-style:square;
+font-size:12px}
+#image{
+text-align:right;
+border:solid 1px;
+}
