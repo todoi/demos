@@ -1,0 +1,16 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.topbar{
+    height: 100px;
+    background: hsla(240,10%,10%,1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+.wrapper{
+    height: 100px;
+}
+

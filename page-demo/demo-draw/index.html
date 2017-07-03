@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+   <button>click me</button>
+   <script>
+var button = document.getElementsByTagName('button')[0];
+
+
+var container ;
+
+var queue = [
+  function (){
+      container = document.createElement('div');
+      container.className = 'container';
+      document.body.appendChild(container);
+    },
+  function(){
+      var body = document.createElement('div');
+      body.className = 'body';
+      var tummy = document.createElement('div');
+      tummy.className = 'tummy';
+      body.appendChild(tummy);
+      container.appendChild(body);
+    },
+  function(){
+      var left_eye = createTag('span', 'eyes left_eye');
+      var right_eye = createTag('span', 'eyes right_eye');
+      container.appendChild(left_eye);
+      container.appendChild(right_eye);
+    },
+  function(){
+      var nose = createTag('span', 'nose');
+      container.appendChild(nose);
+    },
+      function(){
+          var mouth = createTag('span', 'mouth');
+          container.appendChild(mouth);
+      },
+        function(){
+            var left_ear = createTag('span','ear left_ear');
+            var right_ear = createTag('span', 'ear right_ear');
+            container.appendChild(left_ear);
+            container.appendChild(right_ear);
+          },
+            function(){
+                var left_hand = createTag('span', 'hand left_hand');
+                var right_hand = createTag('span', 'hand right_hand');
+                container.appendChild(left_hand);
+                container.appendChild(right_hand);
+              },
+                function(){
+                    var left_foot = createTag('span', 'foot left_foot');
+                    var right_foot = createTag('span', 'foot right_foot');
+                    container.appendChild(left_foot);
+                    container.appendChild(right_foot);
+                  },
+                    function(){
+                        var trail = createTag('div', 'trail');
+                        container.appendChild(trail);
+                        var trailList = [
+                            createTag('span', 'trail1'),
+                            createTag('span', 'trail2'),
+                            createTag('span', 'trail3'),
+                            createTag('span', 'trail4'),
+                            createTag('span', 'trail5'),
+                              ];
+                        var clock = window.setInterval(function(){
+                              trail.appendChild(trailList.shift())
+                            }, 1000);
+                      }
+];
+
+function createTag(tagName, className, text){
+  tag = document.createElement(tagName);
+  tag.className = className;
+  text && (tag.textContent = text);
+  return tag;
+} 
+
+button.onclick = function(){
+  var fn = queue.shift();
+  fn && fn.call();
+};
+
+   </script>
+</body>
+</html>

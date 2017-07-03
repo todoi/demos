@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>南通冠东塑模有限公司</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-image: url("http://www.gdcd.com/images/bg.jpg");
+            display: flex;
+        }
+
+        article {
+            width: 1000px;
+        }
+
+        header {
+            background-image: url("http://www.gdcd.com/images/logo.jpg");
+            height: 86px;
+        }
+
+        aside {
+            min-width: 100px;
+            height: 100px;
+            flex-grow: 1;
+        }
+
+        .subscribe {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .subscribe li {
+            margin-top: 10px;
+            height: 25px;
+            flex-basis: 70px;
+            font-size: 9pt;
+            list-style-image: url("http://www.gdcd.com/images/012.gif");
+            list-style-position: outside;
+        }
+
+        .subscribe li a {
+            text-decoration: none;
+            color: black;
+        }
+
+        .navigator {
+            float: right;
+            margin-top: 10px;
+            margin-right: 20px;
+        }
+
+        .navigator td {
+            font-size: 9pt;
+            width: 70px;
+            height: 19px;
+            text-align: center;
+        }
+
+        .navigator td a {
+            text-decoration: none;
+            font-weight: bold;
+            color: #01BCFF;
+        }
+
+        .navigator td a:hover {
+            color: #FFCC66;
+        }
+
+        .clearfloat::after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .banner {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<aside></aside>
+<article>
+    <header>
+        <nav class="clearfloat">
+            <ul class="subscribe">
+                <li>
+                    <a href="http://www.gdcd.com/Cyrj.aspx">常用软件</a>
+                </li>
+                <li><a href="javascript:">加入收藏</a></li>
+                <li><a href="http://www.gdcd.com/default.aspx#">设为首页</a></li>
+            </ul>
+            <table class="navigator">
+                <tbody>
+                <tr>
+                    <td><a href="http://www.gdcd.com/default.aspx">首 页</a></td>
+                    <td><a href="http://www.gdcd.com/About.aspx">关于冠东</a></td>
+                    <td><a href="http://www.gdcd.com/ShowPower.aspx">实力展示</a></td>
+                    <td><a href="http://www.gdcd.com/News.aspx">企业咨询</a></td>
+                    <td><a href="http://www.gdcd.com/Product.aspx">产品展厅</a></td>
+                    <td><a href="http://www.gdcd.com/Hr.aspx">人才招聘</a></td>
+                    <td><a href="http://www.gdcd.com/Ly.aspx">在线留言</a></td>
+                    <td><a href="http://www.gdcd.com/Contact.aspx">联系我们</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </nav>
+    </header>
+    <img src="http://www.gdcd.com/images/banner.jpg" alt="冠东，让汽车更精彩" class="banner">
+    <section></section>
+    <section></section>
+    <adress></adress>
+    <footer></footer>
+</article>
+<aside></aside>
+</body>
+</html>

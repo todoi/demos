@@ -1,0 +1,22 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.parent{
+    border: 1px solid black;
+    width: 500px;
+    padding: 50px;
+    perspective: 1000px;
+}
+.child{
+    background: lightgreen;
+    height: 300px;
+    border:1px solid red;
+    transition: transform 0.005s;
+}

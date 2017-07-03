@@ -1,0 +1,10 @@
+[BS] Access URLs:
+ ---------------------------------------
+       Local: http://localhost:3000
+    External: http://192.168.31.132:3000
+ ---------------------------------------
+          UI: http://localhost:3001
+ UI External: http://192.168.31.132:3001
+ ---------------------------------------
+[BS] Serving files from: ./
+[BS] Watching files...

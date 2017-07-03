@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dom</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<button>clean node</button>
+     expand
+<script src="dom.js"></script>
+<script>
+
+    var div = dom.create(
+        'div',
+        [
+            dom.create('img', null, {
+                'src': 'http://p3.ifengimg.com/a/2016_38/2aad422c05734a3_size63_w900_h600.jpg',
+                'alt': '罗曼蒂克消亡史',
+                'title': '罗曼蒂克消亡史',
+                'width': '500px'
+            }),
+            dom.create('article', [
+                dom.create('h2', '标题'),
+                dom.create('p', ['段落',dom.create('span','this is a span element', {'style':'background:lightblue;'})]),
+                dom.create('p', '段落')
+            ]),
+            dom.create('article', [
+                dom.create('h2', '标题'),
+                dom.create('p', '段落'),
+                dom.create('p', '段落')
+            ])
+        ],
+        {
+            'class': 'container',
+            'id': 'text',
+            'style': 'background: #ddd;'
+        }
+    );
+    document.body.appendChild(div);
+
+    console.log(dom.find('article'));
+    var articles = dom.find('article');
+    var paragraphs = dom.find('p', articles[0]);
+    console.log(paragraphs);
+    var p = paragraphs[0];
+    document.getElementsByTagName('button')[0].onclick = function(){
+        dom.empty(p);
+    };
+    console.log('this is paragraph parent:', p.parentNode);
+    dom.children(document.body);
+    dom.text(document.body);
+
+    console.log(document.querySelectorAll('script[src]')[0].previousSibling);
+    dom.elderBrother(document.querySelectorAll('script[src]')[0]);
+    dom.elderBrother(document.querySelector('button'));
+    dom.youngerBrother(document.querySelectorAll('script[src]')[0]);
+    dom.youngerBrother(document.querySelector('button'));
+
+    dom.style(document.body, {
+        'color': 'grey',
+        'background': '#1b1b1b'
+    });
+    dom.attr(document.body, {
+        'id': 'largest_container',
+        'class': 'container',
+        'data-aaa': 'xxx'
+    })
+
+</script>
+</body>
+</html>

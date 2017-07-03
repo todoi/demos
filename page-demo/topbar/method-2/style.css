@@ -1,0 +1,42 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+ul,ol{
+    background: orange;
+    border: 1px solid;
+}
+.topbar{
+    min-height: 100px;
+    background: red;
+    animation: active 1s;
+}
+.active{
+    min-height: 100px;
+    width: 100%;
+    left: 0;
+    top: 0;
+    background: hsla(360,10%,10%,1);
+    position: fixed;
+    animation: topbar 1s;
+}
+.wrapper{
+    min-height: 100px;
+}
+@keyframes topbar{
+    0%{
+        transform: translateY(-100%);
+    }
+    100%{
+        transform: translateY(-0%);
+    }
+}
+@keyframes active{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
