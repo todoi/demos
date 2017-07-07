@@ -7,6 +7,7 @@ ol,ul{
     list-style: none;
 }
 
+/* 设置三个最外面div 的样式*/
 .container{
     min-height: 30vh;
     margin: 10px 30px;
@@ -20,6 +21,7 @@ ol,ul{
     box-sizing: border-box;
 }
 
+/*设置第一个和第三个容器中按钮的样式*/
 .btn-1,.btn-6{
     border: 1px solid transparent;
     padding: 15px;
@@ -37,7 +39,10 @@ ol,ul{
 .btn-1:active,.btn-6:active{
    box-shadow:inset 0 3px 5px 30px rgba(0,0,0,.225);
 }
+
+/*设置第一个和第三个容器中弹出框的样式*/
 .content-1,.content-6{
+    display: none;
     border: 1px solid #c7c7c7;
     max-width: 260px;
     padding: 10px;
@@ -51,6 +56,9 @@ ol,ul{
     position: relative;
     left: 10px;
 }
+.content-1.active,.content-6.active{
+    display: block
+}
 .content-1>.title,.content-6>.title{
     background: #f7f7f7;
     position: absolute;
@@ -61,7 +69,6 @@ ol,ul{
     padding-left: 15px;
     border-radius: 5px 5px 0 0;
     border-bottom: 1px solid #ddd;
-
 }
 .content-1::before,.content-6::before{
     content: '';
@@ -86,6 +93,7 @@ ol,ul{
     top: calc(50% - 10px);
 }
 
+/*覆盖设置第二个容器样式,不进行flex 布局*/
 .container.container-2{
     min-height: 0vh;
     padding-top: 50px;
@@ -94,6 +102,8 @@ ol,ul{
     position: relative;
     white-space: nowrap;
 }
+
+/*设置第二个容器中 所有button的样式 */
 .btn{
     background: white;
     border: 1px solid #c7c7c7;
@@ -115,9 +125,10 @@ ol,ul{
     box-shadow: inset 0 3px 5px hsla(240,10%,10%,0.3); 
 }
 
+/*设置第二个容器中所以弹出框的样式*/
 .content{
     display: inline-block;
-    max-width: 300px;
+    width: 300px;
     padding: 10px;
     padding-left: 15px;
     white-space: normal;
@@ -125,10 +136,15 @@ ol,ul{
     border: 1px solid #c7c7c7;
     border-radius: 5px;
     background: white;
+    box-shadow: 0 5px 10px hsla(240, 10%, 10%,.225);
 }
 
+/*二号容器 第一个弹出框*/
 .content-2{
-    top: 0;
+    display: none;
+}
+.content-2.active{
+    display: inline-block;
 }
 .content-2::before{
     content: '';
@@ -153,8 +169,12 @@ ol,ul{
     top: calc(50% - 10px);
 }
 
+/*二号容器 第二个弹出框*/
 .content-3{
-    display: none;
+    visibility: hidden;
+}
+.content-3.active{
+    visibility: visible;
 }
 .content-3::before{
     content: '';
@@ -179,8 +199,12 @@ ol,ul{
     bottom: -9px;
 }
 
+/*二号容器 第三个弹出框*/
 .content-4{
-    display: none;
+    visibility: hidden;
+}
+.content-4.active{
+    visibility: visible;
 }
 .content-4::before{
     content: '';
@@ -205,7 +229,12 @@ ol,ul{
     top: -9px;
 }
 
+/*二号容器 第四个弹出框*/
 .content-5{
+    visibility: hidden;
+} 
+.content-5.active{
+    visibility: visible;
 } 
 .content-5::before{
     content: '';
