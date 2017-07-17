@@ -202,7 +202,7 @@
 
         main > .main-tab-content > div { width: 1240px; margin: 40px auto 0; }
 
-        main > .main-tab-content > .integrated-info { display: none; outline: 1px solid red; }
+        main > .main-tab-content > .integrated-info { display: none; }
 
         main > .main-tab-content > .video-center { display: none; min-height: 1500px; background: teal; }
 
@@ -230,6 +230,16 @@
 
         main #slides .slidesjs-pagination li a.active { color: #e9c06c; background: #303030; }
 
+        main > .main-tab-content .tab-bar { position: relative; border-bottom: 3px solid #ededee; }
+
+        main > .main-tab-content .tab-bar > .tab-title { position: absolute; color: #666666; top: 0; left: 0; }
+
+        main > .main-tab-content li.active-title { border-bottom: 3px solid #d1ab57; color: #d1ab57; font-weight: bold; }
+
+        main > .main-tab-content .tab-bar > h3 { float: left; padding-bottom: 7px; color: #404040; font-size: 26px; font-weight: normal; }
+
+        main > .main-tab-content .tab-bar > .tab-title { left: 143px; }
+
         main > .main-tab-content .product > .resource { float: right; width: 400px; }
 
         main > .main-tab-content .product > .resource > .download { display: block; height: 150px; width: 400px; }
@@ -245,7 +255,7 @@
 
         main > .main-tab-content .product > .resource > .resource-nav > li > a > .resource-nav-icons { display: inline-block; vertical-align: top; width: 30px; height: 30px; }
 
-        main > .main-tab-content .product > .resource > .resource-nav > li > a > .resource-nav-icons.recommend { background: url("./images/topbar/sprite-v2.png") no-repeat -200px 0; }
+        main > .main-tab-content .product > .resource > .resource-nav > li > a > .resource-nav-icons.recommendation { background: url("./images/topbar/sprite-v2.png") no-repeat -200px 0; }
 
         main > .main-tab-content .product > .resource > .resource-nav > li > a > .resource-nav-icons.website { background: url("./images/topbar/sprite-v2.png") no-repeat -560px 0; }
 
@@ -275,20 +285,12 @@
 
         main > .main-tab-content .hot-events > .news-tab { float: left; width: 820px; }
 
-        main > .main-tab-content .hot-events > .news-tab > .tab-bar { position: relative; border-bottom: 3px solid #ededee; }
-
-        main > .main-tab-content .hot-events > .news-tab > .tab-bar > h3 { float: left; padding-bottom: 7px; color: #404040; font-size: 26px; font-weight: normal; }
-
-        main > .main-tab-content .hot-events > .news-tab > .tab-bar > .tab-title { position: absolute; color: #666666; top: 0; left: 143px; }
-
         main > .main-tab-content .hot-events > .news-tab > .tab-bar > .tab-title > li { float: left; width: 168px; font-size: 18px; color: #666666; text-align: center;
-            padding: 14px 0 4px;cursor: pointer; }
-
-        main > .main-tab-content .hot-events > .news-tab > .tab-bar > .tab-title > li.active {border-bottom: 3px solid #d1ab57; color: #d1ab57; font-weight: bold; }
+            padding: 14px 0 4px; cursor: pointer; }
 
         main > .main-tab-content .hot-events > .news-tab > .tab-content { margin-top: 24px; }
 
-        main > .main-tab-content .hot-events > .news-tab > .tab-content > li { display:none; }
+        main > .main-tab-content .hot-events > .news-tab > .tab-content > li { display: none; }
 
         main > .main-tab-content .hot-events > .news-tab > .tab-content > li a { color: black; display: block; }
 
@@ -326,10 +328,118 @@
 
         main > .main-tab-content .hot-events > .news-tab > .tab-content > li > table > tfoot a > span { color: #d1ab57; }
 
-        main > .main-tab-content .hot-events > .hero-and-skin { background: lime; height: 100px; width: 100px;
-            float: right; }
+        main > .main-tab-content .hot-events > .hero-and-skin { position: relative; float: right; color: black; width: 400px; height: 710px; }
 
-        main > .main-tab-content .recommendation { height: 500px; background: teal; }
+        main > .main-tab-content .hot-events > .hero-and-skin > .hero-tab > .tab-bar { height: 45px; width: 400px; }
+
+        main > .main-tab-content .hot-events > .hero-and-skin > .hero-tab > .tab-bar > .tab-title { left: 0; display: flex; width: 400px; }
+
+        main > .main-tab-content .hot-events > .hero-and-skin > .hero-tab > .tab-bar > .tab-title > li { font-size: 16px; cursor: pointer; flex-grow: 1; text-align: center; padding: 13px 0 8px; }
+
+        main > .main-tab-content .hot-events > .hero-and-skin > .hero-tab > .hero-content { margin-top: 15px; }
+
+        main > .main-tab-content .hot-events > .hero-and-skin > .hero-tab > .hero-content > li > ul { display: flex; justify-content: space-between; flex-wrap: wrap; }
+
+        main > .main-tab-content .hot-events > .hero-and-skin > .hero-tab > .hero-content > li > ul > li { padding-bottom: 10px; }
+
+        main > .main-tab-content .hot-events > .hero-and-skin > .hero-tab > .hero-content > li > ul > li a { display: inline-block; vertical-align: top; position: relative; }
+
+        main > .main-tab-content .hot-events > .hero-and-skin > .hero-tab > .hero-content > li > ul > li.free-time { font-size: 12px; color: #9F9F9F; padding-bottom: 0; padding-left: 185px; }
+
+        main > .main-tab-content .hot-events > .hero-and-skin > .hero-tab > .hero-content img { vertical-align: top; }
+
+        main > .main-tab-content .hot-events > .hero-and-skin > .hero-tab > .hero-content > li { display: none; }
+
+        main > .main-tab-content .hot-events > .hero-and-skin > .hero-tab > .hero-content > li.active { display: block; }
+
+        main > .main-tab-content .hot-events > .hero-and-skin > .survey-prompt { position: absolute; bottom: 0; right: 0; }
+
+        main > .main-tab-content .hot-events > .hero-and-skin > .survey-prompt > .survey img { vertical-align: top; }
+
+        main > .main-tab-content .hot-events > .hero-and-skin > .survey-prompt > .prompt { margin-top: 25px; }
+
+        main > .main-tab-content .hot-events > .hero-and-skin > .survey-prompt > .prompt > .prompt-icon { float: left; width: 70px; height: 70px; background: url("./images/topbar/sprite-v2.png") no-repeat -330px -89px; margin-right: 10px; }
+
+        main > .main-tab-content .hot-events > .hero-and-skin > .survey-prompt > .prompt > h5 { font-size: 14px; font-weight: normal; color: #404040; padding-top: 5px; }
+
+        main > .main-tab-content .hot-events > .hero-and-skin > .survey-prompt > .prompt > p { font-size: 12px; color: #878787; }
+
+        main > .main-tab-content .recommend { width: 1240px; margin-top: 67px; }
+
+        main > .main-tab-content .recommend > .recommend-bar > h3 { float: left; color: #3c3c3c; }
+
+        main > .main-tab-content .recommend > .recommend-bar > .recommend-tab > li { float: left; font-size: 16px; padding: 11px 0 10px; width: 150px; text-align: center; }
+
+        main > .main-tab-content .recommend > .recommend-content { margin-top: 20px; color: #555555; }
+
+        main > .main-tab-content .recommend > .recommend-content > div { display: none; }
+
+        main > .main-tab-content .recommend > .recommend-content > div.active { display: block; }
+
+        main > .main-tab-content .recommend > .recommend-content > .recommend-video > ul { display: flex; justify-content: space-between; margin-bottom: 50px; }
+
+        main > .main-tab-content .recommend > .recommend-content > .recommend-video > ul > li { width: 190px; height: 155px; position: relative; overflow: hidden; }
+
+        main > .main-tab-content .recommend > .recommend-content > .recommend-video > ul > li > span { display: block; }
+
+        main > .main-tab-content .recommend > .recommend-content > .recommend-video > ul > li > .time-bar { display: block; position: absolute; z-index: 1; color: #d2ddb8; top: 110px; width: 100%;
+            background: rgba(0, 0, 0, 0.5); text-align: right; transform: translateY(-100%); font-size: 12px; padding: 8px 5px; }
+
+        main > .main-tab-content .recommend > .recommend-content > .recommend-video > ul > li > .description { font-size: 14px; padding-top: 5px; }
+
+        main > .main-tab-content .recommend > .recommend-content > .recommend-video > ul > li > a { position: absolute; z-index: 2; width: 100%; height: 100%; top: 0; left: 0;
+            background: url("//ossweb-img.qq.com/images/lol/web201310/video/bg-icon-v.png") no-repeat center 22px; background-color: rgba(0, 0, 0, 0.05); display: none; }
+
+        main > .main-tab-content .recommend > .recommend-content > .recommend-video > ul > li > img { width: 100%; height: 110px; vertical-align: top; }
+
+        main > .main-tab-content .recommend > .recommend-content > .recommend-video > ul > li:hover > a { display: block; }
+
+        main > .main-tab-content .recommend > .recommend-content > .recommend-video > ul > li:hover > .description { color: #d1ab57; }
+
+        main > .main-tab-content .recommend > .recommend-content .view-more { margin-top: 15px; }
+
+        main > .main-tab-content .recommend > .recommend-content .view-more > a { display: block; padding: 12px 0; text-align: center; color: #515151; font-size: 16px; background: #f0f0f0; }
+
+        main > .main-tab-content .recommend > .recommend-content .view-more > a > span { color: #d1ab57; }
+
+        main > .main-tab-content .recommend > .recommend-content .view-more > a:hover { background: #dad8d8; }
+
+        main > .main-tab-content .recommend > .recommend-content > .recommend-activity > ul { display: flex; justify-content: space-between; }
+
+        main > .main-tab-content .recommend > .recommend-content > .recommend-activity > ul > li { width: 300px; height: 240px; overflow: hidden; background: #f7f7f7; box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+            position: relative; }
+
+        main > .main-tab-content .recommend > .recommend-content > .recommend-activity > ul > li > a { display: block; position: relative; height: 130px; overflow: hidden; }
+
+        main > .main-tab-content .recommend > .recommend-content > .recommend-activity > ul > li > a > img { vertical-align: top; transition: all 1s ease; }
+
+        main > .main-tab-content .recommend > .recommend-content > .recommend-activity > ul > li > a:hover > img { transform: scale(1.05); }
+
+        main > .main-tab-content .recommend > .recommend-content > .recommend-activity > ul > li .finished-icon { position: absolute; top: 5px; right: 5px; background: #c8c8c8; padding: 3px 8px;
+            border-radius: 15px; }
+
+        main > .main-tab-content .recommend > .recommend-content > .recommend-activity > ul > li .intersted-number { position: absolute; bottom: 0; left: 0; display: block; width: 100%; background: rgba(0, 0, 0, 0.6);
+            text-align: center; padding: 6px 0 5px; }
+
+        main > .main-tab-content .recommend > .recommend-content > .recommend-activity > ul > li .intersted-number > b { color: #f3ca6f;; font-weight: normal; }
+
+        main > .main-tab-content .recommend > .recommend-content > .recommend-activity > ul > li > h5 { padding: 12px 0 0 15px; opacity: .9; }
+
+        main > .main-tab-content .recommend > .recommend-content > .recommend-activity > ul > li > p { padding: 12px 0 0 15px; }
+
+        main > .main-tab-content .recommend > .recommend-content > .recommend-activity > ul > li > p > span { color: #d1ab57; }
+
+        footer { padding: 30px 0; background: url("//ossweb-img.qq.com/images/lol/v2/bg-footer.jpg") no-repeat center top; margin-top: 70px; }
+
+        footer > .tencent-nav-wrapper { width: 1240px; margin: 0 auto; }
+
+        footer > .tencent-nav-wrapper > .tencent-nav { float: right; color: #A5A5A5; }
+
+        footer > .tencent-nav-wrapper > .tencent-nav > p { padding: 2px 0 1px; }
+
+        footer > .tencent-nav-wrapper > .tencent-nav > p > a { color: #568193; }
+
+        footer > .tencent-nav-wrapper > .tencent-nav > p.copyright { color: #415967; font-size: 11px; }
     </style>
 </head>
 <body>
@@ -514,7 +624,7 @@
                         </a>
                         <ul class="resource-nav">
                             <li>
-                                <a href="#"><i class="resource-nav-icons recommend"></i>新手推荐</a>
+                                <a href="#"><i class="resource-nav-icons recommendation"></i>新手推荐</a>
                             </li>
                             <li>
                                 <a href="#"> <i class="resource-nav-icons website"></i>宇宙官网<i
@@ -560,8 +670,8 @@
                     <div class="news-tab">
                         <div class="tab-bar clearfix">
                             <h3>最新资讯</h3>
-                            <ul class="tab-title">
-                                <li class="active">综合新闻</li>
+                            <ul class="tab-title clearfix">
+                                <li class="active-title">综合新闻</li>
                                 <li>官方公告</li>
                                 <li>赛事新闻</li>
                                 <li>论坛资讯</li>
@@ -932,22 +1042,254 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="hero-and-skin"></div>
-                    <div class="survey-prompt">
-                        <a class="survey" href="#"></a>
-                        <div class="prompt"></div>
+                    <div class="hero-and-skin">
+                        <div class="hero-tab">
+                            <div class="tab-bar">
+                                <ul class="tab-title">
+                                    <li class="active-title">周免英雄</li>
+                                    <li>最新皮肤</li>
+                                    <li>最新英雄</li>
+                                </ul>
+                            </div>
+                            <ul class="hero-content">
+                                <li class="active">
+                                    <ul>
+                                        <li><a title="殇之木乃伊 阿木木" href="#" target="_blank">
+                                            <img width="195" height="70" alt="殇之木乃伊 阿木木"
+                                                 src="//ossweb-img.qq.com/images/lol/v2/champion/avatar/Amumu.jpg">
+                                        </a></li>
+                                        <li><a title="深渊巨口 克格莫" href="#" target="_blank">
+                                            <img width="195" height="70" alt="深渊巨口 克格莫"
+                                                 src="//ossweb-img.qq.com/images/lol/v2/champion/avatar/KogMaw.jpg">
+                                        </a></li>
+                                        <li><a title="盲僧 李青" href="#" target="_blank">
+                                            <img width="195" height="70" alt="盲僧 李青"
+                                                 src="//ossweb-img.qq.com/images/lol/v2/champion/avatar/LeeSin.jpg">
+                                        </a></li>
+                                        <li><a title="光辉女郎 拉克丝" href="#" target="_blank">
+                                            <img width="195" height="70" alt="光辉女郎 拉克丝"
+                                                 src="//ossweb-img.qq.com/images/lol/v2/champion/avatar/Lux.jpg">
+                                        </a></li>
+                                        <li><a title="扭曲树精 茂凯" href="#">
+                                            <img src="//ossweb-img.qq.com/images/lol/v2/champion/avatar/Maokai.jpg">
+                                        </a></li>
+                                        <li><a title="幻翎 洛" href="#" target="_blank">
+                                            <img width="195" height="70" alt="幻翎 洛"
+                                                 src="//ossweb-img.qq.com/images/lol/v2/champion/avatar/Rakan.jpg">
+                                        </a></li>
+                                        <li><a title="虚空遁地兽 雷克塞" href="#" target="_blank">
+                                            <img width="195" height="70" alt="虚空遁地兽 雷克塞"
+                                                 src="//ossweb-img.qq.com/images/lol/v2/champion/avatar/RekSai.jpg">
+                                        </a></li>
+                                        <li><a title="瓦洛兰之盾 塔里克" href="#" target="_blank">
+                                            <img width="195" height="70" alt="瓦洛兰之盾 塔里克"
+                                                 src="//ossweb-img.qq.com/images/lol/v2/champion/avatar/Taric.jpg">
+                                        </a></li>
+                                        <li><a title="卡牌大师 崔斯特" href="#" target="_blank">
+                                            <img width="195" height="70" alt="卡牌大师 崔斯特"
+                                                 src="//ossweb-img.qq.com/images/lol/v2/champion/avatar/TwistedFate.jpg">
+                                        </a></li>
+                                        <li><a title="逆羽 霞" href="#" target="_blank">
+                                            <img width="195" height="70" alt="逆羽 霞"
+                                                 src="//ossweb-img.qq.com/images/lol/v2/champion/avatar/Xayah.jpg">
+                                        </a></li>
+                                        <li class="free-time">免费时间：2017-07-14 至 2017-07-21</li>
+                                    </ul>
+                                </li>
+                                <li class>
+                                    <ul>
+                                        <li class="skin-first"><a href="#" target="_blank"><img
+                                                src="//ossweb-img.qq.com/images/lol/v2/skin/recommend/a20170703skt.jpg"
+                                                width="400" height="145"></a></li>
+                                        <li><a href="#"><img
+                                                src="//ossweb-img.qq.com/images/lol/v2/skin/a20170612vs.jpg" width="195"
+                                                height="70" alt=""> </a></li>
+                                        <li><a href="#" target="_blank"><img
+                                                src="//ossweb-img.qq.com/images/lol/v2/skin/a20170522caitlin.jpg"
+                                                width="195" height="70" alt=""> </a></li>
+                                        <li><a href="#" target="_blank"><img
+                                                src="//ossweb-img.qq.com/images/lol/v2/skin/a20170407fist.jpg"
+                                                width="195" height="70" alt=""> </a></li>
+                                        <li><a href="#" target="_blank"><img
+                                                src="//ossweb-img.qq.com/images/lol/v2/skin/a20170401fool.jpg"
+                                                width="195" height="70" alt=""> </a></li>
+                                        <li><a href="#" target="_blank"><img
+                                                src="//ossweb-img.qq.com/images/lol/v2/skin/a20170213blood.jpg"
+                                                width="195" height="70" alt=""> </a></li>
+                                        <li><a href="#" target="_blank"><img
+                                                src="//ossweb-img.qq.com/images/lol/v2/skin/a20161117nautilus.jpg"
+                                                width="195" height="70" alt=""> </a></li>
+                                    </ul>
+                                </li>
+                                <li class>
+                                    <ul>
+                                        <li><a href="#" target="_blank"><img
+                                                src="//ossweb-img.qq.com/images/lol/v2/champion/avatar/Luoxia.jpg"
+                                                width="195" height="70" alt=""> </a></li>
+                                        <li><a href="#" target="_blank"><img
+                                                src="//ossweb-img.qq.com/images/lol/v2/champion/avatar/Camille.jpg"
+                                                width="195" height="70" alt=""> </a></li>
+                                        <li><a href="#" target="_blank"><img
+                                                src="//ossweb-img.qq.com/images/lol/v2/champion/avatar/Ivern.jpg"
+                                                width="195" height="70" alt=""> </a></li>
+                                        <li><a href="#" target="_blank"><img
+                                                src="//ossweb-img.qq.com/images/lol/v2/champion/avatar/Kled.jpg"
+                                                width="195" height="70" alt=""> </a></li>
+                                        <li><a href="#" target="_blank"><img
+                                                src="//ossweb-img.qq.com/images/lol/v2/champion/avatar/Taliyah.jpg"
+                                                width="195" height="70" alt=""> </a></li>
+                                        <li><a href="#" target="_blank"><img
+                                                src="//ossweb-img.qq.com/images/lol/v2/champion/avatar/AurelionSol.jpg"
+                                                width="195" height="70" alt=""> </a></li>
+                                        <li><a href="#" target="_blank"><img
+                                                src="//ossweb-img.qq.com/images/lol/v2/champion/avatar/Jhin.jpg"
+                                                width="195" height="70" alt=""> </a></li>
+                                        <li><a href="#" target="_blank"><img
+                                                src="//ossweb-img.qq.com/images/lol/v2/champion/avatar/Illaoi.jpg"
+                                                width="195" height="70" alt=""> </a></li>
+                                        <li><a href="#" target="_blank"><img
+                                                src="//ossweb-img.qq.com/images/lol/v2/champion/avatar/Kindred.jpg"
+                                                width="195" height="70" alt=""> </a></li>
+                                        <li><a href="#" target="_blank"><img
+                                                src="//ossweb-img.qq.com/images/lol/v2/champion/avatar/TahmKench.jpg"
+                                                width="195" height="70" alt=""> </a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="survey-prompt">
+                            <a class="survey" href="#"><img alt="" src="//ossweb-img.qq.com/images/lol/v1/survey.jpg"
+                                                            width="400" height="90"></a>
+                            <div class="prompt clearfix">
+                                <i class="prompt-icon"></i>
+                                <h5>本游戏适合18岁（含）以上玩家娱乐</h5>
+                                <p> 抵制不良游戏 拒绝盗版游戏 注意自我保护 谨防受骗上当<br/>
+                                    适度游戏益脑 沉迷游戏伤身 合理安排时间 享受健康生活
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="recommendation"></div>
+                <div class="recommend">
+                    <div class="recommend-bar tab-bar clearfix">
+                        <h3>最新推荐</h3>
+                        <ul class="recommend-tab tab-title clearfix">
+                            <li class="active-title">视频推荐</li>
+                            <li>活动推荐</li>
+                        </ul>
+                    </div>
+                    <div class="recommend-content">
+                        <div class="recommend-video active">
+                            <ul>
+                                <li>
+                                    <img src="//puui.qpic.cn/qqvideo_ori/0/q0524sdzadp_228_128/0" alt="">
+                                    <span class="time-bar">05:43</span>
+                                    <span class="description">新英雄介绍视频：影流之镰 凯隐</span>
+                                    <a href="#"></a>
+                                </li>
+                                <li>
+                                    <img src="//puui.qpic.cn/qqvideo_ori/0/n0524x6hsmh_228_128/0" alt="">
+                                    <span class="time-bar">00:48</span>
+                                    <span class="description">新英雄CG动画：凯隐 影之道</span>
+                                    <a href="#"></a>
+                                </li>
+                                <li>
+                                    <img src="//shp.qpic.cn/lolwebvideo/201406/74a9365733b44fbd8ba4bfb72d52d6ef/0"
+                                         alt="">
+                                    <span class="time-bar">02:58</span>
+                                    <span class="description">【神探苍致胜九十秒】第二期 火影劫万能击杀秘籍</span>
+                                    <a href="#"></a>
+                                </li>
+                                <li>
+                                    <img src="//shp.qpic.cn/lolwebvideo/201406/aa5dc0472b6ab318f85e7a094f8e3c33/0"
+                                         alt="">
+                                    <span class="time-bar">08:14</span>
+                                    <span class="description">7.14版本凯隐上线 新英雄首个1V5五杀</span>
+                                    <a href="#"></a>
+                                </li>
+                                <li>
+                                    <img src="//shp.qpic.cn/lolwebvideo/201406/2a7f47671303bc2f543ec26c13ff66e0/0"
+                                         alt="">
+                                    <span class="time-bar">08:55</span>
+                                    <span class="description">岩雀大招还能这么用？这个隐藏R我真的服</span>
+                                    <a href="#"></a>
+                                </li>
+                                <li>
+                                    <img src="//shp.qpic.cn/lolwebvideo/201406/94a5181d62c5e75c7c94710643201e03/0"
+                                         alt="">
+                                    <span class="time-bar">05:24</span>
+                                    <span class="description">神仙打架啦：北美神僧大胡子 开场一分钟闪Q拿下一血真的骚</span>
+                                    <a href="#"></a></li>
+                            </ul>
+                            <div class="view-more"><a href="#">浏览更多<span>视频内容</span></a></div>
+                        </div>
+                        <div class="recommend-activity">
+                            <ul>
+                                <li><a href="#"><img
+                                        src="//ossweb-img.qq.com/images/clientpop/act/lol_1497607072_sSmallImgUrl.jpg"
+                                        alt="锐雯vs亚索 对决">
+                                    <span class="finished-icon">已结束</span>
+                                    <span class="intersted-number">已有 <b>217287</b> 人关注</span></a>
+                                    <h5>锐雯vs亚索 对决</h5>
+                                    <p><span>活动时间: </span>2017-06-16~2017-06-30</p>
+                                    <p>加入战役，拿专属奖励！</p>
+                                </li>
+                                <li><a href="#"><img
+                                        src="//ossweb-img.qq.com/images/clientpop/act/lol_1496843202_sSmallImgUrl.jpg"
+                                        alt="末日人工智能">
+                                    <span class="finished-icon">已结束</span>
+                                    <span class="intersted-number">已有 <b>90253022</b> 人关注</span></a>
+                                    <h5>末日人工智能</h5>
+                                    <p><span>活动时间: </span>2017-06-06~2017-06-15</p>
+                                    <p>提莫大魔王卷土重来</p>
+                                </li>
+                                <li><a href="#"><img
+                                        src="//ossweb-img.qq.com/images/clientpop/act/lol_1496312163_sSmallImgUrl.jpg"
+                                        alt="德杯观赛活动">
+                                    <span class="finished-icon">已结束</span>
+                                    <span class="intersted-number">已有 <b>160240</b> 人关注</span></a>
+                                    <h5>德杯观赛活动</h5>
+                                    <p><span>活动时间: </span>2017-06-01~2017-06-08</p>
+                                    <p>客户端电视台看德杯，赢冠军皮肤</p>
+                                </li>
+                                <li><a href="#"><img
+                                        src="//ossweb-img.qq.com/images/clientpop/act/lol_1496236579_sSmallImgUrl.jpg"
+                                        alt="520甜蜜大作战">
+                                    <span class="finished-icon">已结束</span>
+                                    <span class="intersted-number">已有 <b>381047</b> 人关注</span></a>
+                                    <h5>520甜蜜大作战</h5>
+                                    <p><span>活动时间: </span>2017-05-20~2017-06-04</p>
+                                    <p>参与活动免费领英雄皮肤,来与好友一起并肩作战!</p>
+                                </li>
+                            </ul>
+                            <div class="view-more"><a href="#">浏览更多<span>最新活动</span></a></div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="video-center"></div>
             <div class="event-center"></div>
             <div class="activity-center"></div>
         </div>
     </main>
-    <footer></footer>
+    <footer>
+        <div class="tencent-nav-wrapper clearfix">
+            <div class="tencent-nav">
+                <p><a href="#">腾讯互动娱乐</a> <a>|</a> <a href="#">服务条款</a> <a>|</a> <a href="#">广告服务</a> <a>|</a> <a
+                        href="#">腾讯游戏招聘</a> <a>|</a> <a href="#">腾讯游戏客服</a> <a>|</a>
+                    <a href="#">游戏活动</a> <a>|</a> <a href="#">游戏地图</a> <a>|</a> <a href="#">商务合作</a> <a>|</a> <a
+                            href="#">腾讯网</a> <a>|</a> <a
+                            href="#">网站导航</a></p>
+                <p><a href="#">腾讯公司版权所有</a></p>
+                <p class="copyright">COPYRIGHT © 1998 - 2017 TENCENT. ALL RIGHTS RESERVED.</p>
+                <p class="copyright">© 2012 Riot Games, Inc. ALL RIGHTS RESERVED.</p>
+                <p>文网进字[2011] 004号 & ISBN 978-7-89989-145-2 <a>|</a> <a href="#">新出网证（粤）字010号</a> <a>|</a> <a
+                        href="#">粤网文[2014]0633-233号</a></p>
+            </div>
+        </div>
+    </footer>
 </div>
-<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="jquery.slides.min.js"></script>
 <script>
     function popupFlashVideo() {
@@ -1058,18 +1400,69 @@
         })
     });
 
-    function triggerNewsTab(){
-        $('main .hot-events > .news-tab > .tab-bar > .tab-title > li').on('mouseenter',function(e){
-            var $index = $(e.currentTarget).index();
-            console.log($index);
-            $(e.currentTarget).siblings()
-                .removeClass('active')
-                .end()
-                .addClass('active');
-            $('main .hot-events > .news-tab > .tab-content > li').removeClass('active').eq($index).addClass('active');
+    function hoverHeroImg() {
+        var $spanParent = $('<span></span>');
+        var $spanChild = $('<span></span>');
+        $spanParent.css({
+            'position': 'absolute',
+            'top': '0',
+            'width': '100%',
+            'height': '100%',
+            'background': 'rgba(0,0,0,0.78)'
+//            'display':none
+        });
+        $('main .hot-events >.hero-and-skin >.hero-tab >.hero-content>li>ul>li')
+            .not('[class=free-time],[class=skin-first]')
+            .on('mouseenter', 'a', function (e) {
+                $spanChild.text(e.currentTarget.title.split(' ')[0]);
+                console.log($spanChild)
+                $spanChild.css({
+                    'position': 'absolute',
+                    "z-index": '1',
+                    'top': '50%',
+                    'left': '50%',
+                    'transform': 'translate(-50%,-50%)',
+                    'color': 'RGB(209,171,87)'
+                })
+                $spanParent.append($spanChild).appendTo(e.currentTarget);
+            }).on('mouseleave', 'a', function (e) {
+            $(e.currentTarget).find('span').remove();
         })
     }
-    triggerNewsTab()
+    hoverHeroImg();
+
+    function triggerTab(tabSelector, contentSelector) {
+        $(tabSelector).on('mouseenter', function (e) {
+            var $index = $(e.currentTarget).index();
+            $(e.currentTarget).siblings()
+                .removeClass('active-title')
+                .end()
+                .addClass('active-title');
+            $(contentSelector).removeClass('active').eq($index).addClass('active');
+        })
+
+    }
+
+    function triggerNewsTab() {
+        var tabSelector = 'main .hot-events > .news-tab > .tab-bar > .tab-title > li';
+        var contentSelector = 'main .hot-events > .news-tab > .tab-content > li';
+        triggerTab(tabSelector, contentSelector)
+    }
+    triggerNewsTab();
+
+    function triggerHeroTab() {
+        var tabSelector = 'main .hot-events >.hero-and-skin >.hero-tab >.tab-bar > .tab-title > li';
+        var contentSelector = 'main .hot-events >.hero-and-skin >.hero-tab >.hero-content>li';
+        triggerTab(tabSelector, contentSelector)
+    }
+    triggerHeroTab();
+
+    function triggerRecommendTab() {
+        var tabSelector = 'main > .main-tab-content .recommend > .recommend-bar > .recommend-tab > li';
+        var contentSelector = 'main > .main-tab-content .recommend > .recommend-content>div';
+        triggerTab(tabSelector, contentSelector)
+    }
+    triggerRecommendTab()
 </script>
 </body>
 </html>
