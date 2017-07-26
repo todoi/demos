@@ -8,4 +8,5 @@ board.addEventListener('touchmove',function(e){
     div.style.top =  clientY-5+'px';
     div.style.left = clientX-5+'px';
     board.appendChild(div)
+    board.addEventListener('touchmove',function(e){
 })
