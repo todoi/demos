@@ -7,18 +7,34 @@
     <style>
         *{margin: 0; padding: 0;box-sizing: border-box;}
         ul, ol{list-style: none;}
-        nav.tools{background: lightblue;min-height:20vh;position:relative;z-index:1;}
-        main.board{background: #ddd;min-height:80vh; margin: 0 auto;}
-        div.dot{background: red;width:10px;height: 10px;border-radius: 50%;}
+        nav{position: absolute;background: lightblue;min-height: 10vh;min-width: 100vw;top:0;left:0;}
+        #board{background: #ddd;vertical-align:top;}
+        .icon{ width: 2em; height: 2em; vertical-align: middle; overflow: hidden; border: 1px solid red; }
+        .icon.active{
+            width: 3em;height: 3em;
+        }
     </style>
-    <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//at.alicdn.com/t/font_x7r7etanqfbc5wmi.js"></script>
 </head>
 <body>
     <nav class="tools">
-        <div>there</div>
+        <svg class="icon active" aria-hidden="true" id="pen">
+            <use xlink:href="#icon-pen1"></use>
+        </svg>
+        <svg class="icon" aria-hidden="true" id="eraser">
+            <use xlink:href="#icon-erase"></use>
+        </svg>
+        <svg class="icon" aria-hidden="true" id="textarea">
+            <use xlink:href="#icon-textarea"></use>
+        </svg>
+        <svg class="icon" aria-hidden="true" id="clear">
+            <use xlink:href="#icon-clear"></use>
+        </svg>
+        <svg class="icon" aria-hidden="true" id="save">
+            <use xlink:href="#icon-save"></use>
+        </svg>
     </nav>
-    <main class="board">
-    </main>
+    <canvas id="board"></canvas>
     <script src="./main.js"> </script>
 </body>
 </html>
