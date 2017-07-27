@@ -19,8 +19,9 @@
         .tools>a{
             text-decoration:none; border: #aaa 1px solid;
             display: inline-block;border-radius: 6px;
-            padding: 5px;background: #b9b9b9;box-shadow:inset 1px 1px 3px white;
-            cursor: default;
+            background: #b9b9b9;box-shadow:inset 1px 1px 3px white;
+            cursor: default;overflow:hidden;width:45px;height:45px;
+                display:flex;justify-content:center;align-items:center;
         }
 
         .tools>a.active:not(.deactive){background:#acf;}
@@ -30,6 +31,18 @@
         .icon{
             width: 2em; height: 2em; vertical-align: middle; 
             overflow: hidden;
+        }
+        #size{
+            background-image: url("./arrow-select.png");
+            background-position: 28px 25px;
+            background-repeat:no-repeat;
+            background-size:10px 15px;
+        }
+
+        #selectSize{
+            background:transparent;appearance: none;-webkit-appearance: none; 
+            border:transparent;text-align:center;font-weight:bold;
+            font-size:18px;padding:15px 20px;
         }
 
         #board{
@@ -56,7 +69,18 @@
             </svg>
         </a>
         <a href="javascript:void(0);" id="size" title="大小" alt="大小">
-
+            <select id="selectSize" name="size">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3" selected>3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
         </a>
         <a href="javascript:void(0);" class="deactive" id="clear" title="清空画板" alt="清空画板">
             <svg class="icon" aria-hidden="true">
@@ -68,7 +92,7 @@
                 <use xlink:href="#icon-save"></use>
             </svg>
         </a>
-        <a href="#" id="download" title="下载图片" alt="下载图片">
+        <a href="javascript:void(0);" id="download" title="下载图片" alt="下载图片">
             <svg class="icon" aria-hidden="true">
                 <use xlink:href="#icon-load"></use>
             </svg>

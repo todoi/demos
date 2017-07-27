@@ -3,17 +3,18 @@ let html = document.documentElement;
 canvas.width = html.clientWidth;
 canvas.height = html.clientHeight;
 
-let action = 'pen'
 let context = canvas.getContext('2d');
 let previousPoint;
+let action = 'pen'
+let size = 3
+let previousElement
+
 let nav = document.querySelector('nav.tools');
 let clear = document.querySelector('#clear')
 let pen = document.querySelector('#pen')
-let download = document.querySelector('#download')
 
 nav.addEventListener('click',function(e){
     let element = e.target;
-    e.preventDefault()
     while (element.tagName.toLowerCase() !== 'a'){
         if (element === nav){
             element = null;
@@ -23,6 +24,9 @@ nav.addEventListener('click',function(e){
     }
     if ((element !== null) && (!element.classList.contains('deactive'))){
         for(let i=0;i<nav.children.length;i++){
+            if(nav.children[i].classList.contains('active')){
+                previousElement = nav.children[i]
+            }
             nav.children[i].classList.remove('active')
         }
         element.classList.add('active')
@@ -37,13 +41,18 @@ nav.addEventListener('click',function(e){
         let dataURL = canvas.toDataURL('image/png')
         let newWindow = window.open('about:blank','image from canvas')
         newWindow.document.write('<img src="'+dataURL+'" alt="from canvas">')
+        pen.classList.add('active')
+    }else if(action === 'download'){
+        element.href = canvas.toDataURL();
+        element.download = 'mypainting.png';
+        action = 'pen'
+    }else if(action === 'size'){
+        previousElement.classList.add('active')
+        action = previousElement.id
+        size = document.querySelector('#selectSize>option:checked').value
+        element.classList.remove('active')
     }
 })
-
-download.onclick = function(e){
-    download.href = canvas.toDataURL();
-    download.download = 'image.png';
-}
 
 canvas.addEventListener('touchstart',function(e){
     previousPoint = e.touches[0];
@@ -55,6 +64,7 @@ canvas.addEventListener('touchmove',function(e){
     if (action === 'pen'){
         if(previousPoint){
             context.strokeStyle = 'red';
+            context.lineWidth = size;
             context.beginPath();
             context.moveTo(previousPoint.clientX,previousPoint.clientY);
             context.lineTo(clientX,clientY);
@@ -62,7 +72,7 @@ canvas.addEventListener('touchmove',function(e){
         }
         previousPoint = e.touches[0]
     }else if(action === 'eraser'){
-        context.clearRect(clientX-5,clientY-5,10,10);
+        context.clearRect(clientX-size,clientY-size,size*2,size*2);
     }
     clear.classList.remove('deactive')
 })
