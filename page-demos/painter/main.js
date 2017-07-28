@@ -14,6 +14,7 @@ let nav = document.querySelector('nav.tools');
 let clear = document.querySelector('#clear')
 let pen = document.querySelector('#pen')
 let sizeElement = document.querySelector('#size')
+let textarea
 
 nav.addEventListener('click',function(e){
     let element = e.target;
@@ -24,11 +25,8 @@ nav.addEventListener('click',function(e){
         }
         element = element.parentNode;
     }
-    if ((element !== null) && (!element.classList.contains('deactive')) && (element !== sizeElement)){
+    if ((element !== null) && (!element.classList.contains('deactive')) && (element !== sizeElement)){ //element !== sizeElement避免action 不为pen或eraser或textarea
         for(let i=0;i<nav.children.length;i++){
-            //if(nav.children[i].classList.contains('active')){
-                //previousElement = nav.children[i]
-            //}
             nav.children[i].classList.remove('active')
         }
         element.classList.add('active')
@@ -42,7 +40,7 @@ nav.addEventListener('click',function(e){
     }else if(action === 'save'){
         let dataURL = canvas.toDataURL('image/png')
         let newWindow = window.open()
-        //let newWindow = window.open('about:blank','image from canvas') 会有一个bug 没两次中间一次保存是不行的
+        //let newWindow = window.open('about:blank','image from canvas') 会有一个bug 两次中间一次保存是不行的
         newWindow.document.write('<img src="'+dataURL+'" alt="from canvas">')
         pen.classList.add('active')
         element.classList.remove('active')
@@ -58,26 +56,39 @@ nav.addEventListener('click',function(e){
         //element.classList.remove('active')
     }
 })
-function stopCreateTextarea(e){
+function stopEventPropagation(e){
         e.stopPropagation()
 }
 
 board.addEventListener('touchstart',function(e){
+    let {clientX,clientY} = e.touches[0]
     previousPoint = e.touches[0];
     size = document.querySelector('#selectSize>option:checked').value
-    if(action === 'textarea'){
-        let textarea = document.createElement('textarea')
-        let {clientX,clientY} = e.touches[0]
-        textarea.className = 'text';
+    if(action === 'textarea'){ //点击画板，出现文本款
+        textarea = document.createElement('textarea')
+        textarea.className = 'text-input'
+        board.appendChild(textarea)
         textarea.style['font-size'] = size*5 + 'px';
+        textarea.style['line-height'] = size*5 + 'px';
         textarea.style.left= clientX + 'px';
         textarea.style.top = clientY+ 'px';
-        board.appendChild(textarea);
         textarea.focus()
-        textarea.addEventListener('touchstart',stopCreateTextarea,false)
-        textarea.addEventListener('focusout',function(e){
-            textarea.removeEventListener('touchstart',stopCreateTextarea)
-            textarea.style.border = 0;
+        textarea.addEventListener('touchstart',stopEventPropagation,false) //在文本框内点击禁止创建新的文本框
+        textarea.addEventListener('touchmove',stopEventPropagation,false) // 在文本框内移动禁止resize 文本框 
+        textarea.addEventListener('blur',function(e){
+            let textarea = document.querySelectorAll('textarea.text-input')[0] //如果没有重写textarea 那么textarea 就会是后面的一个textarea 
+            if (textarea.value){
+                let style = window.getComputedStyle(textarea,null)
+                let text = textarea.value;
+                let maxWidth = textarea.offsetWidth;
+                let x = textarea.offsetLeft;
+                let y = textarea.offsetTop;
+                let lineHeight = parseFloat(style.lineHeight)
+                context.fillStyle = style.color;
+                context.font = style.fontSize + ' '+ style.fontFamily
+                drawText(context,text,x,y,lineHeight,maxWidth)
+            }
+            textarea.remove()
         },false)
 
     }
@@ -98,8 +109,40 @@ board.addEventListener('touchmove',function(e){
         previousPoint = e.touches[0]
     }else if(action === 'eraser'){
         context.clearRect(clientX-size,clientY-size,size*2,size*2);
+    }else if(action === 'textarea'){ //resize文本框
+        textarea.style.width = clientX - textarea.offsetLeft +'px'
+        textarea.style.height = clientY - textarea.offsetTop +'px'
     }
-    clear.classList.remove('deactive')
+    clear.classList.remove('deactive') //激活clear功能
 })
 
+function drawText( context, text, x, y, lineHeight, maxWidth){
+    maxWidth = maxWidth || 0;
+    
+    if (maxWidth <= 0){
+        context.fillText( text, x, y );
+        return;
+    }
+    var words = text.split('');
+    var currentLine = 1;
+    var index = 1;
+    while (words.length > 0 && index <= words.length){
+        var str = words.slice(0,index).join('');
+        var w = context.measureText(str).width;
+        if ( w > maxWidth ){
+            if (index==1){
+                index=2;
+            }
+            context.fillText( words.slice(0,index-1).join(''), x, y + (lineHeight*currentLine) );
+            currentLine++;
+            words = words.splice(index-1);
+            index = 1;
+        }else{
+            index++;
+        }
+    }
+    if(index > 0){
+        context.fillText( words.join(''), x, y + (lineHeight*currentLine) );
+    }
+}
 
