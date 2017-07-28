@@ -1,4 +1,5 @@
-let canvas = document.querySelector('#board');
+let board = document.querySelector('#board')
+let canvas = document.querySelector('#canvas');
 let html = document.documentElement;
 canvas.width = html.clientWidth;
 canvas.height = html.clientHeight;
@@ -57,13 +58,32 @@ nav.addEventListener('click',function(e){
         //element.classList.remove('active')
     }
 })
+function stopCreateTextarea(e){
+        e.stopPropagation()
+}
 
-canvas.addEventListener('touchstart',function(e){
+board.addEventListener('touchstart',function(e){
     previousPoint = e.touches[0];
     size = document.querySelector('#selectSize>option:checked').value
+    if(action === 'textarea'){
+        let textarea = document.createElement('textarea')
+        let {clientX,clientY} = e.touches[0]
+        textarea.className = 'text';
+        textarea.style['font-size'] = size*5 + 'px';
+        textarea.style.left= clientX + 'px';
+        textarea.style.top = clientY+ 'px';
+        board.appendChild(textarea);
+        textarea.focus()
+        textarea.addEventListener('touchstart',stopCreateTextarea,false)
+        textarea.addEventListener('focusout',function(e){
+            textarea.removeEventListener('touchstart',stopCreateTextarea)
+            textarea.style.border = 0;
+        },false)
+
+    }
 })
 
-canvas.addEventListener('touchmove',function(e){
+board.addEventListener('touchmove',function(e){
     e.preventDefault()
     let {clientX,clientY} = e.touches[0];
     if (action === 'pen'){

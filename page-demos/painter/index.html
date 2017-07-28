@@ -10,7 +10,7 @@
         ul, ol{list-style: none;}
 
         nav.tools{
-            position: absolute;background: #f0f0f0;
+            position: absolute;z-index:2;background: #f0f0f0;
             min-height: 10vh;min-width: 100vw;top:0;left:0;
             display: flex;justify-content: space-around;
             align-items: center;border: 1px solid #dadada;
@@ -21,7 +21,7 @@
             display: inline-block;border-radius: 6px;
             background: #b9b9b9;box-shadow:inset 1px 1px 3px white;
             cursor: default;overflow:hidden;width:45px;height:45px;
-                display:flex;justify-content:center;align-items:center;
+            display:flex;justify-content:center;align-items:center;
         }
 
         .tools>a.active:not(.deactive){background:#acf;}
@@ -29,7 +29,7 @@
         .tools>a.deactive>svg{fill:#9a9a9a;}
 
         .icon{
-            width: 2em; height: 2em; vertical-align: middle; 
+            width: 25px; height: 25px; vertical-align: middle; 
             overflow: hidden;
         }
         #size{
@@ -44,8 +44,15 @@
             border:transparent;text-align:center;font-weight:bold;
             font-size:18px;padding:15px 20px;
         }
-
         #board{
+            position: relative;
+        }
+        .text{
+            background: transparent;position:absolute;
+            border: 1px solid blue;overflow:hidden;
+        }
+
+        #canvas{
             background: #ddd;vertical-align:top;
         }
     </style>
@@ -98,7 +105,9 @@
             </svg>
         </a>
     </nav>
-    <canvas id="board"></canvas>
+    <div id="board">
+        <canvas id="canvas"></canvas>
+    </div>
     <script src="./main.js"> </script>
 </body>
 </html>
