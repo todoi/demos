@@ -1,23 +1,23 @@
-let board = document.querySelector('#board')
-let canvas = document.querySelector('#canvas');
-let html = document.documentElement;
+var board = document.querySelector('#board')
+var canvas = document.querySelector('#canvas');
+var html = document.documentElement;
 canvas.width = html.clientWidth;
 canvas.height = html.clientHeight;
 
-let context = canvas.getContext('2d');
-let previousPoint;
-let action = 'pen'
-let size = 3
-let previousElement
+var context = canvas.getContext('2d');
+var previousPoint;
+var action = 'pen'
+var size = 3
+var previousElement
 
-let nav = document.querySelector('nav.tools');
-let clear = document.querySelector('#clear')
-let pen = document.querySelector('#pen')
-let sizeElement = document.querySelector('#size')
-let textarea
+var nav = document.querySelector('nav.tools');
+var clear = document.querySelector('#clear')
+var pen = document.querySelector('#pen')
+var sizeElement = document.querySelector('#size')
+var textarea
 
 nav.addEventListener('click',function(e){
-    let element = e.target;
+    var element = e.target;
     while (element.tagName.toLowerCase() !== 'a'){
         if (element === nav){
             element = null;
@@ -26,7 +26,7 @@ nav.addEventListener('click',function(e){
         element = element.parentNode;
     }
     if ((element !== null) && (!element.classList.contains('deactive')) && (element !== sizeElement)){ //element !== sizeElement避免action 不为pen或eraser或textarea
-        for(let i=0;i<nav.children.length;i++){
+        for(var i=0;i<nav.children.length;i++){
             nav.children[i].classList.remove('active')
         }
         element.classList.add('active')
@@ -38,9 +38,9 @@ nav.addEventListener('click',function(e){
         pen.classList.add('active')
         action = 'pen'
     }else if(action === 'save'){
-        let dataURL = canvas.toDataURL('image/png')
-        let newWindow = window.open()
-        //let newWindow = window.open('about:blank','image from canvas') 会有一个bug 两次中间一次保存是不行的
+        var dataURL = canvas.toDataURL('image/png')
+        var newWindow = window.open()
+        //var newWindow = window.open('about:blank','image from canvas') 会有一个bug 两次中间一次保存是不行的
         newWindow.document.write('<img src="'+dataURL+'" alt="from canvas">')
         pen.classList.add('active')
         element.classList.remove('active')
@@ -61,7 +61,8 @@ function stopEventPropagation(e){
 }
 
 board.addEventListener('touchstart',function(e){
-    let {clientX,clientY} = e.touches[0]
+    var clientX = e.touches[0].clientX;
+    var clientY = e.touches[0].clientY
     previousPoint = e.touches[0];
     size = document.querySelector('#selectSize>option:checked').value
     if(action === 'textarea'){ //点击画板，出现文本款
@@ -76,14 +77,14 @@ board.addEventListener('touchstart',function(e){
         textarea.addEventListener('touchstart',stopEventPropagation,false) //在文本框内点击禁止创建新的文本框
         textarea.addEventListener('touchmove',stopEventPropagation,false) // 在文本框内移动禁止resize 文本框 
         textarea.addEventListener('blur',function(e){
-            let textarea = document.querySelectorAll('textarea.text-input')[0] //如果没有重写textarea 那么textarea 就会是后面的一个textarea 
+            var textarea = document.querySelectorAll('textarea.text-input')[0] //如果没有重写textarea 那么textarea 就会是后面的一个textarea 
             if (textarea.value){
-                let style = window.getComputedStyle(textarea,null)
-                let text = textarea.value;
-                let maxWidth = textarea.offsetWidth;
-                let x = textarea.offsetLeft;
-                let y = textarea.offsetTop;
-                let lineHeight = parseFloat(style.lineHeight)
+                var style = window.getComputedStyle(textarea,null)
+                var text = textarea.value;
+                var maxWidth = textarea.offsetWidth;
+                var x = textarea.offsetLeft;
+                var y = textarea.offsetTop;
+                var lineHeight = parseFloat(style.lineHeight)
                 context.fillStyle = style.color;
                 context.font = style.fontSize + ' '+ style.fontFamily
                 drawText(context,text,x,y,lineHeight,maxWidth)
@@ -96,7 +97,8 @@ board.addEventListener('touchstart',function(e){
 
 board.addEventListener('touchmove',function(e){
     e.preventDefault()
-    let {clientX,clientY} = e.touches[0];
+    var clientX = e.touches[0].clientX;
+    var clientY = e.touches[0].clientY;
     if (action === 'pen'){
         if(previousPoint){
             context.strokeStyle = 'red';
@@ -145,4 +147,8 @@ function drawText( context, text, x, y, lineHeight, maxWidth){
         context.fillText( words.join(''), x, y + (lineHeight*currentLine) );
     }
 }
+
+window.addEventListener('orientationchange',function(e){
+    window.location.reload()
+})
 
