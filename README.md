@@ -1,6 +1,6 @@
 # demos
 ### 预览
-- 自制DOM库 https://github.com/todoi/demos/blob/master/page-demos/Dom_demo/dom.js
+- 自制DOM库 https://github.com/todoi/demos/blob/master/page-demos/Dom-demo/dom.js
 
 - 自制jQuery库 https://github.com/todoi/demos/blob/master/page-demos/my-jQuery/jQuery.js 
 
@@ -16,7 +16,7 @@
 
 - 仿LOL首页 https://todoi.github.io/demos/page-demos/lol-demo/
 
-- 有立体感div https://todoi.github.io/demos/page-demos/event_demo/
+- 有立体感div https://todoi.github.io/demos/page-demos/event-demo/
 
 - 手机画板 https://todoi.github.io/demos/page-demos/painter/
 
