@@ -69,6 +69,7 @@
             text-shadow: rgb(61, 118, 138) 0px 1px 0px;
             filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#599bb3', endColorstr='#408c99',GradientType=0);
             margin: 50px;
+            margin-bottom: 800px;
         }
 
         #loadMoreButton:hover {
@@ -88,6 +89,7 @@
     <ul class="album">
     </ul>
     <button id="loadMoreButton" class="button">加载更多</button>
+
     <script>
         let ul = document.querySelector('.album')
         for (let i = 0; i < 9; i++) {
@@ -104,6 +106,49 @@
             paragraph.innerText = `这是第 ${i+1} 段话`
             li.appendChild(paragraph)
             ul.appendChild(li)
+        }
+
+        let pageNumber = 0
+        let loading = false
+
+        loadMoreButton.addEventListener('click',loadMore,false)
+
+        window.onscroll = function(e){
+            let windowClientHeight = document.documentElement.clientHeight
+            let buttonClientHeight = loadMoreButton.getBoundingClientRect().top
+            if(buttonClientHeight < windowClientHeight){
+                loadMoreButton.click()
+            }
+        }
+
+        function loadMore(e){
+            if (loading){return}
+            let request = new XMLHttpRequest()
+            request.onerror = function(){loading = false}
+            request.onload = function(){
+                pageNumber += 1
+                loading = false
+                let nextPageObject = window.JSON.parse(request.responseText).content
+                let hasNextPage = JSON.parse(request.response).hasNextPage
+                for(let i=0; i<nextPageObject.length; i++){
+                    let html = `
+                    <li class=item>
+                        <div class=placeHolder>
+                            <img src="${nextPageObject[i].url}" class=picture>
+                        </div>
+                        <p>${nextPageObject[i].text}</p>
+                    </li>
+                    `
+                    ul.insertAdjacentHTML('beforeend',html)
+                }
+                if (hasNextPage === false){
+                    loadMoreButton.disabled = true
+                    loadMoreButton.textContent = '没有更多内容'
+                }
+            }
+            loading = true
+            request.open('GET','./page' + pageNumber)
+            request.send()
         }
     </script>
 </body>
