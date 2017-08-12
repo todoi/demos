@@ -23,10 +23,11 @@
             list-style: none;
         }
 
-        body{
+        body {
             font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif;
             background: #e8e8e8;
         }
+
         .image-list {
             display: flex;
             max-width: 900px;
@@ -39,12 +40,14 @@
             width: calc(33.33333% - 10px);
             margin-bottom: 30px;
             background: white;
-            box-shadow: 0 2px 5px  rgba(0,0,0,0.2);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
-        .image-list>li:hover{
-            cursor:pointer;
-            box-shadow: 0 3px 10px  rgba(0,0,0,0.5);
+
+        .image-list>li:hover {
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
         }
+
         .image-container {
             padding-top: 56.25%;
             position: relative;
@@ -58,27 +61,29 @@
             top: 0;
             left: 0;
         }
-        .text{
-            position:relative;
-            padding:5px 15px 15px 15px;
+
+        .text {
+            position: relative;
+            padding: 5px 15px 15px 15px;
             font-size: 95%;
         }
 
-        .text::before{
-            content:'';
-            display:block;
+        .text::before {
+            content: '';
+            display: block;
             position: absolute;
             border-bottom: 20px solid white;
-            border-left:40px solid transparent;
-            border-right:40px solid transparent;
-            top:-10px;
-            left:5px;
+            border-left: 40px solid transparent;
+            border-right: 40px solid transparent;
+            top: -10px;
+            left: 5px;
             transition: all ease-in 0.2s;
         }
-        
-        .image-list>li:hover>.text::before{
+
+        .image-list>li:hover>.text::before {
             top: -15px;
         }
+
         .text>h2 {
             text-transform: uppercase;
             color: #74c239;
@@ -95,66 +100,168 @@
             color: #888;
             overflow-wrap: break-word;
             font-weight: 300;
-            margin:0;
+            margin: 0;
+        }
+        footer{
+            background-color: #333;
+            padding: 20px 0;
+            text-align: center;
+        }
+        .loadMoreButton,.deactivate{
+            color:white;
+            box-shadow:0 2px 4px rgba(0,0,0,.08),0 2px 4px rgba(0,0,0,.12);
+            transition:all .2s ease-in;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 12px 20px;
+            font-size: 19px;
+            line-height: 1.333333333;
+            border-radius: 1px; 
+            background-color: #777;
+            border: 0;
+            font-weight: 400;
+            cursor:pointer;
+        }
+        .deactivate{
+            cursor: no-allowed;
+        }
+        .loadMoreButton:hover{
+            box-shadow:0 5px 10px rgba(0,0,0,.19),0 6px 6px rgba(0,0,0,.23);
+            background-color: #5e5e5e;
+        }
+        .loadMoreButton:active{
+            position: relative;
+            top:1px;
         }
     </style>
 </head>
 
 <body>
-    <ol class="image-list">
-        <li>
-            <div class="image-container"><img src="http://cdn.sawtoothguides.com/wp-content/uploads/2014/10/super-slabs-2-400x300.jpg" alt="super slabs"></div>
-            <div class="text">
-                <h2>super slabs</h2>
-                <p>listed as one of the u.s.’s top 8 moderate climbs by climbing magazine no prior climbing experience necessary!
-                    this is […]</p>
-            </div>
-        </li>
+    <div class="page">
+        <ol class="image-list">
+            <li>
+                <div class="image-container"><img src="//cdn.sawtoothguides.com/wp-content/uploads/2014/10/super-slabs-2-400x300.jpg" alt="super slabs"></div>
+                <div class="text">
+                    <h2>super slabs</h2>
+                    <p>listed as one of the u.s.’s top 8 moderate climbs by climbing magazine no prior climbing experience necessary!
+                        this is […]</p>
+                </div>
+            </li>
 
-        <li>
-            <div class="image-container"><img src="http://cdn.sawtoothguides.com/wp-content/uploads/2014/10/elephants-perch-1-400x300.jpg" alt="Elephants Perch"></div>
-            <div class="text">
-                <h2>Elephants Perch</h2>
-                <p>Mountaineers Route, III 5.9 The ultimate rock climb in the Sawtooths! We usually ascend “The Perch” via the
-                    eight pitch […]</p>
-            </div>
-        </li>
+            <li>
+                <div class="image-container"><img src="//cdn.sawtoothguides.com/wp-content/uploads/2014/10/elephants-perch-1-400x300.jpg" alt="Elephants Perch"></div>
+                <div class="text">
+                    <h2>Elephants Perch</h2>
+                    <p>Mountaineers Route, III 5.9 The ultimate rock climb in the Sawtooths! We usually ascend “The Perch” via
+                        the eight pitch […]</p>
+                </div>
+            </li>
 
-        <li>
-            <div class="image-container"><img src="http://cdn.sawtoothguides.com/wp-content/uploads/2014/10/warbonnet-1-400x300.jpg" alt="Warbonnet"></div>
-            <div class="text">
-                <h2>Warbonnet</h2>
-                <p>South Face – III 5.7 Located deep in the range on the western slope, Warbonnet is a committing and remote
-                    […]</p>
-            </div>
-        </li>
+            <li>
+                <div class="image-container"><img src="//cdn.sawtoothguides.com/wp-content/uploads/2014/10/warbonnet-1-400x300.jpg" alt="Warbonnet"></div>
+                <div class="text">
+                    <h2>Warbonnet</h2>
+                    <p>South Face – III 5.7 Located deep in the range on the western slope, Warbonnet is a committing and remote
+                        […]
+                    </p>
+                </div>
+            </li>
 
-        <li>
-            <div class="image-container"><img src="http://cdn.sawtoothguides.com/wp-content/uploads/2014/10/mount-heyburn-400x300.jpg" alt="Mount Heyburn"></div>
-            <div class="text">
-                <h2>Mount Heyburn</h2>
-                <p>Stur Chimney – II 5.7 First climbed by Louis Stur in 1951 the Stur Chimney route that now bears his […]</p>
-            </div>
-        </li>
+            <li>
+                <div class="image-container"><img src="//cdn.sawtoothguides.com/wp-content/uploads/2014/10/mount-heyburn-400x300.jpg" alt="Mount Heyburn"></div>
+                <div class="text">
+                    <h2>Mount Heyburn</h2>
+                    <p>Stur Chimney – II 5.7 First climbed by Louis Stur in 1951 the Stur Chimney route that now bears his […]</p>
+                </div>
+            </li>
 
-        <li>
-            <div class="image-container"><img src="http://cdn.sawtoothguides.com/wp-content/uploads/2014/10/finger-of-fate-2-400x300.jpg" alt="Finger of Fate"></div>
-            <div class="text">
-                <h2>Finger of Fate</h2>
-                <p>Open Book, III 5.8 The Finger of Fate is perhaps the most dramatic summit in the Sawtooths and via the […]</p>
-            </div>
-        </li>
+            <li>
+                <div class="image-container"><img src="//cdn.sawtoothguides.com/wp-content/uploads/2014/10/finger-of-fate-2-400x300.jpg" alt="Finger of Fate"></div>
+                <div class="text">
+                    <h2>Finger of Fate</h2>
+                    <p>Open Book, III 5.8 The Finger of Fate is perhaps the most dramatic summit in the Sawtooths and via the
+                        […]</p>
+                </div>
+            </li>
 
-        <li>
-            <div class="image-container"><img src="http://cdn.sawtoothguides.com/wp-content/uploads/2014/10/packrat-peak-400x300.jpg" alt="Packrat Peak"></div>
-            <div class="text">
-                <h2>Packrat Peak</h2>
-                <p>Northeast Ridge – II 5.2 From Warbonnet Lake the Northeast Ridge leads directly to the summit of Packrat
-                    Peak. The […] </p>
-            </div>
-        </li>
+            <li>
+                <div class="image-container"><img src="//cdn.sawtoothguides.com/wp-content/uploads/2014/10/packrat-peak-400x300.jpg" alt="Packrat Peak"></div>
+                <div class="text">
+                    <h2>Packrat Peak</h2>
+                    <p>Northeast Ridge – II 5.2 From Warbonnet Lake the Northeast Ridge leads directly to the summit of Packrat
+                        Peak. The […] </p>
+                </div>
+            </li>
+        </ol>
 
+        <footer>
+            <button type="button" class="loadMoreButton">view more ...</button>
+        </footer>
+    </div>
 
+    <script>
+        let list = document.querySelector('.image-list')
+        var loadingImage= new Image()
+        loadingImage.src = "./images/Spinner.gif"
+
+        let button = document.querySelector('.loadMoreButton')
+        let pageNumber = 1;
+        let loading = false;
+        button.addEventListener('click',function(e){
+            if (loading){return}
+            let xhr = new XMLHttpRequest()
+            xhr.open('GET','/page' + pageNumber)
+            xhr.onerror = function(){loading = false}
+            xhr.onload = function(e){
+                pageNumber += 1
+                loadding = false
+                let responseObj = JSON.parse(xhr.response)
+                let {content,hasNextPage} = responseObj
+                for(let i=0;i<content.length;i++){
+                    let {imageSrc,imageAlt,title,paragraph} = content[i]
+                    let image = document.createElement('img')
+
+                    let li = document.createElement('li')
+                    let imageContainer = document.createElement('div')
+                    imageContainer.className = 'image-container'
+
+                    image.setAttribute("data-url",imageSrc)
+                    image.src = "./images/Spinner.gif"
+                    image.alt = imageAlt
+                    imageContainer.appendChild(image)
+                    li.appendChild(imageContainer)
+                    console.log(li)
+
+                    let textContainer = document.createElement('div')
+                    textContainer.className = "text"
+                    let h2 = document.createElement('h2')
+                    let p = document.createElement('p')
+                    h2.innerText = title
+                    p.innerText = paragraph
+                    textContainer.appendChild(h2)
+                    textContainer.appendChild(p)
+                    li.appendChild(textContainer)
+                    list.appendChild(li)
+                }
+                if(hasNextPage === false){
+                   button.disabled = true 
+                   button.style.background = '#74C239'
+                   button.className = 'deactivate'
+                   button.textContent = 'all content is loaded'
+                }
+            }
+            loading = true
+            xhr.send()
+        },false)
+        window.onscroll=function(e){
+            let htmlClient = document.documentElement.clientHeight
+            let buttonClient = button.getBoundingClientRect().top
+            if (htmlClient > buttonClient){
+                console.log(1)
+                button.click()
+            }
+        }
+    </script>
 </body>
 
 </html>
