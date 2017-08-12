@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        ol,
+        ul {
+            list-style: none;
+        }
+
+        body{
+            font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif;
+            background: #e8e8e8;
+        }
+        .image-list {
+            display: flex;
+            max-width: 900px;
+            margin: 50px auto;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .image-list>li {
+            width: calc(33.33333% - 10px);
+            margin-bottom: 30px;
+            background: white;
+            box-shadow: 0 2px 5px  rgba(0,0,0,0.2);
+        }
+        .image-list>li:hover{
+            cursor:pointer;
+            box-shadow: 0 3px 10px  rgba(0,0,0,0.5);
+        }
+        .image-container {
+            padding-top: 56.25%;
+            position: relative;
+        }
+
+        .image-container>img {
+            width: 100%;
+            height: 100%;
+            vertical-align: top;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .text{
+            position:relative;
+            padding:5px 15px 15px 15px;
+            font-size: 95%;
+        }
+
+        .text::before{
+            content:'';
+            display:block;
+            position: absolute;
+            border-bottom: 20px solid white;
+            border-left:40px solid transparent;
+            border-right:40px solid transparent;
+            top:-10px;
+            left:5px;
+            transition: all ease-in 0.2s;
+        }
+        
+        .image-list>li:hover>.text::before{
+            top: -15px;
+        }
+        .text>h2 {
+            text-transform: uppercase;
+            color: #74c239;
+            margin: 12.5px 0;
+            letter-spacing: 0;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 6px;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .text>p {
+            color: #888;
+            overflow-wrap: break-word;
+            font-weight: 300;
+            margin:0;
+        }
+    </style>
+</head>
+
+<body>
+    <ol class="image-list">
+        <li>
+            <div class="image-container"><img src="http://cdn.sawtoothguides.com/wp-content/uploads/2014/10/super-slabs-2-400x300.jpg" alt="super slabs"></div>
+            <div class="text">
+                <h2>super slabs</h2>
+                <p>listed as one of the u.s.’s top 8 moderate climbs by climbing magazine no prior climbing experience necessary!
+                    this is […]</p>
+            </div>
+        </li>
+
+        <li>
+            <div class="image-container"><img src="http://cdn.sawtoothguides.com/wp-content/uploads/2014/10/elephants-perch-1-400x300.jpg" alt="Elephants Perch"></div>
+            <div class="text">
+                <h2>Elephants Perch</h2>
+                <p>Mountaineers Route, III 5.9 The ultimate rock climb in the Sawtooths! We usually ascend “The Perch” via the
+                    eight pitch […]</p>
+            </div>
+        </li>
+
+        <li>
+            <div class="image-container"><img src="http://cdn.sawtoothguides.com/wp-content/uploads/2014/10/warbonnet-1-400x300.jpg" alt="Warbonnet"></div>
+            <div class="text">
+                <h2>Warbonnet</h2>
+                <p>South Face – III 5.7 Located deep in the range on the western slope, Warbonnet is a committing and remote
+                    […]</p>
+            </div>
+        </li>
+
+        <li>
+            <div class="image-container"><img src="http://cdn.sawtoothguides.com/wp-content/uploads/2014/10/mount-heyburn-400x300.jpg" alt="Mount Heyburn"></div>
+            <div class="text">
+                <h2>Mount Heyburn</h2>
+                <p>Stur Chimney – II 5.7 First climbed by Louis Stur in 1951 the Stur Chimney route that now bears his […]</p>
+            </div>
+        </li>
+
+        <li>
+            <div class="image-container"><img src="http://cdn.sawtoothguides.com/wp-content/uploads/2014/10/finger-of-fate-2-400x300.jpg" alt="Finger of Fate"></div>
+            <div class="text">
+                <h2>Finger of Fate</h2>
+                <p>Open Book, III 5.8 The Finger of Fate is perhaps the most dramatic summit in the Sawtooths and via the […]</p>
+            </div>
+        </li>
+
+        <li>
+            <div class="image-container"><img src="http://cdn.sawtoothguides.com/wp-content/uploads/2014/10/packrat-peak-400x300.jpg" alt="Packrat Peak"></div>
+            <div class="text">
+                <h2>Packrat Peak</h2>
+                <p>Northeast Ridge – II 5.2 From Warbonnet Lake the Northeast Ridge leads directly to the summit of Packrat
+                    Peak. The […] </p>
+            </div>
+        </li>
+
+
+</body>
+
+</html>
