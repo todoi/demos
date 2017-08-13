@@ -40,7 +40,12 @@ let server = http.createServer(function(request,response){
         response.statusCode = 200
         response.setHeader('content-type','application/json')
         response.end(string)
-    }else if(path === '/images/Spinner.gif'){
+    }else if(path === '/page3'){
+        let string = fs.readFileSync('./page3','utf8')
+        response.statusCode = 200
+        response.setHeader('content-type','application/json')
+        response.end(string)
+    } else if(path === '/images/Spinner.gif'){
         let string = fs.readFileSync('./images/Spinner.gif')
         response.statusCode = 200
         response.setHeader('content-type','image/gif')

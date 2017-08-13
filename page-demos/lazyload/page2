@@ -60,21 +60,7 @@
             "imageAlt": "Dog Leg",
             "title": "Dog Leg",
             "paragraph": "A hidden gem accessible from the hut, the Dog Leg is the chute visible on the far right side of […]"
-        },
-
-        {
-            "imageSrc": "//cdn.sawtoothguides.com/wp-content/uploads/2014/10/upper-meadow-bowl-400x300.jpg",
-            "imageAlt": "Upper Meadow Bowl",
-            "title": "Upper Meadow Bowl",
-            "paragraph": "Upper Meadow Bowl is small hanging cirque to the north of the Williams Peak Hut. It’s&nbsp;reached by&nbsp;what we call a […]"
-        },
-
-        {
-            "imageSrc": "//www.oddizzi.com/wp-content/uploads/2011/01/img-mountains-climber-himalayas_big.jpg",
-            "imageAlt": "Mountain formation",
-            "title": "Mountain formation",
-            "paragraph": "The Earth's crust is made out of giant slabs of rock, which float about on the mantle underneath. These slabs are called plates. They move as a result of currents ..."
         }
     ],
-    "hasNextPage":false
+    "hasNextPage":true
 }

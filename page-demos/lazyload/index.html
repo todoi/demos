@@ -61,6 +61,15 @@
             top: 0;
             left: 0;
         }
+        .image-container>.loadingImage {
+            width: 50%;
+            height: auto;
+            vertical-align: top;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
 
         .text {
             position: relative;
@@ -102,36 +111,42 @@
             font-weight: 300;
             margin: 0;
         }
-        footer{
+
+        footer {
             background-color: #333;
             padding: 20px 0;
             text-align: center;
         }
-        .loadMoreButton,.deactivate{
-            color:white;
-            box-shadow:0 2px 4px rgba(0,0,0,.08),0 2px 4px rgba(0,0,0,.12);
-            transition:all .2s ease-in;
+
+        .loadMoreButton,
+        .deactivate {
+            color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, .08), 0 2px 4px rgba(0, 0, 0, .12);
+            transition: all .2s ease-in;
             text-transform: uppercase;
             letter-spacing: 1px;
             padding: 12px 20px;
             font-size: 19px;
             line-height: 1.333333333;
-            border-radius: 1px; 
+            border-radius: 1px;
             background-color: #777;
             border: 0;
             font-weight: 400;
-            cursor:pointer;
+            cursor: pointer;
         }
-        .deactivate{
+
+        .deactivate {
             cursor: no-allowed;
         }
-        .loadMoreButton:hover{
-            box-shadow:0 5px 10px rgba(0,0,0,.19),0 6px 6px rgba(0,0,0,.23);
+
+        .loadMoreButton:hover {
+            box-shadow: 0 5px 10px rgba(0, 0, 0, .19), 0 6px 6px rgba(0, 0, 0, .23);
             background-color: #5e5e5e;
         }
-        .loadMoreButton:active{
+
+        .loadMoreButton:active {
             position: relative;
-            top:1px;
+            top: 1px;
         }
     </style>
 </head>
@@ -180,7 +195,8 @@
                 <div class="text">
                     <h2>Finger of Fate</h2>
                     <p>Open Book, III 5.8 The Finger of Fate is perhaps the most dramatic summit in the Sawtooths and via the
-                        […]</p>
+                        […]
+                    </p>
                 </div>
             </li>
 
@@ -199,67 +215,98 @@
         </footer>
     </div>
 
+    <style>
+        .loadMoreButton.loading{
+            color:transparent;
+            background:url('./images/Spinner.gif') center / contain no-repeat #bdceec;
+        }
+        body{padding-bottom: 100px;}
+    </style>
     <script>
         let list = document.querySelector('.image-list')
-        var loadingImage= new Image()
+        var loadingImage = new Image()
         loadingImage.src = "./images/Spinner.gif"
 
         let button = document.querySelector('.loadMoreButton')
         let pageNumber = 1;
-        let loading = false;
-        button.addEventListener('click',function(e){
-            if (loading){return}
-            let xhr = new XMLHttpRequest()
-            xhr.open('GET','/page' + pageNumber)
-            xhr.onerror = function(){loading = false}
-            xhr.onload = function(e){
-                pageNumber += 1
-                loadding = false
-                let responseObj = JSON.parse(xhr.response)
-                let {content,hasNextPage} = responseObj
-                for(let i=0;i<content.length;i++){
-                    let {imageSrc,imageAlt,title,paragraph} = content[i]
-                    let image = document.createElement('img')
+        let isLoading = false;
+        button.addEventListener('click', loadMore, false)
+        window.onscroll = function (e) {
+            let body = document.body
+            let htmlClientHeight = document.documentElement.clientHeight
+            let bodyScrollHeight = body.scrollHeight
+            let bodyScrollTop = body.scrollTop
 
-                    let li = document.createElement('li')
-                    let imageContainer = document.createElement('div')
-                    imageContainer.className = 'image-container'
-
-                    image.setAttribute("data-url",imageSrc)
-                    image.src = "./images/Spinner.gif"
-                    image.alt = imageAlt
-                    imageContainer.appendChild(image)
-                    li.appendChild(imageContainer)
-                    console.log(li)
-
-                    let textContainer = document.createElement('div')
-                    textContainer.className = "text"
-                    let h2 = document.createElement('h2')
-                    let p = document.createElement('p')
-                    h2.innerText = title
-                    p.innerText = paragraph
-                    textContainer.appendChild(h2)
-                    textContainer.appendChild(p)
-                    li.appendChild(textContainer)
-                    list.appendChild(li)
-                }
-                if(hasNextPage === false){
-                   button.disabled = true 
-                   button.style.background = '#74C239'
-                   button.className = 'deactivate'
-                   button.textContent = 'all content is loaded'
-                }
-            }
-            loading = true
-            xhr.send()
-        },false)
-        window.onscroll=function(e){
-            let htmlClient = document.documentElement.clientHeight
-            let buttonClient = button.getBoundingClientRect().top
-            if (htmlClient > buttonClient){
+            if (htmlClientHeight === bodyScrollHeight - bodyScrollTop) {
                 console.log(1)
                 button.click()
             }
+        }
+
+        function loadMore(e) {
+            button.classList.add('loading')
+            if (isLoading) {
+                return
+            }
+            let xhr = new XMLHttpRequest()
+            xhr.open('GET', '/page' + pageNumber)
+            xhr.onerror = function () {
+                isLoading = false
+            }
+            xhr.onload = function (e) {
+                button.classList.remove('loading')
+                pageNumber += 1
+                console.log(pageNumber)
+                isLoading = false
+                if (xhr.responseText.match('content')) {
+                    let responseObj = JSON.parse(xhr.response)
+                    let {
+                        content,
+                        hasNextPage
+                    } = responseObj
+                    for (let i = 0; i < content.length; i++) {
+                        let {
+                            imageSrc,
+                            imageAlt,
+                            title,
+                            paragraph
+                        } = content[i]
+                        let image = document.createElement('img')
+
+                        let li = document.createElement('li')
+                        let imageContainer = document.createElement('div')
+                        imageContainer.className = 'image-container'
+
+                        image.setAttribute("data-url", imageSrc)
+                        image.className = 'loadingImage'
+                        image.src = "./images/Spinner.gif"
+                        image.alt = imageAlt
+                        imageContainer.appendChild(image)
+                        li.appendChild(imageContainer)
+
+                        let textContainer = document.createElement('div')
+                        textContainer.className = "text"
+                        let h2 = document.createElement('h2')
+                        let p = document.createElement('p')
+                        h2.innerText = title
+                        p.innerText = paragraph
+                        textContainer.appendChild(h2)
+                        textContainer.appendChild(p)
+                        li.appendChild(textContainer)
+                        list.appendChild(li)
+                    }
+                    if (hasNextPage === false) {
+                        button.removeEventListener('click', loadMore)
+                        button.style.background = '#74C239'
+                        button.className = 'deactivate'
+                        button.textContent = 'all content is loaded'
+                    }
+                } else {
+                    document.write(xhr.responseText)
+                }
+            }
+            isLoading = true
+            xhr.send()
         }
     </script>
 </body>
