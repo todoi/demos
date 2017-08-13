@@ -148,6 +148,10 @@
             position: relative;
             top: 1px;
         }
+        .loadMoreButton.loading{
+            color:transparent;
+            background:url('./images/Spinner.gif') center / contain no-repeat #bdceec;
+        }
     </style>
 </head>
 
@@ -214,37 +218,45 @@
             <button type="button" class="loadMoreButton">view more ...</button>
         </footer>
     </div>
-
-    <style>
-        .loadMoreButton.loading{
-            color:transparent;
-            background:url('./images/Spinner.gif') center / contain no-repeat #bdceec;
-        }
-        body{padding-bottom: 100px;}
-    </style>
     <script>
-        let list = document.querySelector('.image-list')
+        let list = document.querySelector('.image-list') //预加载
         var loadingImage = new Image()
         loadingImage.src = "./images/Spinner.gif"
 
         let button = document.querySelector('.loadMoreButton')
         let pageNumber = 1;
         let isLoading = false;
-        button.addEventListener('click', loadMore, false)
-        window.onscroll = function (e) {
-            let body = document.body
-            let htmlClientHeight = document.documentElement.clientHeight
-            let bodyScrollHeight = body.scrollHeight
-            let bodyScrollTop = body.scrollTop
-
-            if (htmlClientHeight === bodyScrollHeight - bodyScrollTop) {
+        button.addEventListener('click', loadMoreText, false)
+        window.onscroll = function(e){ //监听window 滚动事件
+            if(isInViewport(button)){
+                button.click() //点击按钮
                 console.log(1)
-                button.click()
+            }
+            loadMoreImages(e) //每次滚动都会调用foreach 函数
+        }  
+
+        function loadMoreImages(e){
+            Array.prototype.forEach.call(document.querySelectorAll('.loadingImage'),function(element){
+                console.log(element) 
+                if(isInViewport(element)){
+                    element.onload = function(){
+                        element.className = ""
+                    }
+                    element.src =element.getAttribute('data-url')
+                }
+            })
+        }
+
+        function isInViewport(element){
+            let htmlClientY = document.documentElement.clientHeight
+            let elementClientY = element.getBoundingClientRect().top
+            if(htmlClientY >= elementClientY){
+                return true
             }
         }
 
-        function loadMore(e) {
-            button.classList.add('loading')
+        function loadMoreText(e) {
+            button.classList.add('loading') //为按钮添加菊花背景
             if (isLoading) {
                 return
             }
@@ -254,9 +266,8 @@
                 isLoading = false
             }
             xhr.onload = function (e) {
-                button.classList.remove('loading')
+                button.classList.remove('loading') //去掉按钮的菊花背景
                 pageNumber += 1
-                console.log(pageNumber)
                 isLoading = false
                 if (xhr.responseText.match('content')) {
                     let responseObj = JSON.parse(xhr.response)
@@ -271,32 +282,32 @@
                             title,
                             paragraph
                         } = content[i]
-                        let image = document.createElement('img')
 
-                        let li = document.createElement('li')
-                        let imageContainer = document.createElement('div')
+                        let li = document.createElement('li') //创建li
+                        let image = document.createElement('img') //创建图片
+                        let imageContainer = document.createElement('div') //创建图片容器
                         imageContainer.className = 'image-container'
 
                         image.setAttribute("data-url", imageSrc)
                         image.className = 'loadingImage'
                         image.src = "./images/Spinner.gif"
                         image.alt = imageAlt
-                        imageContainer.appendChild(image)
-                        li.appendChild(imageContainer)
+                        imageContainer.appendChild(image)  // 将图片添加到图片容器
+                        li.appendChild(imageContainer) //将图片容器添加到 li
 
-                        let textContainer = document.createElement('div')
+                        let textContainer = document.createElement('div') //创建文本容器
                         textContainer.className = "text"
-                        let h2 = document.createElement('h2')
-                        let p = document.createElement('p')
+                        let h2 = document.createElement('h2') //创建 h2
+                        let p = document.createElement('p') //创建p
                         h2.innerText = title
                         p.innerText = paragraph
-                        textContainer.appendChild(h2)
-                        textContainer.appendChild(p)
-                        li.appendChild(textContainer)
-                        list.appendChild(li)
+                        textContainer.appendChild(h2) //将h2 添加到文本容器
+                        textContainer.appendChild(p) //将p 添加到文本容器
+                        li.appendChild(textContainer) //将文本容器添加到 li
+                        list.appendChild(li) //将li 添加到 ol
                     }
-                    if (hasNextPage === false) {
-                        button.removeEventListener('click', loadMore)
+                    if (hasNextPage === false) { //如果没有下一页
+                        button.removeEventListener('click', loadMoreText)
                         button.style.background = '#74C239'
                         button.className = 'deactivate'
                         button.textContent = 'all content is loaded'
@@ -304,6 +315,7 @@
                 } else {
                     document.write(xhr.responseText)
                 }
+                loadMoreImages() //判断是否将图片加载出来，而不是等到滚到在加载
             }
             isLoading = true
             xhr.send()
