@@ -249,7 +249,7 @@
                 return
             }
             let xhr = new XMLHttpRequest()
-            xhr.open('GET', '/page' + pageNumber)
+            xhr.open('GET', './page' + pageNumber)
             xhr.onerror = function () {
                 isLoading = false
             }
