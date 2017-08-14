@@ -57,7 +57,7 @@
         let button = document.querySelector('button')
         button.onclick = function(){
             let xhr = new XMLHttpRequest()
-            xhr.open('GET','//lily.com:8888/style.css')
+            xhr.open('POST','//lily.com:8888/style.css')
             xhr.onerrror = function(){
                 for (let key in arguments){
                     console.log(`${key}: ${argument[key]}`)

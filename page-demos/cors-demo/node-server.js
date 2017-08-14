@@ -23,7 +23,8 @@ let server = http.createServer(function(request,response){
             string = fs.readFileSync('./style.css')
             response.writeHeader(200,{
                 'content-type':'text/css',
-                'Access-Control-Allow-Origin':'http://michael.com:8888'
+                'Access-Control-Allow-Origin':'http://michael.com:8888',
+                'Access-Control-Allow-Methods':'PUT,PATCH,HEAD,DELETE,OPTIONS,CONNECT,TRACE'
             })
             response.end(string)
             break
