@@ -108,7 +108,7 @@
             ul.appendChild(li)
         }
 
-        let pageNumber = 0
+        let pageNumber = 1
         let loading = false
 
         loadMoreButton.addEventListener('click',loadMore,false)
@@ -121,9 +121,19 @@
             }
         }
 
+        window.onload = function(e){
+            let windowClientHeight = document.documentElement.clientHeight
+            let buttonClientHeight = loadMoreButton.getBoundingClientRect().top
+            if(buttonClientHeight < windowClientHeight){
+                loadMoreButton.click()
+            }
+        }
+
         function loadMore(e){
             if (loading){return}
             let request = new XMLHttpRequest()
+            request.open('GET','./page' + pageNumber)
+            request.send()
             request.onerror = function(){loading = false}
             request.onload = function(){
                 pageNumber += 1
@@ -147,8 +157,6 @@
                 }
             }
             loading = true
-            request.open('GET','./page' + pageNumber)
-            request.send()
         }
     </script>
 </body>

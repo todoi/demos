@@ -6,7 +6,6 @@ var url = require('url')
 //console.log(Object.keys(http))
 var port = process.env.PORT || 8899;
 
-
 var server = http.createServer(function(request, response){
 
 
@@ -22,7 +21,7 @@ var server = http.createServer(function(request, response){
 		var string = fs.readFileSync('./index.html')
 		response.setHeader('Content-Type','text/html;charset=utf-8')
 		response.end(string)
-	}else if(path === '/cascadingstylesheets'){
+	}/*else if(path === '/cascadingstylesheets'){
 		var string = fs.readFileSync('./style.css')
 		response.setHeader('Content-Type','text/css')
 		response.end(string)
@@ -30,7 +29,7 @@ var server = http.createServer(function(request, response){
 		var string = fs.readFileSync('./main.js')
 		response.setHeader('Content-Type','application/javascript')
 		response.end(string)
-	}else{
+	}*/else{
 		response.statusCode = 404
 		response.setHeader('Content-Type','text/html;charset=utf-8')
 		response.end('找不到对应的路径，你需要自行修改 index.js')
