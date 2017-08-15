@@ -21,10 +21,16 @@ let server = http.createServer(function(request,response){
             break
         case '/jsonp.js':
             string = fs.readFileSync('./jsonp.js','utf8')
-            console.log(string)
             response.statusCode = 200
             response.setHeader('content-type','application/javascript')
             response.end(string.replace("{{data}}",query))
+            break
+        case '/info.js':
+            let queryObject = parseQuery(query)
+            string = fs.readFileSync('./info','utf8')
+            response.statusCode = 200
+            response.setHeader('content-type','text/plain')
+            response.end(string.replace(/{{callback}}/g,queryObject['callback']))
             break
         default:
             response.statusCode = 404
@@ -32,6 +38,15 @@ let server = http.createServer(function(request,response){
             response.end('你要找的网页不存在')
     }
     console.log(method + ': ' + path)
+    function parseQuery(query){
+        let arr = query.split('&&')
+        let queryObject = {}
+        arr.forEach(function(element){
+            let elementArray = element.split('=')
+            queryObject[elementArray[0]] = elementArray[1] 
+        })
+        return queryObject
+    }
 })
 
 server.listen(port)

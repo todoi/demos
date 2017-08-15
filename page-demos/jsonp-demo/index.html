@@ -57,6 +57,15 @@
         let style = document.querySelector('style')
         let button = document.querySelector('button')
         button.onclick = writeStyle
+        getInfo('//lily.com:8888/info.js',function(data){
+            console.log('第一次得到响应')
+            console.log(data)
+        })
+        getInfo('//lily.com:8888/info.js',function(data){
+            console.log('第二次得到响应')
+            console.log(data)
+        })
+
         function writeStyle(){
             for (let key in newStyle){
                 let oneStyle = newStyle[key]
@@ -71,6 +80,13 @@
                 result = key + '{'+ result + '}'
                 style.insertAdjacentHTML('beforeEnd',result)
             }
+        }
+        function getInfo(url,fn){
+            let functionName = 'Michael' + parseInt(Math.random()*1000000,10)
+            window[functionName] = fn
+            let script = document.createElement('script')
+            script.src = url + '?callback=' + functionName
+            document.head.appendChild(script)
         }
     </script>
 </body>
