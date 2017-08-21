@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-compatible" content="chrome=1,IE=edge">
+    <title>optimize ajax</title>
+    <style>
+        div{
+            text-align: center;
+        }
+        span{
+            display: inline-block;margin: 30px;
+            text-align: center;
+        }
+        p.text{
+            min-height: 100px;
+            border: 1px solid;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <span>
+            <input type="button" value="向 a 发送请求" id="a">
+            <input type="button" value="向 b 发送请求" id="b">
+            <input type="button" value="测试timeout 和 promise 的先后次序" id="c">
+        </span>
+    </div>
+    <p id="textA" class=text></p>
+    <p id="textB" class=text></p>
+    <script>
+
+a.onclick = function(){ 
+    let promise = xhr.call(null,{ url:'./a', method:'GET' })
+    promise.then(function(responseText){
+        textA.innerText = responseText
+    },commonFail).then(function(){setTimeout(function(){console.log(23) },1000)})
+    console.log(promise)
+}
+
+b.onclick = function(){
+    let promise = xhr.call(null,{ url:'./b1', method:'GET' })
+    promise.then(null,function(){console.log(1)})
+            .then(null,commonFail)
+    console.log(promise)
+} 
+
+c.onclick = function(){
+    setTimeout(function(){
+        console.log(1)
+    },0)
+    test.call(null).then(function(){
+        setTimeout(function(){
+            console.log(2)
+        },0)
+        console.log(3)
+    })
+    console.log(4)
+}
+
+function test(){
+    return new Promise(function(resolve,reject){
+        resolve()
+    })
+}
+
+function commonFail(status){
+    alert('请求没有成功\n错误代码为：' + status)
+}
+
+
+function xhr(options){
+    return new Promise(function(resolve,reject){
+        let{url,method,success,fail} = options
+        let xhr = new XMLHttpRequest()
+        url = url || location.href
+        if(!method){throw new Error('快写 method') }
+        xhr.open(method,url)
+        xhr.onreadystatechange = function(){
+            if (xhr.readyState === 4){
+                if (xhr.status >=200 && xhr.status< 400){
+                    resolve && resolve.call(null,xhr.responseText,xhr)
+                }else if(xhr.status >=400){
+                    reject && reject.call(null,xhr.status,xhr)
+                }
+            }
+        }
+        xhr.send()
+    })
+}
+
+    </script>
+</body>
+</html>
