@@ -228,7 +228,9 @@
         let button = document.querySelector('.loadMoreButton')
         let pageNumber = 1;
         let isLoading = false;
+
         button.addEventListener('click', loadMoreText, false)
+
         window.onscroll = function(e){ //监听window 滚动事件
             if(isInViewport(button)){
                 button.click() //点击按钮
@@ -284,29 +286,19 @@
                             title,
                             paragraph
                         } = content[i]
+                        let html = `
+                            <li>
+                                <div class='image-container'>
+                                    <img data-url=${imageSrc} class=loadingImage src='./images/Spinner.gif' alt=${imageAlt}>
+                                </div>
+                                <div class=text>
+                                    <h2>${title}</h2>
+                                    <p>${paragraph}</p>
+                                </div>
+                            </li>
+                            `
 
-                        let li = document.createElement('li') //创建li
-                        let image = document.createElement('img') //创建图片
-                        let imageContainer = document.createElement('div') //创建图片容器
-                        imageContainer.className = 'image-container'
-
-                        image.setAttribute("data-url", imageSrc)
-                        image.className = 'loadingImage'
-                        image.src = "./images/Spinner.gif"
-                        image.alt = imageAlt
-                        imageContainer.appendChild(image)  // 将图片添加到图片容器
-                        li.appendChild(imageContainer) //将图片容器添加到 li
-
-                        let textContainer = document.createElement('div') //创建文本容器
-                        textContainer.className = "text"
-                        let h2 = document.createElement('h2') //创建 h2
-                        let p = document.createElement('p') //创建p
-                        h2.innerText = title
-                        p.innerText = paragraph
-                        textContainer.appendChild(h2) //将h2 添加到文本容器
-                        textContainer.appendChild(p) //将p 添加到文本容器
-                        li.appendChild(textContainer) //将文本容器添加到 li
-                        list.appendChild(li) //将li 添加到 ol
+                        list.insertAdjacentHTML('beforeend',html)
                     }
                     if (hasNextPage === false) { //如果没有下一页
                         button.removeEventListener('click', loadMoreText)
