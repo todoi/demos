@@ -277,7 +277,9 @@
         }
 
         function ajax(list,button,self) {
-            button.classList.add('loading') //为按钮添加菊花背景
+            //为按钮添加菊花背景
+            button.classList.add('loading') 
+
             if (self.isLoading) { return }
             let xhr = new XMLHttpRequest()
 
@@ -288,7 +290,9 @@
             xhr.send()
 
             function success(){
-                button.classList.remove('loading') //去掉按钮的菊花背景
+                //去掉按钮的菊花背景
+                button.classList.remove('loading')
+
                 self.pageNumber += 1
                 self.isLoading = false
                 if (xhr.responseText.match('content')) {
@@ -310,7 +314,9 @@
 
                         list.insertAdjacentHTML('beforeend',html)
                     }
-                    if (hasNextPage === false) { //如果没有下一页
+
+                    //如果没有下一页
+                    if (hasNextPage === false) {
                         button.disabled = true
                         button.style.background = '#74C239'
                         button.className = 'deactivate'
