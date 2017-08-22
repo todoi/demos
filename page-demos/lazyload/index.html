@@ -221,27 +221,44 @@
         </footer>
     </div>
     <script>
-        let list = document.querySelector('.image-list') //预加载
-        var loadingImage = new Image()
-        loadingImage.src = "./images/Spinner.gif"
 
-        let button = document.querySelector('.loadMoreButton')
-        let pageNumber = 1;
-        let isLoading = false;
+        main()
 
-        button.addEventListener('click', loadMoreText, false)
-
-        window.onscroll = function(e){ //监听window 滚动事件
-            if(isInViewport(button)){
-                button.click() //点击按钮
-                console.log(1)
+        function main(){
+            let list = document.querySelector('.image-list')   
+            let button = document.querySelector('.loadMoreButton')
+            let self = {
+                pageNumber: 1,
+                isLoading: false,
             }
-            loadMoreImages(e) //每次滚动都会调用foreach 函数
-        }  
 
-        function loadMoreImages(e){
+            //点击按钮就发送xhr
+            button.addEventListener('click', function (){ ajax(list,button,self) }, false)
+
+            //预加载图片
+            preloadImage("./images/Spinner.gif")
+
+
+            //监听window 滚动事件
+            window.onscroll = function(){
+                //按钮出现在视口中就点击按钮 
+                if( isInViewport(button) ){ button.click() }
+                loadMoreImages()             
+            }  
+        }
+
+        function preloadImage(src){
+            var loadingImage = new Image()
+            loadingImage.src = src
+        }
+
+
+        function loadMoreImages(){
+            //遍历菊花图
             Array.prototype.forEach.call(document.querySelectorAll('.loadingImage'),function(element){
-                console.log(element) 
+                //console.log(element) 
+                //如果菊花图出现在视口中，就像图片资源发送请求
+                //请求完成后将类名重置
                 if(isInViewport(element)){
                     element.onload = function(){
                         element.className = ""
@@ -259,33 +276,26 @@
             }
         }
 
-        function loadMoreText(e) {
+        function ajax(list,button,self) {
             button.classList.add('loading') //为按钮添加菊花背景
-            if (isLoading) {
-                return
-            }
+            if (self.isLoading) { return }
             let xhr = new XMLHttpRequest()
-            xhr.open('GET', './page' + pageNumber)
-            xhr.onerror = function () {
-                isLoading = false
-            }
-            xhr.onload = function (e) {
+
+            xhr.open('GET', './page' + self.pageNumber)
+            xhr.onerror = function () { self.isLoading = false }
+            xhr.onload = success
+            self.isLoading = true
+            xhr.send()
+
+            function success(){
                 button.classList.remove('loading') //去掉按钮的菊花背景
-                pageNumber += 1
-                isLoading = false
+                self.pageNumber += 1
+                self.isLoading = false
                 if (xhr.responseText.match('content')) {
                     let responseObj = JSON.parse(xhr.response)
-                    let {
-                        content,
-                        hasNextPage
-                    } = responseObj
-                    for (let i = 0; i < content.length; i++) {
-                        let {
-                            imageSrc,
-                            imageAlt,
-                            title,
-                            paragraph
-                        } = content[i]
+                    let { content, hasNextPage } = responseObj
+                    for (let i = 0; i < content.length; i++){
+                        let { imageSrc, imageAlt, title, paragraph } = content[i]
                         let html = `
                             <li>
                                 <div class='image-container'>
@@ -301,7 +311,7 @@
                         list.insertAdjacentHTML('beforeend',html)
                     }
                     if (hasNextPage === false) { //如果没有下一页
-                        button.removeEventListener('click', loadMoreText)
+                        button.disabled = true
                         button.style.background = '#74C239'
                         button.className = 'deactivate'
                         button.textContent = 'all content is loaded'
@@ -311,8 +321,6 @@
                 }
                 loadMoreImages() //判断是否将图片加载出来，而不是等到滚到在加载
             }
-            isLoading = true
-            xhr.send()
         }
     </script>
 </body>
