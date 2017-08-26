@@ -6,12 +6,11 @@
     <title>画板</title>
     <style>
         *{margin: 0; padding: 0;box-sizing: border-box;}
-
         ul, ol{list-style: none;}
 
         nav.tools{
             position: absolute;z-index:2;background: #f0f0f0;
-            min-height: 10vh;min-width: 100vw;top:0;left:0;
+            min-height: 0.885rem;min-width: 100%;top:0;left:0;
             display: flex;justify-content: space-around;
             align-items: center;border: 1px solid #dadada;
             border-radius:0 0 2px 2px;box-shadow: 0 2px 10px #000;
@@ -20,7 +19,7 @@
             text-decoration:none; border: #aaa 1px solid;
             display: inline-block;border-radius: 6px;
             background: #b9b9b9;box-shadow:inset 1px 1px 3px white;
-            cursor: default;overflow:hidden;width:45px;height:45px;
+            cursor: default;overflow:hidden;width:0.75rem;height:0.75rem;
             display:flex;justify-content:center;align-items:center;
         }
 
@@ -29,21 +28,21 @@
         .tools>a.deactive>svg{fill:#9a9a9a;}
 
         .icon{
-            width: 25px; height: 25px; vertical-align: middle; 
+            width: 0.417rem; height: 0.417rem; vertical-align: middle; 
             overflow: hidden;
         }
         #size{
             background-image: url("./arrow-select.png");
-            background-position: 28px 25px;
+            background-position: .467rem .417rem;
             background-repeat:no-repeat;
-            background-size:10px 15px;
+            background-size:.167rem .25rem;
         }
 
         #selectSize{
             background:transparent;appearance: none;
             appearance:none;-webkit-appearance: none;
             border:transparent;text-align:center;
-            font-weight:bold; font-size:18px;padding:12px;
+            font-weight:bold; font-size:0.3rem;padding:0.2rem;
         }
         #board{
             position: relative;
