@@ -1,5 +1,4 @@
 document.documentElement.style.fontSize=(document.documentElement.clientWidth/10)+'px'
-console.log(document.documentElement.style.fontSize)
 
 var board = document.querySelector('#board')
 var canvas = document.querySelector('#canvas');
@@ -154,3 +153,4 @@ function drawText( context, text, x, y, lineHeight, maxWidth){
 window.addEventListener('orientationchange',function(e){
     window.location.reload()
 })
+
