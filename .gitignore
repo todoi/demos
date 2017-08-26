@@ -121,3 +121,4 @@ gitskills
 .vscode/
 output.log
 run.pid
+node_modules
