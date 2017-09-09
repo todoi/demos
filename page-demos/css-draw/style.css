@@ -9,7 +9,7 @@ body{text-align:center;background:#333;}
   margin: 70px auto;
   width: 420px;
   height: 434px;
-  background: #ddd;
+  background: #555;
   position: relative;
   z-index: -1;
 }
@@ -59,8 +59,8 @@ body{text-align:center;background:#333;}
 }
 
 .eyes{
-  width: 35px;
-  height: 35px;
+  width: 36px;
+  height: 36px;
   background: black;
   border-radius: 50%;
   position: absolute;
@@ -74,8 +74,18 @@ body{text-align:center;background:#333;}
   background: white;
   border-radius: 50%;
   position: absolute;
-  left:7px;
-  top: 3px;
+  left:8px;
+  top:4px;
+}
+.right_eye.active::before{
+  left:13px;
+  top:13px;
+  animation: oppositeCircular 1s linear infinite; 
+}
+.left_eye.active::before{
+  left:13px;
+  top:13px;
+  animation: circular 1s linear infinite; 
 }
 .right_eye{
   position: absolute;
@@ -309,4 +319,13 @@ button.deactive:hover{
 }
 button.deactive:active{
   top:0;
+}
+
+@keyframes circular {
+    0% { transform: rotate(0deg) translateX(8px) rotate(0deg);}
+    100% { transform: rotate(360deg) translateX(8px) rotate(-360deg);}
+}
+@keyframes oppositeCircular {
+    0% { transform: rotate(360deg) translateX(8px) rotate(-360deg);}
+    100% { transform: rotate(0deg) translateX(8px) rotate(0deg);}
 }

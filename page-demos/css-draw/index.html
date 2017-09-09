@@ -92,7 +92,9 @@
       var fn = queue.shift();
       fn && fn.call();
       if (queue.length === 0){
-        button.textContent = '没有下一步了'
+        document.querySelector('.left_eye').classList.add('active')
+        document.querySelector('.right_eye').classList.add('active')
+        button.textContent = '结束'
         button.className = 'deactive'
       }
     };
