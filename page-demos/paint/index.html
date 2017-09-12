@@ -8,10 +8,11 @@
     <style>
         *{margin: 0; padding: 0;box-sizing: border-box;}
         ul, ol{list-style: none;}
+        html,body{height:100%;width:100%;}
 
         nav.tools{
             position: absolute;z-index:2;background: #f0f0f0;
-            min-height: 0.885rem;min-width: 100%;top:0;left:0;
+            min-height: 0.885rem;width: 100%;top:0;left:0;
             display: flex;justify-content: space-around;
             align-items: center;border: 1px solid #dadada;
             border-radius:0 0 2px 2px;box-shadow: 0 2px 10px #000;
@@ -55,12 +56,18 @@
         }
 
         #canvas{
-            background: #ddd;vertical-align:top;
+            background: #ddd;vertical-align:top;height:100%;width:100%;
         }
+
+        .mask{background:#ddd;height:100%;width:100%;position:relative;z-index:5;}
+        .mask>img{position:absolute;width:30%;height:auto;top:50%;left:50%;transform:translate(-50%,-50%);}
     </style>
     <script src="//at.alicdn.com/t/font_x7r7etanqfbc5wmi.js"></script>
 </head>
 <body>
+    <div class="mask">
+        <img src="./logo.png">
+    </div>
     <nav class="tools">
         <a href="javascript:void(0);" class="active" id="pen" title="画笔" alt="画笔">
             <svg class="icon" aria-hidden="true">
@@ -110,6 +117,11 @@
     <div id="board">
         <canvas id="canvas"></canvas>
     </div>
+    <script>
+        document.body.onload = function(){
+            document.querySelector('.mask').remove()
+        }
+    </script>
     <script src="./main.js"> </script>
 </body>
 </html>
