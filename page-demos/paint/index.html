@@ -60,6 +60,15 @@
 
         .mask{background:#ddd;height:100%;width:100%;position:relative;z-index:5;}
         .mask>img{position:absolute;width:30%;height:auto;top:50%;left:50%;transform:translate(-50%,-50%);}
+        .phone-url{display:none;}
+        @media (min-width: 769px){
+            .phone-url{display:block;}
+        }
+        .phone-url{position:absolute;top:1rem;z-index:1;left:calc(50% - 190px);padding:50px 50px 0;background:rgba(0,0,0,.3);border-radius:3px;}
+        .phone-url>.close{position:absolute;right:10px;top:10px;width:35px;height:35px; border:1px solid;font-size:25px;text-align:center;
+            line-height:35px;background:rgba(0,0,0,.3);border-radius:50%;color:white;}
+        .phone-url>img{vertical-align:top;}
+        .phone-url>span{display:block;font-size:30px;text-align:center;line-height:50px;}
     </style>
     <script src="//at.alicdn.com/t/font_x7r7etanqfbc5wmi.js"></script>
 </head>
@@ -113,6 +122,11 @@
             </svg>
         </a>
     </nav>
+    <div class="phone-url">
+        <div class="close">X</div>
+        <img src="./phone-url.png" alt="手机预览地址" >
+        <span>手机预览地址</span>
+    </div>
     <div id="board">
         <canvas id="canvas"></canvas>
     </div>

@@ -154,4 +154,7 @@ function drawText( context, text, x, y, lineHeight, maxWidth){
 window.addEventListener('orientationchange',function(e){
     window.location.reload()
 })
+document.querySelector('.close').addEventListener('click',function(e){
+    e.currentTarget.parentNode.remove()
+})
 
