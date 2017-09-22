@@ -83,7 +83,7 @@ board.addEventListener('touchstart',function(e){
             if (textarea.value){
                 var style = window.getComputedStyle(textarea,null)
                 var text = textarea.value;
-                var maxWidth = textarea.offsetWidth;
+                var maxWidth = textarea.offsetWidth - 2; //要减去两边边框
                 var x = textarea.offsetLeft;
                 var y = textarea.offsetTop;
                 var lineHeight = parseFloat(style.lineHeight)
@@ -121,6 +121,7 @@ board.addEventListener('touchmove',function(e){
 })
 
 function drawText( context, text, x, y, lineHeight, maxWidth){
+    console.log(window.JSON.stringify(text))
     maxWidth = maxWidth || 0;
     
     if (maxWidth <= 0){
@@ -132,14 +133,14 @@ function drawText( context, text, x, y, lineHeight, maxWidth){
     var index = 1;
     while (words.length > 0 && index <= words.length){
         var str = words.slice(0,index).join('');
-        var w = context.measureText(str).width;
-        if ( w > maxWidth ){
-            if (index==1){
+        var width = context.measureText(str).width;
+        if (words[index-1] === '\n' || width > maxWidth ){
+            if (index===1){
                 index=2;
             }
             context.fillText( words.slice(0,index-1).join(''), x, y + (lineHeight*currentLine) );
             currentLine++;
-            words = words.splice(index-1);
+            words = words[index-1] === '\n' ? words.splice(index) : words.splice(index-1);
             index = 1;
         }else{
             index++;
