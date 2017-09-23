@@ -76,15 +76,25 @@ board.addEventListener('touchstart',function(e){
         textarea.style.left= clientX + 'px';
         textarea.style.top = clientY+ 'px';
         textarea.focus()
+
+        textarea.addEventListener('keyup', autosize);
+        function autosize() {
+            clear.classList.remove('deactive') //激活clear功能
+            var initialHeight = +this.style.height.replace('px','')
+            setTimeout(function () {
+                this.style.height = this.scrollHeight < initialHeight ? initialHeight : this.scrollHeight + 6 + 'px'
+            }.bind(this), 0);
+        }
+
         textarea.addEventListener('touchstart',stopEventPropagation,false) //在文本框内点击禁止创建新的文本框
-        textarea.addEventListener('touchmove',stopEventPropagation,false) // 在文本框内移动禁止resize 文本框 
+        // textarea.addEventListener('touchmove',stopEventPropagation,false) // 在文本框内移动禁止resize 文本框 
         textarea.addEventListener('blur',function(e){
             var textarea = document.querySelectorAll('textarea.text-input')[0] //如果没有重写textarea 那么textarea 就会是后面的一个textarea 
             if (textarea.value){
                 var style = window.getComputedStyle(textarea,null)
                 var text = textarea.value;
-                var maxWidth = textarea.offsetWidth - 2; //要减去两边边框
-                var x = textarea.offsetLeft;
+                var maxWidth = textarea.offsetWidth - 6; //要减去两边边框
+                var x = textarea.offsetLeft - 3;
                 var y = textarea.offsetTop;
                 var lineHeight = parseFloat(style.lineHeight)
                 context.fillStyle = style.color;
@@ -121,7 +131,6 @@ board.addEventListener('touchmove',function(e){
 })
 
 function drawText( context, text, x, y, lineHeight, maxWidth){
-    console.log(window.JSON.stringify(text))
     maxWidth = maxWidth || 0;
     
     if (maxWidth <= 0){

@@ -46,12 +46,17 @@
             font-weight:bold; font-size:0.3rem;padding:0.2rem;
         }
         #board{
-            position: relative;
+            position: relative;overflow:hidden;
         }
         .text-input{
             background: none;position:absolute;
-            overflow:hidden;border:dashed #0000FF 1px;
-            line-height:15px;height:0;width:0;
+            overflow-wrap:break-word;
+            border-radius:3px;overflow:hidden;
+            border:3px solid #556677;width:200px;
+            vertical-align:top;
+        }
+        .text-input:focus{
+            outline:none;
         }
 
         #canvas{
