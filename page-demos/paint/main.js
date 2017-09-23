@@ -32,13 +32,19 @@ nav.addEventListener('click',function(e){
             nav.children[i].classList.remove('active')
         }
         element.classList.add('active')
+        previousAction = action
         action = element.id
     }
     if (action === 'clear'){
         context.clearRect(0,0,canvas.width,canvas.height);
         clear.className = 'deactive'
-        pen.classList.add('active')
-        action = 'pen'
+        if ( ['pen','textarea'].indexOf(previousAction) < 0){
+            pen.classList.add('active')
+            action = 'pen'
+        }else{
+            action = previousAction
+            document.getElementById(previousAction).classList.add('active')
+        }
     }else if(action === 'save'){
         var dataURL = canvas.toDataURL('image/png')
         var newWindow = window.open()
@@ -85,7 +91,7 @@ board.addEventListener('touchstart',function(e){
             clear.classList.remove('deactive') //激活clear功能
             var initialHeight = +this.style.height.replace('px','')
             setTimeout(function () {
-                this.style.height = this.scrollHeight < initialHeight ? initialHeight : this.scrollHeight + 6 + 'px'
+                this.style.height = this.scrollHeight < initialHeight ? initialHeight : this.scrollHeight + 6 + 'px' //要加上两边边框
             }.bind(this), 0);
         }
 
@@ -98,7 +104,7 @@ board.addEventListener('touchstart',function(e){
                 var text = textarea.value;
                 var maxWidth = textarea.offsetWidth - 6; //要减去两边边框
                 var x = textarea.offsetLeft - 3;
-                var y = textarea.offsetTop;
+                var y = textarea.offsetTop - 3;
                 var lineHeight = parseFloat(style.lineHeight)
                 context.fillStyle = style.color;
                 context.font = style.fontSize + ' '+ style.fontFamily
