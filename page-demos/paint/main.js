@@ -71,6 +71,9 @@ board.addEventListener('touchstart',function(e){
         textarea = document.createElement('textarea')
         textarea.className = 'text-input'
         board.appendChild(textarea)
+        if ((clientX + 200) > board.clientWidth){
+            textarea.style.width = board.clientWidth - clientX + 'px'
+        }
         textarea.style['font-size'] = size*5 + 'px';
         textarea.style['line-height'] = size*5 + 'px';
         textarea.style.left= clientX + 'px';
