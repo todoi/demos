@@ -29,3 +29,6 @@ body { background: #ccc;height: 2000px ; transform:translateZ(0); -webkit-transf
   <div class="content"></div>
   <div class="fixed">fixed</div>
 </div>
+
+
+<!-- http://www.cnblogs.com/biyesheng/p/6386176.html -->
