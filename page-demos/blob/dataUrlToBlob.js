@@ -31,3 +31,4 @@ export default (dataURL) => {
         type: mediaType
     });
 };
+
