@@ -1,0 +1,1468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>英雄联盟全新官方网站-腾讯游戏</title>
+    <style>
+        * { padding: 0; margin: 0; box-sizing: border-box; }
+
+        *::after, *::before { box-sizing: border-box; }
+
+        ul, ol { list-style: none; }
+
+        body { color: white; font-size: 12px; min-width: 1240px; font-family: "Microsoft YaHei", Tahoma, simsun; }
+
+        a { text-decoration: none; color: white; }
+
+        .clearfix::after { content: ''; display: block; clear: both; }
+
+        /*预防背景视频溢出*/
+        .page { overflow: hidden; }
+
+        .icons { display: inline-block; vertical-align: middle; width: 16px; height: 16px; }
+
+        .icons.hot-icon { background: url("images/topbar/sprite-v2.png") no-repeat -107px 0; }
+
+        .icons.new-icon { background: url("images/topbar/sprite-v2.png") no-repeat -129px 0; }
+
+        header > .topbar-wrapper { background: #0b0b0b; position: relative; }
+
+        header > .topbar-wrapper > .topbar { width: 1240px; margin: 0 auto; }
+
+        header > .topbar-wrapper > .topbar > .game-nav { margin-left: 200px; display: inline-block; float: left; vertical-align: top; }
+
+        header > .topbar-wrapper > .topbar > .game-nav > .main-menu > li { float: left; width: 120px; text-align: center;
+            line-height: 1.2; margin: 28px 0 27px; }
+
+        header > .topbar-wrapper > .topbar > .game-nav > .main-menu > li > p:first-child { font-size: 18px;
+            font-family: "Microsoft YaHei", Tahoma, simsun; }
+
+        header > .topbar-wrapper > .topbar > .game-nav > .main-menu > li > p:last-child > small { text-transform: uppercase; font-size: 10px;
+            color: #838383; font-family: 'Tahoma'; }
+
+        header > .topbar-wrapper > .topbar > .game-nav > .submenu-wrapper { visibility: hidden; position: absolute; top: 100%; left: 0; width: 100%;
+            background: rgba(0, 0, 0, 0.5); z-index: 2; }
+
+        header > .topbar-wrapper > .topbar > .game-nav:hover > .submenu-wrapper { visibility: visible; }
+
+        header > .topbar-wrapper > .topbar > .game-nav > .submenu-wrapper > .submenu { width: 1240px; margin: 0 auto; padding: 20px 0 20px 200px; }
+
+        header > .topbar-wrapper > .topbar > .game-nav > .submenu-wrapper > .submenu ul { float: left; width: 120px; text-align: center; font-size: 14px; line-height: 2em; }
+
+        header > .topbar-wrapper > .topbar > .game-nav > .submenu-wrapper > .submenu > ul > li > a:hover { color: rgb(233, 192, 108); }
+
+        header > .topbar-wrapper > .topbar > .user-nav > div { display: inline-block; vertical-align: top; }
+
+        header > .topbar-wrapper > .topbar > .user-nav > div:first-child a { float: left; display: inline-block;
+            vertical-align: top; padding: 0 6px; padding-bottom: 38px; margin-left: 5px; }
+
+        header > .topbar-wrapper > .topbar > .user-nav > div:first-child a:last-child { padding-left: 10px; padding-right: 9px; padding-bottom: 38px; }
+
+        header > .topbar-wrapper > .topbar > .user-nav > div:first-child .search-icon { display: inline-block; width: 27px; height: 27px;
+            background: url("images/topbar/sprite-v2.png") -8px 0 no-repeat; margin-top: 25px; vertical-align: top; }
+
+        header > .topbar-wrapper > .topbar > .user-nav > div:first-child .phone-icon { display: inline-block; width: 22px; height: 27px;
+            background: url("images/topbar/sprite-v2.png") -45px 0 no-repeat; margin-top: 25px; vertical-align: top; }
+
+        header > .topbar-wrapper > .topbar > .user-nav > .user-login { float: right; width: 350px; position: relative; }
+
+        header > .topbar-wrapper > .topbar > .user-nav > .user-login:hover { background: rgb(29, 30, 30); }
+
+        header > .topbar-wrapper > .topbar > .user-nav > .user-login > ul { height: 90px; }
+
+        header > .topbar-wrapper > .topbar > .user-nav > .user-login > ul > li { float: left; }
+
+        header > .topbar-wrapper > .topbar > .user-nav > .user-login > ul > .avatar { width: 100px; height: 90px; position: relative; }
+
+        header > .topbar-wrapper > .topbar > .user-nav > .user-login > ul > .avatar > .mask { display: block; width: 75px; height: 75px; border-radius: 50%;
+            background: url("images/topbar/sprite-v2.png") 0 -170px no-repeat; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+
+        header > .topbar-wrapper > .topbar > .user-nav > .user-login > ul > .avatar > img { vertical-align: top; width: 66px; height: 66px; border-radius: 50%;
+            margin-top: 12px; margin-left: 17px; }
+
+        header > .topbar-wrapper > .topbar > .user-nav > .user-login > ul > .greet { width: 240px; position: absolute; top: 50%; left: 110px;
+            transform: translateY(-60%); }
+
+        header > .topbar-wrapper > .topbar > .user-nav > .user-login > ul > .greet p:first-child { font-size: 16px; margin-bottom: 5px; }
+
+        header > .topbar-wrapper > .topbar > .user-nav > .user-login > ul > .greet p:first-child > a { text-decoration: underline; color: rgb(223, 162, 41); }
+
+        header > .topbar-wrapper > .topbar > .user-nav > .user-login > ul > .greet > p > small { color: #838383; }
+
+        header > .topbar-wrapper > .topbar > .user-nav > .user-login > .profile { visibility: hidden; position: absolute; width: 100%; top: 100%; left: 0;
+            background: rgba(29, 30, 30, 0.8); z-index: 2; }
+
+        header > .topbar-wrapper > .topbar > .user-nav > .user-login:hover .profile { visibility: visible; }
+
+        header > .topbar-wrapper > .topbar > .user-nav > .user-login > .profile > p { color: rgb(134, 134, 134); font-size: 14px; margin: 30px;
+        }
+
+        header > .topbar-wrapper > .topbar > .user-nav > .user-login > .profile > a { display: block; height: 35px; background: rgb(22, 20, 19);
+            text-align: center; line-height: 35px; }
+
+        header > .banner-wrapper { background: url("images/banner/pic-big-v7.jpg") no-repeat center 0; border-bottom: 2px solid #8c6c2d;
+            transition: all ease .5s; }
+
+        header > .banner-wrapper.shift-background-video { background: url("./images/banner/pic-small-v7.jpg") no-repeat center 0; }
+
+        header > .banner-wrapper > .banner { margin: 0 auto; width: 1240px; position: relative; padding-top: 0.1px; }
+
+        header > .banner-wrapper > .banner > div.logo { position: absolute; top: -83px; left: 0; z-index: 2; }
+
+        header > .banner-wrapper > .banner > div.logo a { display: block; width: 185px; height: 95px; text-indent: -99999em;
+            background: url("./images/topbar/sprite-v2.png") no-repeat 0 -33px; }
+
+        header > .banner-wrapper > .banner .background-videos { position: absolute; top: 0; left: 0; margin-left: -340px; width: 1920px;
+            z-index: 1; transition: all 1s ease; }
+
+        header > .banner-wrapper > .banner .background-videos.small-video { height: 350px; display: none; transition: all .3s ease; }
+
+        header > .banner-wrapper > .banner .background-videos.small-video.shift-background-video { display: block; }
+
+        header > .banner-wrapper > .banner .background-videos.big-video { height: 750px; transition: all .3s ease; }
+
+        header > .banner-wrapper > .banner .background-videos.big-video.shift-background-video { visibility: hidden; }
+
+        header > .banner-wrapper > .banner > .banner-info { position: relative; z-index: 1; padding-top: 0.1px; padding-bottom: 303px; transition: all ease .5s; }
+
+        header > .banner-wrapper > .banner > .banner-info.shift-background-video { padding-bottom: 43px; }
+
+        header > .banner-wrapper > .banner > .banner-info > .slogan { padding: 0; margin-top: 107px; transition: all ease .5s; }
+
+        header > .banner-wrapper > .banner > .banner-info > .slogan.shift-background-video { margin-top: 32px; }
+
+        header > .banner-wrapper > .banner > .banner-info > .slogan > h2 { font-size: 50px; color: transparent;
+            -webkit-background-clip: text; background-image: linear-gradient(#f3daa4, #b08631); }
+
+        header > .banner-wrapper > .banner > .banner-info > .slogan > p { font-size: 14px; margin-top: 7px; color: #dbdbdb; }
+
+        header > .banner-wrapper > .banner > .banner-info > .demo-video { position: relative; margin-top: 62px;
+            display: inline-block; vertical-align: top; transition: all ease .5s; }
+
+        header > .banner-wrapper > .banner > .banner-info > .demo-video.shift-background-video { margin-top: 13px; }
+
+        header > .banner-wrapper > .banner > .banner-info > .demo-video:hover { cursor: pointer; }
+
+        header > .banner-wrapper > .banner > .banner-info > .demo-video video { outline: 1px solid #987630; vertical-align: top;
+            width: 220px; height: 120px; margin-left: 1px; }
+
+        header > .banner-wrapper > .banner > .banner-info > .demo-video > .demo-video-poster { position: absolute; width: 38px; height: 48px;
+            top: 50%; left: 50%; transform: translate(-50%, -50%);
+            background: url("./images/topbar/sprite-v2.png") -230px -32px no-repeat; }
+
+        header > .banner-wrapper > .banner > .banner-info > .view-detail { display: block; width: 159px; margin-top: 26px;
+            border: 2px solid; color: #c89b3c; text-align: center; font-size: 14px; padding: 8px 0 9px;
+            border-image: linear-gradient(#6b5024, #b78c35) 1; transition: all ease .5s; }
+
+        header > .banner-wrapper > .banner > .banner-info > .view-detail.shift-background-video { margin-top: 10px; }
+
+        header > .banner-wrapper > .banner > .banner-info > .version-info { position: absolute; z-index: 1; bottom: 30px; right: 0;
+            color: #888787; font-size: 14px; }
+
+        header > .banner-wrapper > .banner > .banner-info > .version-info span { color: #f5d185; }
+
+        header > .banner-wrapper > .banner > .banner-info > .version-info a { color: #f5d185; font-size: 12px; border: 2px solid; margin-left: 10px;
+            padding: 3px 15px; border-image: linear-gradient(#6c5125, #b78c34) 1; background: #202223; transition: .2s ease; }
+
+        header > .banner-wrapper > .banner > .banner-info > .version-info a:hover { background: #0b0c0c; }
+
+        header > .banner-wrapper > .banner > .flash-video { display: none; transition: .5s ease; }
+
+        header > .banner-wrapper > .banner > .flash-video.active { display: block; }
+
+        header > .banner-wrapper > .banner > .flash-video::before { content: ''; position: fixed; z-index: 2; top: 0; left: 0; bottom: 0; right: 0;
+            background: hsla(120, 0%, 0%, 0.6); }
+
+        header > .banner-wrapper > .banner > .flash-video > .flash-player { position: absolute; z-index: 3; top: -46px; left: 50%; transform: translateX(-50%);
+            width: 900px; height: 550px;
+            background: url("./images/banner/flash-player.png") 0 0 no-repeat; }
+
+        header > .banner-wrapper > .banner > .flash-video > .popup-close { position: absolute; z-index: 3; font-size: 55px; color: #d1ab57; top: -46px; left: 1070px;
+            padding: 0 20px; }
+
+        main { background: #f7f7f7; }
+
+        main > .placeholder { display: none; color: white; font-size: 20px; padding: 16px 15px; border-bottom: 2px solid white; }
+
+        main > .placeholder.activeFixed { display: block; }
+
+        main > .main-tab { box-shadow: 0 1px 15px hsla(240, 10%, 10%, 0.15); background: linear-gradient(white, white 30%, #f2f2f2); }
+
+        main > .main-tab.activeFixed { position: fixed; top: 0; left: 0; right: 0; z-index: 99999; }
+
+        main > .main-tab > ul { width: 1240px; margin: 0 auto; }
+
+        main > .main-tab > ul li { color: #555555; float: left; font-size: 20px; padding: 16px 15px; margin-right: 49px; }
+
+        main > .main-tab > ul li:hover { cursor: pointer; }
+
+        main > .main-tab > ul li.click-tab { border-bottom: 2px solid #d1ab57; color: #d1ab57; }
+
+        main > .main-tab-content > div { width: 1240px; margin: 40px auto 0; }
+
+        main > .main-tab-content > .integrated-info { display: none; }
+
+        main > .main-tab-content > .video-center { display: none; min-height: 1500px; background: teal; }
+
+        main > .main-tab-content > .event-center { display: none; min-height: 1000px; background: orange; }
+
+        main > .main-tab-content > .activity-center { display: none; min-height: 1200px; background: olive; }
+
+        main > .main-tab-content > .click-tab { display: block; }
+
+        main > .main-tab-content .product > .slides-wrapper { float: left; }
+
+        main #slides { width: 820px; height: 400px; position: relative; }
+
+        main #slides > a { vertical-align: top; }
+
+        main #slides img { height: 350px; width: 820px; vertical-align: top; }
+
+        main #slides .slidesjs-pagination { position: absolute; width: 820px; top: 350px; left: 0; z-index: 15;
+            display: flex; }
+
+        main #slides .slidesjs-pagination li { flex: 1 1 150px; }
+
+        main #slides .slidesjs-pagination li a { display: block; color: #c8c8c8; font-size: 14px; text-align: center;
+            padding: 16px 0 15px; background: #121112; }
+
+        main #slides .slidesjs-pagination li a.active { color: #e9c06c; background: #303030; }
+
+        main > .main-tab-content .tab-bar { position: relative; border-bottom: 3px solid #ededee; }
+
+        main > .main-tab-content .tab-bar > .tab-title { position: absolute; color: #666666; top: 0; left: 0; }
+
+        main > .main-tab-content li.active-title { border-bottom: 3px solid #d1ab57; color: #d1ab57; font-weight: bold; }
+
+        main > .main-tab-content .tab-bar > h3 { float: left; padding-bottom: 7px; color: #404040; font-size: 26px; font-weight: normal; }
+
+        main > .main-tab-content .tab-bar > .tab-title { left: 143px; }
+
+        main > .main-tab-content .product > .resource { float: right; width: 400px; }
+
+        main > .main-tab-content .product > .resource > .download { display: block; height: 150px; width: 400px; }
+
+        main > .main-tab-content .product > .resource > .download > video { vertical-align: top; }
+
+        main > .main-tab-content .product > .resource > .resource-nav { display: flex; flex-wrap: wrap; justify-content: space-between; margin-top: 10px; }
+
+        main > .main-tab-content .product > .resource > .resource-nav > li > a { position: relative; display: flex; color: #757575; background: white; width: 130px;
+            align-items: center; justify-content: center; font-size: 14px; padding: 12px 0 13px; margin-top: 5px; }
+
+        main > .main-tab-content .product > .resource > .resource-nav > li > a:hover { background: #e6e4e4; }
+
+        main > .main-tab-content .product > .resource > .resource-nav > li > a > .resource-nav-icons { display: inline-block; vertical-align: top; width: 30px; height: 30px; }
+
+        main > .main-tab-content .product > .resource > .resource-nav > li > a > .resource-nav-icons.recommendation { background: url("./images/topbar/sprite-v2.png") no-repeat -200px 0; }
+
+        main > .main-tab-content .product > .resource > .resource-nav > li > a > .resource-nav-icons.website { background: url("./images/topbar/sprite-v2.png") no-repeat -560px 0; }
+
+        main > .main-tab-content .product > .resource > .resource-nav > li > a > .resource-nav-icons.shop { background: url("./images/topbar/sprite-v2.png") no-repeat -590px 0; }
+
+        main > .main-tab-content .product > .resource > .resource-nav > li > a > .resource-nav-icons.agent { background: url("./images/topbar/sprite-v2.png") no-repeat -380px 0; }
+
+        main > .main-tab-content .product > .resource > .resource-nav > li > a > .resource-nav-icons.canyon { background: url("./images/topbar/sprite-v2.png") no-repeat -650px 0; }
+
+        main > .main-tab-content .product > .resource > .resource-nav > li > a > .resource-nav-icons.CDK { background: url("./images/topbar/sprite-v2.png") no-repeat -290px 0; }
+
+        main > .main-tab-content .product > .resource > .resource-nav > li > a > .resource-nav-icons.shift { background: url("./images/topbar/sprite-v2.png") no-repeat -620px 0; }
+
+        main > .main-tab-content .product > .resource > .resource-nav > li > a > .resource-nav-icons.information { background: url("./images/topbar/sprite-v2.png") no-repeat -260px 0; }
+
+        main > .main-tab-content .product > .resource > .resource-nav > li > a > .resource-nav-icons.award { background: url("./images/topbar/sprite-v2.png") no-repeat -470px 0; }
+
+        main > .main-tab-content .product > .resource > .resource-nav > li > a > .resource-nav-icons.weibo { background: url("./images/topbar/sprite-v2.png") no-repeat -500px 0; }
+
+        main > .main-tab-content .product > .resource > .resource-nav > li > a > .resource-nav-icons.forum { background: url("./images/topbar/sprite-v2.png") no-repeat -410px 0; }
+
+        main > .main-tab-content .product > .resource > .resource-nav > li > a > .resource-nav-icons.server { background: url("./images/topbar/sprite-v2.png") no-repeat -440px 0; }
+
+        main > .main-tab-content .product > .resource > .resource-nav > li > a > .icons { position: absolute; top: 2px; right: 6px; }
+
+        main > .main-tab-content .hot-events { margin-top: 67px; }
+
+        main > .main-tab-content .hot-events > .news-tab { float: left; width: 820px; }
+
+        main > .main-tab-content .hot-events > .news-tab > .tab-bar > .tab-title > li { float: left; width: 168px; font-size: 18px; color: #666666; text-align: center;
+            padding: 14px 0 4px; cursor: pointer; }
+
+        main > .main-tab-content .hot-events > .news-tab > .tab-content { margin-top: 24px; }
+
+        main > .main-tab-content .hot-events > .news-tab > .tab-content > li { display: none; }
+
+        main > .main-tab-content .hot-events > .news-tab > .tab-content > li a { color: black; display: block; }
+
+        main > .main-tab-content .hot-events > .news-tab > .tab-content > li.active { display: block; }
+
+        main > .main-tab-content .hot-events > .news-tab > .tab-content > li > table { border-spacing: 0; width: 820px; }
+
+        main > .main-tab-content .hot-events > .news-tab > .tab-content > li > table > thead a { margin-bottom: 28px; }
+
+        main > .main-tab-content .hot-events > .news-tab > .tab-content > li > table > thead img { float: left; margin-right: 20px; width: 200px; height: 124px; }
+
+        main > .main-tab-content .hot-events > .news-tab > .tab-content > li > table > thead h4 { font-size: 36px; font-weight: bold; color: #3e3e3e; padding: 1px 0 3px; }
+
+        main > .main-tab-content .hot-events > .news-tab > .tab-content > li > table > thead p { font-size: 14px; font-weight: normal; color: #898989; }
+
+        main > .main-tab-content .hot-events > .news-tab > .tab-content > li > table > tbody td { padding: 4px 0; }
+
+        main > .main-tab-content .hot-events > .news-tab > .tab-content > li > table > tbody a { font-size: 16px; color: #555555; position: relative; }
+
+        main > .main-tab-content .hot-events > .news-tab > .tab-content > li > table > tbody a span { vertical-align: top; display: inline-block; }
+
+        main > .main-tab-content .hot-events > .news-tab > .tab-content > li > table > tbody a > span:first-child { background: #ebebeb; padding: 7px 18px; }
+
+        main > .main-tab-content .hot-events > .news-tab > .tab-content > li > table > tbody a:hover > span:first-child { background: #d1ab57; color: white; }
+
+        main > .main-tab-content .hot-events > .news-tab > .tab-content > li > table > tbody a > span:nth-child(2) { padding: 7px 50px 7px 17px; }
+
+        main > .main-tab-content .hot-events > .news-tab > .tab-content > li > table > tbody a:hover > span:nth-child(2) { color: #d1ab57; }
+
+        main > .main-tab-content .hot-events > .news-tab > .tab-content > li > table > tbody a > span:last-child { position: absolute; top: 7px; right: 0; }
+
+        main > .main-tab-content .hot-events > .news-tab > .tab-content > li > table > tfoot a { background: #f0f0f0; margin-top: 14px; text-align: center; font-size: 16px; padding: 12px 0; }
+
+        main > .main-tab-content .hot-events > .news-tab > .tab-content > li > table > tfoot a:hover { background: #dad8d8; }
+
+        main > .main-tab-content .hot-events > .news-tab > .tab-content > li > table > tfoot a > span { color: #d1ab57; }
+
+        main > .main-tab-content .hot-events > .hero-and-skin { position: relative; float: right; color: black; width: 400px; height: 710px; }
+
+        main > .main-tab-content .hot-events > .hero-and-skin > .hero-tab > .tab-bar { height: 45px; width: 400px; }
+
+        main > .main-tab-content .hot-events > .hero-and-skin > .hero-tab > .tab-bar > .tab-title { left: 0; display: flex; width: 400px; }
+
+        main > .main-tab-content .hot-events > .hero-and-skin > .hero-tab > .tab-bar > .tab-title > li { font-size: 16px; cursor: pointer; flex-grow: 1; text-align: center; padding: 13px 0 8px; }
+
+        main > .main-tab-content .hot-events > .hero-and-skin > .hero-tab > .hero-content { margin-top: 15px; }
+
+        main > .main-tab-content .hot-events > .hero-and-skin > .hero-tab > .hero-content > li > ul { display: flex; justify-content: space-between; flex-wrap: wrap; }
+
+        main > .main-tab-content .hot-events > .hero-and-skin > .hero-tab > .hero-content > li > ul > li { padding-bottom: 10px; }
+
+        main > .main-tab-content .hot-events > .hero-and-skin > .hero-tab > .hero-content > li > ul > li a { display: inline-block; vertical-align: top; position: relative; }
+
+        main > .main-tab-content .hot-events > .hero-and-skin > .hero-tab > .hero-content > li > ul > li.free-time { font-size: 12px; color: #9F9F9F; padding-bottom: 0; padding-left: 185px; }
+
+        main > .main-tab-content .hot-events > .hero-and-skin > .hero-tab > .hero-content img { vertical-align: top; }
+
+        main > .main-tab-content .hot-events > .hero-and-skin > .hero-tab > .hero-content > li { display: none; }
+
+        main > .main-tab-content .hot-events > .hero-and-skin > .hero-tab > .hero-content > li.active { display: block; }
+
+        main > .main-tab-content .hot-events > .hero-and-skin > .survey-prompt { position: absolute; bottom: 0; right: 0; }
+
+        main > .main-tab-content .hot-events > .hero-and-skin > .survey-prompt > .survey img { vertical-align: top; }
+
+        main > .main-tab-content .hot-events > .hero-and-skin > .survey-prompt > .prompt { margin-top: 25px; }
+
+        main > .main-tab-content .hot-events > .hero-and-skin > .survey-prompt > .prompt > .prompt-icon { float: left; width: 70px; height: 70px; background: url("./images/topbar/sprite-v2.png") no-repeat -330px -89px; margin-right: 10px; }
+
+        main > .main-tab-content .hot-events > .hero-and-skin > .survey-prompt > .prompt > h5 { font-size: 14px; font-weight: normal; color: #404040; padding-top: 5px; }
+
+        main > .main-tab-content .hot-events > .hero-and-skin > .survey-prompt > .prompt > p { font-size: 12px; color: #878787; }
+
+        main > .main-tab-content .recommend { width: 1240px; margin-top: 67px; }
+
+        main > .main-tab-content .recommend > .recommend-bar > h3 { float: left; color: #3c3c3c; }
+
+        main > .main-tab-content .recommend > .recommend-bar > .recommend-tab > li { float: left; font-size: 16px; padding: 11px 0 10px; width: 150px; text-align: center; }
+
+        main > .main-tab-content .recommend > .recommend-content { margin-top: 20px; color: #555555; }
+
+        main > .main-tab-content .recommend > .recommend-content > div { display: none; }
+
+        main > .main-tab-content .recommend > .recommend-content > div.active { display: block; }
+
+        main > .main-tab-content .recommend > .recommend-content > .recommend-video > ul { display: flex; justify-content: space-between; margin-bottom: 50px; }
+
+        main > .main-tab-content .recommend > .recommend-content > .recommend-video > ul > li { width: 190px; height: 155px; position: relative; overflow: hidden; }
+
+        main > .main-tab-content .recommend > .recommend-content > .recommend-video > ul > li > span { display: block; }
+
+        main > .main-tab-content .recommend > .recommend-content > .recommend-video > ul > li > .time-bar { display: block; position: absolute; z-index: 1; color: #d2ddb8; top: 110px; width: 100%;
+            background: rgba(0, 0, 0, 0.5); text-align: right; transform: translateY(-100%); font-size: 12px; padding: 8px 5px; }
+
+        main > .main-tab-content .recommend > .recommend-content > .recommend-video > ul > li > .description { font-size: 14px; padding-top: 5px; }
+
+        main > .main-tab-content .recommend > .recommend-content > .recommend-video > ul > li > a { position: absolute; z-index: 2; width: 100%; height: 100%; top: 0; left: 0;
+            background: url("//ossweb-img.qq.com/images/lol/web201310/video/bg-icon-v.png") no-repeat center 22px; background-color: rgba(0, 0, 0, 0.05); display: none; }
+
+        main > .main-tab-content .recommend > .recommend-content > .recommend-video > ul > li > img { width: 100%; height: 110px; vertical-align: top; }
+
+        main > .main-tab-content .recommend > .recommend-content > .recommend-video > ul > li:hover > a { display: block; }
+
+        main > .main-tab-content .recommend > .recommend-content > .recommend-video > ul > li:hover > .description { color: #d1ab57; }
+
+        main > .main-tab-content .recommend > .recommend-content .view-more { margin-top: 15px; }
+
+        main > .main-tab-content .recommend > .recommend-content .view-more > a { display: block; padding: 12px 0; text-align: center; color: #515151; font-size: 16px; background: #f0f0f0; }
+
+        main > .main-tab-content .recommend > .recommend-content .view-more > a > span { color: #d1ab57; }
+
+        main > .main-tab-content .recommend > .recommend-content .view-more > a:hover { background: #dad8d8; }
+
+        main > .main-tab-content .recommend > .recommend-content > .recommend-activity > ul { display: flex; justify-content: space-between; }
+
+        main > .main-tab-content .recommend > .recommend-content > .recommend-activity > ul > li { width: 300px; height: 240px; overflow: hidden; background: #f7f7f7; box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+            position: relative; }
+
+        main > .main-tab-content .recommend > .recommend-content > .recommend-activity > ul > li > a { display: block; position: relative; height: 130px; overflow: hidden; }
+
+        main > .main-tab-content .recommend > .recommend-content > .recommend-activity > ul > li > a > img { vertical-align: top; transition: all 1s ease; }
+
+        main > .main-tab-content .recommend > .recommend-content > .recommend-activity > ul > li > a:hover > img { transform: scale(1.05); }
+
+        main > .main-tab-content .recommend > .recommend-content > .recommend-activity > ul > li .finished-icon { position: absolute; top: 5px; right: 5px; background: #c8c8c8; padding: 3px 8px;
+            border-radius: 15px; }
+
+        main > .main-tab-content .recommend > .recommend-content > .recommend-activity > ul > li .intersted-number { position: absolute; bottom: 0; left: 0; display: block; width: 100%; background: rgba(0, 0, 0, 0.6);
+            text-align: center; padding: 6px 0 5px; }
+
+        main > .main-tab-content .recommend > .recommend-content > .recommend-activity > ul > li .intersted-number > b { color: #f3ca6f;; font-weight: normal; }
+
+        main > .main-tab-content .recommend > .recommend-content > .recommend-activity > ul > li > h5 { padding: 12px 0 0 15px; opacity: .9; }
+
+        main > .main-tab-content .recommend > .recommend-content > .recommend-activity > ul > li > p { padding: 12px 0 0 15px; }
+
+        main > .main-tab-content .recommend > .recommend-content > .recommend-activity > ul > li > p > span { color: #d1ab57; }
+
+        footer { padding: 30px 0; background: url("//ossweb-img.qq.com/images/lol/v2/bg-footer.jpg") no-repeat center top; margin-top: 70px; }
+
+        footer > .tencent-nav-wrapper { width: 1240px; margin: 0 auto; }
+
+        footer > .tencent-nav-wrapper > .tencent-nav { float: right; color: #A5A5A5; }
+
+        footer > .tencent-nav-wrapper > .tencent-nav > p { padding: 2px 0 1px; }
+
+        footer > .tencent-nav-wrapper > .tencent-nav > p > a { color: #568193; }
+
+        footer > .tencent-nav-wrapper > .tencent-nav > p.copyright { color: #415967; font-size: 11px; }
+    </style>
+</head>
+<body>
+<div class="page">
+    <header>
+        <div class="topbar-wrapper">
+            <div class="topbar clearfix">
+                <div class="game-nav">
+                    <ul class="main-menu">
+                        <li>
+                            <p>游戏资料</p>
+                            <p>
+                                <small>game info</small>
+                            </p>
+                        </li>
+                        <li>
+                            <p>商城/合作</p>
+                            <p>
+                                <small>store</small>
+                            </p>
+                        </li>
+                        <li>
+                            <p>用户互动</p>
+                            <p>
+                                <small>community</small>
+                            </p>
+                        </li>
+                        <li>
+                            <p>赛事中心</p>
+                            <p>
+                                <small>events</small>
+                            </p>
+                        </li>
+                        <li>
+                            <p>自助系统</p>
+                            <p>
+                                <small>system</small>
+                            </p>
+                        </li>
+                    </ul>
+                    <div class="submenu-wrapper">
+                        <div class="submenu clearfix">
+                            <ul>
+                                <li><a href="#">新手指引</a></li>
+                                <li><i class="icons hot-icon"></i><a href="#">资料库</a></li>
+                                <li><a href="#">攻略中心</a></li>
+                                <li><a href="#">模式实验室</a></li>
+                                <li><a href="#">海克斯战利品库</a></li>
+                                <li><a href="#">屏保下载</a></li>
+                                <li><i class="icons new-icon"></i><a href="#">宇宙官网</a></li>
+                            </ul>
+                            <ul>
+                                <li><a href="#">点券充值</a></li>
+                                <li><a href="#">道具城</a></li>
+                                <li><a href="#">周边商品</a></li>
+                                <li><a href="#">LOL桌游</a></li>
+                                <li><a href="#">LOL信用卡</a></li>
+                                <li><a href="#">网吧特权</a></li>
+                            </ul>
+                            <ul>
+                                <li><a href="#">在线客服</a></li>
+                                <li><a href="#">视频中心</a></li>
+                                <li><i class="icons hot-icon"></i><a href="#">活动中心</a></li>
+                                <li><a href="#">官方网站</a></li>
+                                <li><a href="#">官方微信</a></li>
+                                <li><a href="#">官方微博</a></li>
+                            </ul>
+                            <ul>
+                                <li><i class="icons hot-icon"></i><a href="#">LPL职业联赛</a></li>
+                                <li><a href="#">甲级职业联赛</a></li>
+                                <li><a href="#">德玛西亚杯</a></li>
+                                <li><a href="#">城市争霸赛</a></li>
+                                <li><a href="#">高校联赛</a></li>
+                                <li><a href="#">校际精英赛</a></li>
+                                <li><a href="#">高校自发赛</a></li>
+                            </ul>
+                            <ul>
+                                <li><a href="#">点亮图标</a></li>
+                                <li><a href="#">声望系统</a></li>
+                                <li><i class="icons hot-icon"></i><a href="#">封号查询</a></li>
+                                <li><a href="#">体验服申请</a></li>
+                                <li><a href="#">服务器状态查询</a></li>
+                                <li><a href="#">裁决之镰</a></li>
+                                <li><i class="icons new-icon"></i><a href="#">峡谷之巅</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="user-nav">
+                    <div>
+                        <a href="javascript:;"><i class="search-icon"></i></a>
+                        <a href="#"><i class="phone-icon"></i></a>
+                    </div>
+                    <div class="user-login">
+                        <ul class="clearfix">
+                            <li class="avatar">
+                                <span class="mask"></span>
+                                <img src="images/topbar/avatar-default.png" alt="用户头像">
+                            </li>
+                            <li class="greet">
+                                <p>亲爱的召唤师，欢迎 <a href="#">登录</a></p>
+                                <p>
+                                    <small>登录后查看自己的战绩、资产、声望值等</small>
+                                </p>
+                            </li>
+                        </ul>
+                        <div class="profile">
+                            <p>登录并且绑定大区后才可查看您的具体信息哦~（包括战绩、资产、声望值等）</p>
+                            <a href="#">进入个人中心</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="banner-wrapper trigger">
+            <div class="banner">
+                <div class="logo">
+                    <a href="#">英雄联盟</a>
+                </div>
+                <div class="background-videos-wrapper">
+                    <video class="background-videos small-video trigger" autoplay loop preload="auto">
+                        <source src="./images/banner/small-v7.mp4" type="video/mp4">
+                        <source src="./images/banner/small-v7.webm" type="video/webm">
+                    </video>
+                    <video class="background-videos big-video trigger" autoplay loop preload="auto">
+                        <source src="./images/banner/big-v7.mp4" type="video/mp4">
+                        <source src="./images/banner/big-v7.webm" type="video/webm">
+                    </video>
+                </div>
+                <div class="banner-info trigger">
+                    <div class="slogan trigger">
+                        <h2>对决！ 黎明vs黑夜</h2>
+                        <p>秩序。混沌。二者相争不绝，无所不用其极。疾风化尽，命数将成。</p>
+                    </div>
+                    <div class="demo-video trigger">
+                        <video autoplay loop preload="auto">
+                            <source src="./images/banner/demo-v7.mp4" type="video/mp4">
+                            <source src="./images/banner/demo-v7.webm" type="video/webm">
+                        </video>
+                        <div class="demo-video-poster"></div>
+                    </div>
+                    <a href="#" class="view-detail trigger">查看详情</a>
+                    <div class="version-info">
+                        <p>当前游戏版本 : <span>ver 7.13</span> <a href="#">版本详情</a></p>
+                    </div>
+                </div>
+                <div class="flash-video">
+                    <div class="flash-player" tabindex="-1"></div>
+                    <a href="#" class="popup-close" tabindex="-1">x</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="placeholder">当main-nav fixed时占住位置</div>
+        <div class="main-tab">
+            <ul class="clearfix">
+                <li class="click-tab">综合资讯</li>
+                <li>视频中心</li>
+                <li>赛事中心</li>
+                <li>活动中心</li>
+            </ul>
+        </div>
+        <div class="main-tab-content">
+            <div class="integrated-info click-tab">
+                <div class="product clearfix">
+                    <div class="slides-wrapper">
+                        <div id="slides" class="slides">
+                            <a href="#"><img src="./images/main/slider-1.jpg" alt="无极剑圣斩星魔剑"></a>
+                            <a href="#"><img src="./images/main/slider-2.jpg" alt="庆LPL登顶亚洲"></a>
+                            <a href="#"><img src="./images/main/slider-3.jpg" alt="LPL15日赛程"></a>
+                            <a href="#"><img src="./images/main/slider-4.jpg" alt="洲际赛冠军之选"></a>
+                            <a href="#"><img src="./images/main/slider-5.jpg" alt="新英雄凯隐大揭秘"></a>
+                        </div>
+                    </div>
+                    <div class="resource">
+                        <a class="download" href="#">
+                            <video src="./images/main/download-background.mp4" autoplay loop>
+                                <p>这里是一个视频</p>
+                            </video>
+                        </a>
+                        <ul class="resource-nav">
+                            <li>
+                                <a href="#"><i class="resource-nav-icons recommendation"></i>新手推荐</a>
+                            </li>
+                            <li>
+                                <a href="#"> <i class="resource-nav-icons website"></i>宇宙官网<i
+                                        class="icons hot-icon"></i></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="resource-nav-icons shop"></i>周边商城</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="resource-nav-icons agent"></i>新客户端<i
+                                        class="icons new-icon"></i></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="resource-nav-icons canyon"></i>峡谷之巅<i
+                                        class="icons new-icon"></i></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="resource-nav-icons CDK"></i>CDK兑换</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="resource-nav-icons shift"></i>轮换模式<i
+                                        class="icons hot-icon"></i></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="resource-nav-icons information"></i>游戏资料</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="resource-nav-icons award"></i>领奖中心</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="resource-nav-icons weibo"></i>官方微博</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="resource-nav-icons forum"></i>玩家论坛</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="resource-nav-icons server"></i>在线服务</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="hot-events clearfix">
+                    <div class="news-tab">
+                        <div class="tab-bar clearfix">
+                            <h3>最新资讯</h3>
+                            <ul class="tab-title clearfix">
+                                <li class="active-title">综合新闻</li>
+                                <li>官方公告</li>
+                                <li>赛事新闻</li>
+                                <li>论坛资讯</li>
+                            </ul>
+                        </div>
+                        <ul class="tab-content">
+                            <li class="active">
+                                <table>
+                                    <thead>
+                                    <tr>
+                                        <th><a class="clearfix" href="#" title="无极剑圣的斩星魔剑开启"><img
+                                                src="./images/main/news1.jpg" alt="">
+                                            <h4>无极剑圣的斩星魔剑开启</h4>
+                                            <p>珍稀守卫限时销售，赠送魔法星尘！</p>
+                                        </a>
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td><a href="#" title="符文角：流星抢先看">
+                                            <span>新闻</span>
+                                            <span>符文角：流星抢先看</span>
+                                            <span>07/13</span>
+                                        </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#" title="对决不为人知的结局">
+                                            <span>新闻</span>
+                                            <span>对决不为人知的结局</span>
+                                            <span>07/13</span>
+                                        </a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#" title="OMG对阵EDG 黑暗势力冲击七连胜">
+                                            <span>新闻</span>
+                                            <span>OMG对阵EDG 黑暗势力冲击七连胜</span>
+                                            <span>07/13</span>
+                                        </a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#" title="官方赛事解说与主持人招募启动">
+                                            <span>新闻</span>
+                                            <span>官方赛事解说与主持人招募启动</span>
+                                            <span>07/13</span>
+                                        </a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#" title="峡谷之巅正式赛季宣传片">
+                                            <span>新闻</span>
+                                            <span>峡谷之巅正式赛季宣传片</span>
+                                            <span>07/13</span>
+                                        </a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#" title="新英雄凯隐揭秘站">
+                                            <span>新闻</span>
+                                            <span>新英雄凯隐揭秘站</span>
+                                            <span>07/13</span>
+                                        </a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#" title="洲际赛冠军回馈活动 来掌盟围观夺冠成员！">
+                                            <span>新闻</span>
+                                            <span>洲际赛冠军回馈活动 来掌盟围观夺冠成员！</span>
+                                            <span>07/13</span>
+                                        </a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#" title="秩序&混沌动画制作花絮">
+                                            <span>新闻</span>
+                                            <span>秩序&混沌动画制作花絮</span>
+                                            <span>07/13</span>
+                                        </a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#" title="全球高校冠军杯将于7月13日开战！">
+                                            <span>新闻</span>
+                                            <span>全球高校冠军杯将于7月13日开战！</span>
+                                            <span>07/13</span>
+                                        </a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#" title="7月14日免费英雄更换公告">
+                                            <span>新闻</span>
+                                            <span>7月14日免费英雄更换公告</span>
+                                            <span>07/13</span>
+                                        </a></td>
+                                    </tr>
+                                    </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <td><a href="#">阅读更多<span>最新资讯</span></a></td>
+                                    </tr>
+                                    </tfoot>
+                                </table>
+                            </li>
+                            <li>
+                                <table>
+                                    <thead>
+                                    <tr>
+                                        <th><a class="clearfix" href="#" title="祖安大区紧急停机维护公告"><img
+                                                src="./images/main/news2.jpg" alt="">
+                                            <h4>祖安大区紧急停机维护公告</h4>
+                                            <p></p></a>
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td><a href="#">
+                                            <span>公告</span>
+                                            <span>祖安大区网络波动公告</span>
+                                            <span>07/13</span>
+                                        </a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#">
+                                            <span>公告</span>
+                                            <span>“新手免费英雄”更新通知</span>
+                                            <span>07/13</span>
+                                        </a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#">
+                                            <span>公告</span>
+                                            <span>7月14日免费英雄更换公告</span>
+                                            <span>07/13</span>
+                                        </a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#">
+                                            <span>公告</span>
+                                            <span>峡谷之巅7月12日优化及延迟开放说明</span>
+                                            <span>07/13</span>
+                                        </a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#">
+                                            <span>公告</span>
+                                            <span>7月10日铸星龙王技能在线调整公告</span>
+                                            <span>07/13</span>
+                                        </a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#">
+                                            <span>公告</span>
+                                            <span>7月10日比赛服下载地址更新公告</span>
+                                            <span>07/13</span>
+                                        </a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#">
+                                            <span>公告</span>
+                                            <span>网通大区网络波动公告</span>
+                                            <span>07/13</span>
+                                        </a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#">
+                                            <span>公告</span>
+                                            <span>7月7日免费英雄更换公告</span>
+                                            <span>07/13</span>
+                                        </a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#">
+                                            <span>公告</span>
+                                            <span>恕瑞玛大区网络波动公告</span>
+                                            <span>07/13</span>
+                                        </a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#">
+                                            <span>公告</span>
+                                            <span>7月4日部分大区停机更新时间延长公告</span>
+                                            <span>07/13</span>
+                                        </a></td>
+                                    </tr>
+                                    </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <td><a href="#">阅读更多<span>最新资讯</span></a></td>
+                                    </tr>
+                                    </tfoot>
+                                </table>
+                            </li>
+                            <li>
+                                <table>
+                                    <thead>
+                                    <tr>
+                                        <th><a class="clearfix" href="#" title="EDG与OMG再对话 历史第八次交锋"><img
+                                                src="./images/main/news3.jpg" alt="">
+                                            <h4>EDG与OMG再对话 历史第八次交锋</h4>
+                                            <p>EDG官博直言“战强敌”！OMG发声，正视洲际赛不足，全力以赴迎战EDG。</p></a>
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td><a href="#">
+                                            <span>赛事</span>
+                                            <span>薇恩登场夺3杀，海经晋决赛</span>
+                                            <span>07/13</span>
+                                        </a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#">
+                                            <span>赛事</span>
+                                            <span>Condi盲僧神速几何踢！</span>
+                                            <span>07/13</span>
+                                        </a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#">
+                                            <span>赛事</span>
+                                            <span>“Half Faker，half Deft”——全球高校冠军杯选手Erry</span>
+                                            <span>07/13</span>
+                                        </a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#">
+                                            <span>赛事</span>
+                                            <span>Condi抢龙终结比赛 WE成功复仇JDG</span>
+                                            <span>07/13</span>
+                                        </a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#">
+                                            <span>赛事</span>
+                                            <span>冷少对阵Scout 黑暗势力目标七连胜</span>
+                                            <span>07/13</span>
+                                        </a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#">
+                                            <span>赛事</span>
+                                            <span>不断成长的小学弟 Scout高光集锦</span>
+                                            <span>07/13</span>
+                                        </a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#">
+                                            <span>赛事</span>
+                                            <span>LICC总决赛对阵出炉：全胜海经院将战多伦多大学</span>
+                                            <span>07/13</span>
+                                        </a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#">
+                                            <span>赛事</span>
+                                            <span>海口经济学院七战七胜 晋级冠军战</span>
+                                            <span>07/13</span>
+                                        </a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#">
+                                            <span>赛事</span>
+                                            <span>真·Z皇！卡莉丝塔再拿4杀！</span>
+                                            <span>07/13</span>
+                                        </a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#">
+                                            <span>赛事</span>
+                                            <span>OMG对阵EDG 黑暗势力冲击七连胜</span>
+                                            <span>07/13</span>
+                                        </a></td>
+                                    </tr>
+                                    </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <td><a href="#">阅读更多<span>最新资讯</span></a></td>
+                                    </tr>
+                                    </tfoot>
+                                </table>
+                            </li>
+                            <li>
+                                <table>
+                                    <thead>
+                                    <tr>
+                                        <th><a class="clearfix" href="#" title="【问拳头第三十一期】性感英雄与屠夫之桥"><img
+                                                src="images/main/news1.jpg" alt="">
+                                            <h4>【问拳头第三十一期】性感英雄与屠夫之桥</h4>
+                                            <p>你们会制作英雄联盟电影吗？或者是电影级的长视频？</p></a>
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td><a href="#">
+                                            <span>论坛</span>
+                                            <span>祖安大区紧急停机维护公告</span>
+                                            <span>07/13</span>
+                                        </a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#">
+                                            <span>论坛</span>
+                                            <span>祖安大区网络波动公告</span>
+                                            <span>07/13</span>
+                                        </a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#">
+                                            <span>论坛</span>
+                                            <span>撸言撸语：想杀我，不存在的！最难击杀的英雄</span>
+                                            <span>07/13</span>
+                                        </a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#">
+                                            <span>论坛</span>
+                                            <span>冯提莫大秀女仆装,女主播们的颜值大家怎么看?</span>
+                                            <span>07/13</span>
+                                        </a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#">
+                                            <span>论坛</span>
+                                            <span>新版厄加特，我很丑可是我很强</span>
+                                            <span>07/13</span>
+                                        </a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#">
+                                            <span>论坛</span>
+                                            <span>洛霞甜蜜秀恩爱，剑姬你怎么可以这么酷</span>
+                                            <span>07/13</span>
+                                        </a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#">
+                                            <span>论坛</span>
+                                            <span>璐璐卖萌求抱抱，搞笑表情包再次来袭</span>
+                                            <span>07/13</span>
+                                        </a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#">
+                                            <span>论坛</span>
+                                            <span>【话题】美测服：海量皮肤疯狂来袭</span>
+                                            <span>07/13</span>
+                                        </a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#">
+                                            <span>论坛</span>
+                                            <span>三年后的复仇，Ggoong能否圆梦？</span>
+                                            <span>07/13</span>
+                                        </a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#">
+                                            <span>论坛</span>
+                                            <span>空调游戏西瓜，带上妹纸开黑了</span>
+                                            <span>07/13</span>
+                                        </a></td>
+                                    </tr>
+                                    </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <td><a href="#">阅读更多<span>最新资讯</span></a></td>
+                                    </tr>
+                                    </tfoot>
+                                </table>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="hero-and-skin">
+                        <div class="hero-tab">
+                            <div class="tab-bar">
+                                <ul class="tab-title">
+                                    <li class="active-title">周免英雄</li>
+                                    <li>最新皮肤</li>
+                                    <li>最新英雄</li>
+                                </ul>
+                            </div>
+                            <ul class="hero-content">
+                                <li class="active">
+                                    <ul>
+                                        <li><a title="殇之木乃伊 阿木木" href="#" target="_blank">
+                                            <img width="195" height="70" alt="殇之木乃伊 阿木木"
+                                                 src="//ossweb-img.qq.com/images/lol/v2/champion/avatar/Amumu.jpg">
+                                        </a></li>
+                                        <li><a title="深渊巨口 克格莫" href="#" target="_blank">
+                                            <img width="195" height="70" alt="深渊巨口 克格莫"
+                                                 src="//ossweb-img.qq.com/images/lol/v2/champion/avatar/KogMaw.jpg">
+                                        </a></li>
+                                        <li><a title="盲僧 李青" href="#" target="_blank">
+                                            <img width="195" height="70" alt="盲僧 李青"
+                                                 src="//ossweb-img.qq.com/images/lol/v2/champion/avatar/LeeSin.jpg">
+                                        </a></li>
+                                        <li><a title="光辉女郎 拉克丝" href="#" target="_blank">
+                                            <img width="195" height="70" alt="光辉女郎 拉克丝"
+                                                 src="//ossweb-img.qq.com/images/lol/v2/champion/avatar/Lux.jpg">
+                                        </a></li>
+                                        <li><a title="扭曲树精 茂凯" href="#">
+                                            <img src="//ossweb-img.qq.com/images/lol/v2/champion/avatar/Maokai.jpg">
+                                        </a></li>
+                                        <li><a title="幻翎 洛" href="#" target="_blank">
+                                            <img width="195" height="70" alt="幻翎 洛"
+                                                 src="//ossweb-img.qq.com/images/lol/v2/champion/avatar/Rakan.jpg">
+                                        </a></li>
+                                        <li><a title="虚空遁地兽 雷克塞" href="#" target="_blank">
+                                            <img width="195" height="70" alt="虚空遁地兽 雷克塞"
+                                                 src="//ossweb-img.qq.com/images/lol/v2/champion/avatar/RekSai.jpg">
+                                        </a></li>
+                                        <li><a title="瓦洛兰之盾 塔里克" href="#" target="_blank">
+                                            <img width="195" height="70" alt="瓦洛兰之盾 塔里克"
+                                                 src="//ossweb-img.qq.com/images/lol/v2/champion/avatar/Taric.jpg">
+                                        </a></li>
+                                        <li><a title="卡牌大师 崔斯特" href="#" target="_blank">
+                                            <img width="195" height="70" alt="卡牌大师 崔斯特"
+                                                 src="//ossweb-img.qq.com/images/lol/v2/champion/avatar/TwistedFate.jpg">
+                                        </a></li>
+                                        <li><a title="逆羽 霞" href="#" target="_blank">
+                                            <img width="195" height="70" alt="逆羽 霞"
+                                                 src="//ossweb-img.qq.com/images/lol/v2/champion/avatar/Xayah.jpg">
+                                        </a></li>
+                                        <li class="free-time">免费时间：2017-07-14 至 2017-07-21</li>
+                                    </ul>
+                                </li>
+                                <li class>
+                                    <ul>
+                                        <li class="skin-first"><a href="#" target="_blank"><img
+                                                src="//ossweb-img.qq.com/images/lol/v2/skin/recommend/a20170703skt.jpg"
+                                                width="400" height="145"></a></li>
+                                        <li><a href="#"><img
+                                                src="//ossweb-img.qq.com/images/lol/v2/skin/a20170612vs.jpg" width="195"
+                                                height="70" alt=""> </a></li>
+                                        <li><a href="#" target="_blank"><img
+                                                src="//ossweb-img.qq.com/images/lol/v2/skin/a20170522caitlin.jpg"
+                                                width="195" height="70" alt=""> </a></li>
+                                        <li><a href="#" target="_blank"><img
+                                                src="//ossweb-img.qq.com/images/lol/v2/skin/a20170407fist.jpg"
+                                                width="195" height="70" alt=""> </a></li>
+                                        <li><a href="#" target="_blank"><img
+                                                src="//ossweb-img.qq.com/images/lol/v2/skin/a20170401fool.jpg"
+                                                width="195" height="70" alt=""> </a></li>
+                                        <li><a href="#" target="_blank"><img
+                                                src="//ossweb-img.qq.com/images/lol/v2/skin/a20170213blood.jpg"
+                                                width="195" height="70" alt=""> </a></li>
+                                        <li><a href="#" target="_blank"><img
+                                                src="//ossweb-img.qq.com/images/lol/v2/skin/a20161117nautilus.jpg"
+                                                width="195" height="70" alt=""> </a></li>
+                                    </ul>
+                                </li>
+                                <li class>
+                                    <ul>
+                                        <li><a href="#" target="_blank"><img
+                                                src="//ossweb-img.qq.com/images/lol/v2/champion/avatar/Luoxia.jpg"
+                                                width="195" height="70" alt=""> </a></li>
+                                        <li><a href="#" target="_blank"><img
+                                                src="//ossweb-img.qq.com/images/lol/v2/champion/avatar/Camille.jpg"
+                                                width="195" height="70" alt=""> </a></li>
+                                        <li><a href="#" target="_blank"><img
+                                                src="//ossweb-img.qq.com/images/lol/v2/champion/avatar/Ivern.jpg"
+                                                width="195" height="70" alt=""> </a></li>
+                                        <li><a href="#" target="_blank"><img
+                                                src="//ossweb-img.qq.com/images/lol/v2/champion/avatar/Kled.jpg"
+                                                width="195" height="70" alt=""> </a></li>
+                                        <li><a href="#" target="_blank"><img
+                                                src="//ossweb-img.qq.com/images/lol/v2/champion/avatar/Taliyah.jpg"
+                                                width="195" height="70" alt=""> </a></li>
+                                        <li><a href="#" target="_blank"><img
+                                                src="//ossweb-img.qq.com/images/lol/v2/champion/avatar/AurelionSol.jpg"
+                                                width="195" height="70" alt=""> </a></li>
+                                        <li><a href="#" target="_blank"><img
+                                                src="//ossweb-img.qq.com/images/lol/v2/champion/avatar/Jhin.jpg"
+                                                width="195" height="70" alt=""> </a></li>
+                                        <li><a href="#" target="_blank"><img
+                                                src="//ossweb-img.qq.com/images/lol/v2/champion/avatar/Illaoi.jpg"
+                                                width="195" height="70" alt=""> </a></li>
+                                        <li><a href="#" target="_blank"><img
+                                                src="//ossweb-img.qq.com/images/lol/v2/champion/avatar/Kindred.jpg"
+                                                width="195" height="70" alt=""> </a></li>
+                                        <li><a href="#" target="_blank"><img
+                                                src="//ossweb-img.qq.com/images/lol/v2/champion/avatar/TahmKench.jpg"
+                                                width="195" height="70" alt=""> </a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="survey-prompt">
+                            <a class="survey" href="#"><img alt="" src="//ossweb-img.qq.com/images/lol/v1/survey.jpg"
+                                                            width="400" height="90"></a>
+                            <div class="prompt clearfix">
+                                <i class="prompt-icon"></i>
+                                <h5>本游戏适合18岁（含）以上玩家娱乐</h5>
+                                <p> 抵制不良游戏 拒绝盗版游戏 注意自我保护 谨防受骗上当<br/>
+                                    适度游戏益脑 沉迷游戏伤身 合理安排时间 享受健康生活
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="recommend">
+                    <div class="recommend-bar tab-bar clearfix">
+                        <h3>最新推荐</h3>
+                        <ul class="recommend-tab tab-title clearfix">
+                            <li class="active-title">视频推荐</li>
+                            <li>活动推荐</li>
+                        </ul>
+                    </div>
+                    <div class="recommend-content">
+                        <div class="recommend-video active">
+                            <ul>
+                                <li>
+                                    <img src="//puui.qpic.cn/qqvideo_ori/0/q0524sdzadp_228_128/0" alt="">
+                                    <span class="time-bar">05:43</span>
+                                    <span class="description">新英雄介绍视频：影流之镰 凯隐</span>
+                                    <a href="#"></a>
+                                </li>
+                                <li>
+                                    <img src="//puui.qpic.cn/qqvideo_ori/0/n0524x6hsmh_228_128/0" alt="">
+                                    <span class="time-bar">00:48</span>
+                                    <span class="description">新英雄CG动画：凯隐 影之道</span>
+                                    <a href="#"></a>
+                                </li>
+                                <li>
+                                    <img src="//shp.qpic.cn/lolwebvideo/201406/74a9365733b44fbd8ba4bfb72d52d6ef/0"
+                                         alt="">
+                                    <span class="time-bar">02:58</span>
+                                    <span class="description">【神探苍致胜九十秒】第二期 火影劫万能击杀秘籍</span>
+                                    <a href="#"></a>
+                                </li>
+                                <li>
+                                    <img src="//shp.qpic.cn/lolwebvideo/201406/aa5dc0472b6ab318f85e7a094f8e3c33/0"
+                                         alt="">
+                                    <span class="time-bar">08:14</span>
+                                    <span class="description">7.14版本凯隐上线 新英雄首个1V5五杀</span>
+                                    <a href="#"></a>
+                                </li>
+                                <li>
+                                    <img src="//shp.qpic.cn/lolwebvideo/201406/2a7f47671303bc2f543ec26c13ff66e0/0"
+                                         alt="">
+                                    <span class="time-bar">08:55</span>
+                                    <span class="description">岩雀大招还能这么用？这个隐藏R我真的服</span>
+                                    <a href="#"></a>
+                                </li>
+                                <li>
+                                    <img src="//shp.qpic.cn/lolwebvideo/201406/94a5181d62c5e75c7c94710643201e03/0"
+                                         alt="">
+                                    <span class="time-bar">05:24</span>
+                                    <span class="description">神仙打架啦：北美神僧大胡子 开场一分钟闪Q拿下一血真的骚</span>
+                                    <a href="#"></a></li>
+                            </ul>
+                            <div class="view-more"><a href="#">浏览更多<span>视频内容</span></a></div>
+                        </div>
+                        <div class="recommend-activity">
+                            <ul>
+                                <li><a href="#"><img
+                                        src="//ossweb-img.qq.com/images/clientpop/act/lol_1497607072_sSmallImgUrl.jpg"
+                                        alt="锐雯vs亚索 对决">
+                                    <span class="finished-icon">已结束</span>
+                                    <span class="intersted-number">已有 <b>217287</b> 人关注</span></a>
+                                    <h5>锐雯vs亚索 对决</h5>
+                                    <p><span>活动时间: </span>2017-06-16~2017-06-30</p>
+                                    <p>加入战役，拿专属奖励！</p>
+                                </li>
+                                <li><a href="#"><img
+                                        src="//ossweb-img.qq.com/images/clientpop/act/lol_1496843202_sSmallImgUrl.jpg"
+                                        alt="末日人工智能">
+                                    <span class="finished-icon">已结束</span>
+                                    <span class="intersted-number">已有 <b>90253022</b> 人关注</span></a>
+                                    <h5>末日人工智能</h5>
+                                    <p><span>活动时间: </span>2017-06-06~2017-06-15</p>
+                                    <p>提莫大魔王卷土重来</p>
+                                </li>
+                                <li><a href="#"><img
+                                        src="//ossweb-img.qq.com/images/clientpop/act/lol_1496312163_sSmallImgUrl.jpg"
+                                        alt="德杯观赛活动">
+                                    <span class="finished-icon">已结束</span>
+                                    <span class="intersted-number">已有 <b>160240</b> 人关注</span></a>
+                                    <h5>德杯观赛活动</h5>
+                                    <p><span>活动时间: </span>2017-06-01~2017-06-08</p>
+                                    <p>客户端电视台看德杯，赢冠军皮肤</p>
+                                </li>
+                                <li><a href="#"><img
+                                        src="//ossweb-img.qq.com/images/clientpop/act/lol_1496236579_sSmallImgUrl.jpg"
+                                        alt="520甜蜜大作战">
+                                    <span class="finished-icon">已结束</span>
+                                    <span class="intersted-number">已有 <b>381047</b> 人关注</span></a>
+                                    <h5>520甜蜜大作战</h5>
+                                    <p><span>活动时间: </span>2017-05-20~2017-06-04</p>
+                                    <p>参与活动免费领英雄皮肤,来与好友一起并肩作战!</p>
+                                </li>
+                            </ul>
+                            <div class="view-more"><a href="#">浏览更多<span>最新活动</span></a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="video-center"></div>
+            <div class="event-center"></div>
+            <div class="activity-center"></div>
+        </div>
+    </main>
+    <footer>
+        <div class="tencent-nav-wrapper clearfix">
+            <div class="tencent-nav">
+                <p><a href="#">腾讯互动娱乐</a> <a>|</a> <a href="#">服务条款</a> <a>|</a> <a href="#">广告服务</a> <a>|</a> <a
+                        href="#">腾讯游戏招聘</a> <a>|</a> <a href="#">腾讯游戏客服</a> <a>|</a>
+                    <a href="#">游戏活动</a> <a>|</a> <a href="#">游戏地图</a> <a>|</a> <a href="#">商务合作</a> <a>|</a> <a
+                            href="#">腾讯网</a> <a>|</a> <a
+                            href="#">网站导航</a></p>
+                <p><a href="#">腾讯公司版权所有</a></p>
+                <p class="copyright">COPYRIGHT © 1998 - 2017 TENCENT. ALL RIGHTS RESERVED.</p>
+                <p class="copyright">© 2012 Riot Games, Inc. ALL RIGHTS RESERVED.</p>
+                <p>文网进字[2011] 004号 & ISBN 978-7-89989-145-2 <a>|</a> <a href="#">新出网证（粤）字010号</a> <a>|</a> <a
+                        href="#">粤网文[2014]0633-233号</a></p>
+            </div>
+        </div>
+    </footer>
+</div>
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="jquery.slides.min.js"></script>
+<script>
+    function popupFlashVideo() {
+        $('header > .banner-wrapper>.banner>.banner-info>.demo-video').on('click', function (e) {
+            $('header > .banner-wrapper>.banner>.flash-video').addClass('active')
+        })
+        $('header > .banner-wrapper>.banner>.flash-video>.popup-close').on('click', function (e) {
+            $('header > .banner-wrapper>.banner>.flash-video').removeClass('active')
+        })
+    }
+    popupFlashVideo();
+
+    function shiftBackgroundVideo() {
+        $(window).on('scroll', function (e) {
+            var scrollHeight = e.currentTarget.scrollY;
+            var $containerHeight = $('header > .banner-wrapper').innerHeight() / 3;
+            if (scrollHeight > $containerHeight) {
+                $('.page').find('[class~="trigger"]').addClass('shift-background-video')
+            }
+        })
+    }
+    shiftBackgroundVideo();
+
+    function triggerMainTabFixed() {
+        $(window).on('scroll', function () {
+            var $mainTab = $('main>.main-tab');
+            var windowHeight = window.scrollY;
+            var mainTabHeight = $('.page>header').innerHeight();
+            if (windowHeight > mainTabHeight) {
+                $mainTab.addClass('activeFixed');
+                $('main>.placeholder').addClass('activeFixed');
+            } else {
+                $mainTab.removeClass('activeFixed');
+                $('main>.placeholder').removeClass('activeFixed');
+            }
+        })
+    }
+    triggerMainTabFixed();
+
+    function activeMainTab() {
+        $('main>.main-tab>ul').on('click', 'li', function (e) {
+            var index = $(e.currentTarget).index();
+            $(e.currentTarget).siblings()
+                .removeClass('click-tab')
+                .end()
+                .addClass('click-tab');
+            $(e.currentTarget).parent()
+                .parent()
+                .next('.main-tab-content')
+                .children()
+                .eq(index)
+                .siblings()
+                .removeClass('click-tab')
+                .end()
+                .addClass('click-tab');
+        })
+    }
+    activeMainTab();
+
+    //轮播
+    $(function () {
+        $("#slides").slidesjs({
+            navigation: false,
+            width: 820,
+            height: 400,
+            play: {
+                interval: 3000,
+                pauseOnHover: true,
+                auto: true,
+                active: true, //为轮播加上播放和暂停键
+                restartDelay: 3000
+            },
+            effect: {
+                slide: {
+                    speed: 200
+                }
+            },
+            callback: {
+                loaded: function (number) {
+//                    console.log('loaded: '+number);
+                    var texts = ['无极剑圣斩星魔剑', '庆LPL登顶亚洲', 'LPL15日赛程', '洲际赛冠军之选', '新英雄凯隐大揭秘'];
+                    $('.slidesjs-pagination-item').each(function (index, element) {
+                        element.children[0].innerText = texts[index]
+                    });
+                    $('main #slides .slidesjs-pagination li a').on('mouseenter', function (e) {
+                        $(e.currentTarget).parent()
+                            .siblings()
+                            .find('a.active')
+                            .removeClass('active')
+                            .end()
+                            .end()
+                            .find('a')
+                            .addClass('active'); //鼠标移进导航条时，为所在的导航添加active 类
+                        $(e.currentTarget).trigger('click'); //鼠标移进导航条时，点击所在的导航
+
+                        function slidesjsPlay() {
+                            $('#slides .slidesjs-play.slidesjs-navigation').trigger('click');
+                            $('main #slides .slidesjs-pagination li').off('mouseleave', slidesjsPlay)
+                        };
+                        $('main #slides .slidesjs-pagination li').on('mouseleave', slidesjsPlay);//按下播放按键
+                        $('#slides .slidesjs-stop.slidesjs-navigation').trigger('click');//按下暂停按键
+                    });
+                },
+//                start: function(number){console.log('start: '+number);},
+//                complete: function(number){
+//                    console.log('complete: '+number)}
+            }
+        })
+    });
+
+    function hoverHeroImg() {
+        var $spanParent = $('<span></span>');
+        var $spanChild = $('<span></span>');
+        $spanParent.css({
+            'position': 'absolute',
+            'top': '0',
+            'width': '100%',
+            'height': '100%',
+            'background': 'rgba(0,0,0,0.78)'
+//            'display':none
+        });
+        $('main .hot-events >.hero-and-skin >.hero-tab >.hero-content>li>ul>li')
+            .not('[class=free-time],[class=skin-first]')
+            .on('mouseenter', 'a', function (e) {
+                $spanChild.text(e.currentTarget.title.split(' ')[0]);
+                console.log($spanChild)
+                $spanChild.css({
+                    'position': 'absolute',
+                    "z-index": '1',
+                    'top': '50%',
+                    'left': '50%',
+                    'transform': 'translate(-50%,-50%)',
+                    'color': 'RGB(209,171,87)'
+                })
+                $spanParent.append($spanChild).appendTo(e.currentTarget);
+            }).on('mouseleave', 'a', function (e) {
+            $(e.currentTarget).find('span').remove();
+        })
+    }
+    hoverHeroImg();
+
+    function triggerTab(tabSelector, contentSelector) {
+        $(tabSelector).on('mouseenter', function (e) {
+            var $index = $(e.currentTarget).index();
+            $(e.currentTarget).siblings()
+                .removeClass('active-title')
+                .end()
+                .addClass('active-title');
+            $(contentSelector).removeClass('active').eq($index).addClass('active');
+        })
+
+    }
+
+    function triggerNewsTab() {
+        var tabSelector = 'main .hot-events > .news-tab > .tab-bar > .tab-title > li';
+        var contentSelector = 'main .hot-events > .news-tab > .tab-content > li';
+        triggerTab(tabSelector, contentSelector)
+    }
+    triggerNewsTab();
+
+    function triggerHeroTab() {
+        var tabSelector = 'main .hot-events >.hero-and-skin >.hero-tab >.tab-bar > .tab-title > li';
+        var contentSelector = 'main .hot-events >.hero-and-skin >.hero-tab >.hero-content>li';
+        triggerTab(tabSelector, contentSelector)
+    }
+    triggerHeroTab();
+
+    function triggerRecommendTab() {
+        var tabSelector = 'main > .main-tab-content .recommend > .recommend-bar > .recommend-tab > li';
+        var contentSelector = 'main > .main-tab-content .recommend > .recommend-content>div';
+        triggerTab(tabSelector, contentSelector)
+    }
+    triggerRecommendTab()
+</script>
+</body>
+</html>

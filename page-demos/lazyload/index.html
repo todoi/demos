@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        ol,
+        ul {
+            list-style: none;
+        }
+
+        body {
+            font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif;
+            background: #e8e8e8;
+        }
+
+        .image-list {
+            display: flex;
+            max-width: 900px;
+            margin: 50px auto;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .image-list>li {
+            width: calc(33.33333% - 10px);
+            margin-bottom: 30px;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .image-list>li:hover {
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .image-container {
+            padding-top: 56.25%;
+            position: relative;
+        }
+
+        .image-container>img {
+            width: 100%;
+            height: 100%;
+            vertical-align: top;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .image-container>.loadingImage {
+            width: 50%;
+            height: auto;
+            vertical-align: top;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
+
+        .text {
+            position: relative;
+            padding: 5px 15px 15px 15px;
+            font-size: 95%;
+        }
+
+        .text::before {
+            content: '';
+            display: block;
+            position: absolute;
+            border-bottom: 20px solid white;
+            border-left: 40px solid transparent;
+            border-right: 40px solid transparent;
+            top: -10px;
+            left: 5px;
+            transition: all ease-in 0.2s;
+        }
+
+        .image-list>li:hover>.text::before {
+            top: -15px;
+        }
+
+        .text>h2 {
+            text-transform: uppercase;
+            color: #74c239;
+            margin: 12.5px 0;
+            letter-spacing: 0;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 6px;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 1.5;
+            overflow:hidden;
+            white-space: nowrap;
+        }
+
+        .text>p {
+            color: #888;
+            overflow-wrap: break-word;
+            font-weight: 300;
+            margin: 0;
+        }
+
+        footer {
+            background-color: #333;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .loadMoreButton,
+        .deactivate {
+            color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, .08), 0 2px 4px rgba(0, 0, 0, .12);
+            transition: all .2s ease-in;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 12px 20px;
+            font-size: 19px;
+            line-height: 1.333333333;
+            border-radius: 1px;
+            background-color: #777;
+            border: 0;
+            font-weight: 400;
+            cursor: pointer;
+        }
+
+        .deactivate {
+            cursor: no-allowed;
+        }
+
+        .loadMoreButton:hover {
+            box-shadow: 0 5px 10px rgba(0, 0, 0, .19), 0 6px 6px rgba(0, 0, 0, .23);
+            background-color: #5e5e5e;
+        }
+
+        .loadMoreButton:active {
+            position: relative;
+            top: 1px;
+        }
+        .loadMoreButton.loading{
+            color:transparent;
+            background:url('./images/Spinner.gif') center / contain no-repeat #bdceec;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <ol class="image-list">
+            <li>
+                <div class="image-container"><img src="//cdn.sawtoothguides.com/wp-content/uploads/2014/10/super-slabs-2-400x300.jpg" alt="super slabs"></div>
+                <div class="text">
+                    <h2>super slabs</h2>
+                    <p>listed as one of the u.s.’s top 8 moderate climbs by climbing magazine no prior climbing experience necessary!
+                        this is […]</p>
+                </div>
+            </li>
+
+            <li>
+                <div class="image-container"><img src="//cdn.sawtoothguides.com/wp-content/uploads/2014/10/elephants-perch-1-400x300.jpg" alt="Elephants Perch"></div>
+                <div class="text">
+                    <h2>Elephants Perch</h2>
+                    <p>Mountaineers Route, III 5.9 The ultimate rock climb in the Sawtooths! We usually ascend “The Perch” via
+                        the eight pitch […]</p>
+                </div>
+            </li>
+
+            <li>
+                <div class="image-container"><img src="//cdn.sawtoothguides.com/wp-content/uploads/2014/10/warbonnet-1-400x300.jpg" alt="Warbonnet"></div>
+                <div class="text">
+                    <h2>Warbonnet</h2>
+                    <p>South Face – III 5.7 Located deep in the range on the western slope, Warbonnet is a committing and remote
+                        […]
+                    </p>
+                </div>
+            </li>
+
+            <li>
+                <div class="image-container"><img src="//cdn.sawtoothguides.com/wp-content/uploads/2014/10/mount-heyburn-400x300.jpg" alt="Mount Heyburn"></div>
+                <div class="text">
+                    <h2>Mount Heyburn</h2>
+                    <p>Stur Chimney – II 5.7 First climbed by Louis Stur in 1951 the Stur Chimney route that now bears his […]</p>
+                </div>
+            </li>
+
+            <li>
+                <div class="image-container"><img src="//cdn.sawtoothguides.com/wp-content/uploads/2014/10/finger-of-fate-2-400x300.jpg" alt="Finger of Fate"></div>
+                <div class="text">
+                    <h2>Finger of Fate</h2>
+                    <p>Open Book, III 5.8 The Finger of Fate is perhaps the most dramatic summit in the Sawtooths and via the
+                        […]
+                    </p>
+                </div>
+            </li>
+
+            <li>
+                <div class="image-container"><img src="//cdn.sawtoothguides.com/wp-content/uploads/2014/10/packrat-peak-400x300.jpg" alt="Packrat Peak"></div>
+                <div class="text">
+                    <h2>Packrat Peak</h2>
+                    <p>Northeast Ridge – II 5.2 From Warbonnet Lake the Northeast Ridge leads directly to the summit of Packrat
+                        Peak. The […] </p>
+                </div>
+            </li>
+        </ol>
+
+        <footer>
+            <button type="button" class="loadMoreButton">view more ...</button>
+        </footer>
+    </div>
+    <script>
+
+        main()
+
+        function main(){
+            let list = document.querySelector('.image-list')   
+            let button = document.querySelector('.loadMoreButton')
+            let self = {
+                pageNumber: 1,
+                isLoading: false,
+            }
+
+            //点击按钮就发送xhr
+            button.addEventListener('click', function (){ ajax(list,button,self) }, false)
+
+            //预加载图片
+            preloadImage("./images/Spinner.gif")
+
+
+            //监听window 滚动事件
+            window.onscroll = function(){
+                //按钮出现在视口中就点击按钮 
+                if( isInViewport(button) ){ button.click() }
+                loadMoreImages()             
+            }  
+        }
+
+        function preloadImage(src){
+            var loadingImage = new Image()
+            loadingImage.src = src
+        }
+
+
+        function loadMoreImages(){
+            //遍历菊花图
+            Array.prototype.forEach.call(document.querySelectorAll('.loadingImage'),function(element){
+                //console.log(element) 
+                //如果菊花图出现在视口中，就像图片资源发送请求
+                //请求完成后将类名重置
+                if(isInViewport(element)){
+                    element.onload = function(){
+                        element.className = ""
+                    }
+                    element.src =element.getAttribute('data-url')
+                }
+            })
+        }
+
+        function isInViewport(element){
+            let htmlClientY = document.documentElement.clientHeight
+            let elementClientY = element.getBoundingClientRect().top
+            if(htmlClientY >= elementClientY){
+                return true
+            }
+        }
+
+        function ajax(list,button,self) {
+            //为按钮添加菊花背景
+            button.classList.add('loading') 
+
+            if (self.isLoading) { return }
+            let xhr = new XMLHttpRequest()
+
+            xhr.open('GET', './page' + self.pageNumber)
+            xhr.onerror = function () { self.isLoading = false }
+            xhr.onload = success
+            self.isLoading = true
+            xhr.send()
+
+            function success(){
+                //去掉按钮的菊花背景
+                button.classList.remove('loading')
+
+                self.pageNumber += 1
+                self.isLoading = false
+                if (xhr.responseText.match('content')) {
+                    let responseObj = JSON.parse(xhr.response)
+                    let { content, hasNextPage } = responseObj
+                    for (let i = 0; i < content.length; i++){
+                        let { imageSrc, imageAlt, title, paragraph } = content[i]
+                        let html = `
+                            <li>
+                                <div class='image-container'>
+                                    <img data-url=${imageSrc} class=loadingImage src='./images/Spinner.gif' alt=${imageAlt}>
+                                </div>
+                                <div class=text>
+                                    <h2>${title}</h2>
+                                    <p>${paragraph}</p>
+                                </div>
+                            </li>
+                            `
+
+                        list.insertAdjacentHTML('beforeend',html)
+                    }
+
+                    //如果没有下一页
+                    if (hasNextPage === false) {
+                        button.disabled = true
+                        button.style.background = '#74C239'
+                        button.className = 'deactivate'
+                        button.textContent = 'all content is loaded'
+                    }
+                } else {
+                    document.write(xhr.responseText)
+                }
+                loadMoreImages() //判断是否将图片加载出来，而不是等到滚到在加载
+            }
+        }
+    </script>
+</body>
+
+</html>

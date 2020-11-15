@@ -1,0 +1,34 @@
+<style>
+body { background: #ccc;height: 2000px ; transform:translateZ(0); -webkit-transform:translateZ(0);/*重点样式*/}
+.absolute{
+	height: 600px;
+    width: 650px;
+    background: green;
+    overflow: auto;
+    position: relative;
+    left:200px;
+    top:100px;
+}
+.fixed{
+	background-color: #ddd;
+    width: 300px;
+    height: 100px;
+    position: fixed;
+  	top:200px;
+    /*不要设置top,left,bottom,right*/
+}
+.content{ /*为了撑起absolute的高度*/
+  float:left;
+  height:1800px;
+}
+</style>
+
+
+<div class="absolute">
+  absolute content
+  <div class="content"></div>
+  <div class="fixed">fixed</div>
+</div>
+
+
+<!-- http://www.cnblogs.com/biyesheng/p/6386176.html -->

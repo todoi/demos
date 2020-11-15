@@ -1,0 +1,5 @@
+window['{{callback}}']({
+    'name': 'Michael',
+    'age': 18,
+    'functionName': '{{callback}}',
+})

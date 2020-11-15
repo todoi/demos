@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        ul,
+        ol {
+            list-style: none;
+        }
+
+        .album {
+            max-width: 900px;
+            margin: 0 auto;
+            border: 1px solid;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .item {
+            width: calc(33.3% - 10px);
+        }
+
+        .placeHolder {
+            padding-top: 100%;
+            position: relative;
+        }
+
+        .picture {
+            width: 100%;
+            height: auto;
+            vertical-align: top;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        body{
+            text-align:center;
+        }
+
+        #loadMoreButton {
+            border: 0;
+            box-shadow: rgb(39, 104, 115) 0px 10px 14px -7px;
+            background: linear-gradient(rgb(89, 155, 179) 5%, rgb(64, 140, 153) 100%) rgb(89, 155, 179);
+            border-radius: 8px;
+            display: inline-block;
+            cursor: pointer;
+            color: rgb(255, 255, 255);
+            font-family: Arial;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 13px 32px;
+            text-decoration: none;
+            text-shadow: rgb(61, 118, 138) 0px 1px 0px;
+            filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#599bb3', endColorstr='#408c99',GradientType=0);
+            margin: 50px;
+            margin-bottom: 800px;
+        }
+
+        #loadMoreButton:hover {
+            cursor: pointer;
+            background: linear-gradient( rgb(64, 140, 153) 5%, rgb(89, 155, 179) 100%) rgb(64, 140, 153);
+            filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#408c99', endColorstr='#599bb3',GradientType=0);
+        }
+
+        #loadMoreButton:active {
+            position: relative;
+            top: 1px;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="album">
+    </ul>
+    <button id="loadMoreButton" class="button">加载更多</button>
+
+    <script>
+        let ul = document.querySelector('.album')
+        for (let i = 0; i < 9; i++) {
+            let li = document.createElement('li')
+            let image = document.createElement('img')
+            let paragraph = document.createElement('p')
+            let placeHolder = document.createElement('div')
+            placeHolder.className = 'placeHolder'
+            li.className = 'item'
+            image.className = 'picture'
+            image.src = "//via.placeholder.com/300x300?text=" + Math.random().toFixed(3) * 1000
+            placeHolder.appendChild(image)
+            li.appendChild(placeHolder)
+            paragraph.innerText = `这是第 ${i+1} 段话`
+            li.appendChild(paragraph)
+            ul.appendChild(li)
+        }
+
+        let pageNumber = 1
+        let loading = false
+
+        loadMoreButton.addEventListener('click',loadMore,false)
+
+        window.onscroll = function(e){
+            let windowClientHeight = document.documentElement.clientHeight
+            let buttonClientHeight = loadMoreButton.getBoundingClientRect().top
+            if(buttonClientHeight < windowClientHeight){
+                loadMoreButton.click()
+            }
+        }
+
+        window.onload = function(e){
+            let windowClientHeight = document.documentElement.clientHeight
+            let buttonClientHeight = loadMoreButton.getBoundingClientRect().top
+            if(buttonClientHeight < windowClientHeight){
+                loadMoreButton.click()
+            }
+        }
+
+        function loadMore(e){
+            if (loading){return}
+            let request = new XMLHttpRequest()
+            request.open('GET','./page' + pageNumber)
+            request.send()
+            request.onerror = function(){loading = false}
+            request.onload = function(){
+                pageNumber += 1
+                loading = false
+                let nextPageObject = window.JSON.parse(request.responseText).content
+                let hasNextPage = JSON.parse(request.response).hasNextPage
+                for(let i=0; i<nextPageObject.length; i++){
+                    let html = `
+                    <li class=item>
+                        <div class=placeHolder>
+                            <img src="${nextPageObject[i].url}" class=picture>
+                        </div>
+                        <p>${nextPageObject[i].text}</p>
+                    </li>
+                    `
+                    ul.insertAdjacentHTML('beforeend',html)
+                }
+                if (hasNextPage === false){
+                    loadMoreButton.disabled = true
+                    loadMoreButton.textContent = '没有更多内容'
+                }
+            }
+            loading = true
+        }
+    </script>
+</body>
+
+</html>

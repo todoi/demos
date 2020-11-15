@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <style>
+        .errorMessage{display: none;}
+        .error{border: red 1px solid;}
+        .error + .errorMessage{color:red;display:inline;}
+    </style>
+    <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+
+<body>
+    <form method="POST" action="/login" id="loginForm">
+        <div>
+            <label>用户名：<input type="text" name="username" class="">
+            <span class=errorMessage>错误提示</span></label>
+        </div>
+        <div>
+            <label>密码：　<input type="password" name="password" class="">
+            <span class=errorMessage>错误提示</span></label>
+        </div>
+        <div><input type="submit"></div>
+    </form>
+    <script>
+        $('#loginForm input').on('input',function(e){
+            $(e.currentTarget).removeClass('error')
+        })
+        loginForm.addEventListener('submit',function(e){
+            let username = loginForm.username.value //这两个let 得写在监听函数里面
+            let password = loginForm.password.value
+            let valid = true
+            e.preventDefault()
+            if( !$.trim(username) ){
+                $('#loginForm input[name=username]').addClass('error').next().text('用户名不能为空')
+                valid = false
+            }
+            if( !password ){
+                $('#loginForm input[name=password]').addClass('error').next().text('密码不能为空')
+                valid = false
+            }
+            if(valid){
+                let request = new XMLHttpRequest()
+                request.onreadystatechange = function(){
+                    if (request.readyState === 4){
+                        if (request.status >= 400){
+                            if(request.response.match('error')){
+                                let {errors} = JSON.parse(request.response)
+                                for(key in errors){
+                                    $(`#loginForm input[name=${key}]`).addClass('error').next().text(`${errors[key]}`)
+                                }
+                            }
+                        }else if(request.status === 200){
+                            alert(request.responseText)
+                        }
+                    }
+                }
+                request.open('POST','/login')
+                request.setRequestHeader('content-type','application/x-www-form-urlencode')
+                request.send(`username=${username}&password=${password}`)
+            }
+        },false)
+    </script>
+</body>
+
+</html>
